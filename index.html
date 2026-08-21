@@ -334,6 +334,1124 @@ body.light .top-area{
 body.light .top-area .container{background:transparent!important;border:0!important;box-shadow:none!important}
 </style>
 
+
+<style id="apple-glass-overrides">
+/* =========================================================
+   Apple-inspired glass design layer
+   Presentation-only: no learning content or JS behavior changed.
+   ========================================================= */
+:root{
+  --bg:#050507;
+  --panel:rgba(24,24,28,.62);
+  --panel-strong:rgba(28,28,32,.74);
+  --panel-soft:rgba(255,255,255,.055);
+  --glass-border:rgba(255,255,255,.12);
+  --glass-border-soft:rgba(255,255,255,.08);
+  --glass-highlight:rgba(255,255,255,.075);
+  --text:#f5f5f7;
+  --text-soft:rgba(245,245,247,.88);
+  --muted:rgba(245,245,247,.68);
+  --dim:rgba(245,245,247,.48);
+  --shadow:0 24px 70px rgba(0,0,0,.26);
+  --shadow-soft:0 10px 35px rgba(0,0,0,.18);
+  --radius-xl:28px;
+  --radius-lg:22px;
+  --radius-md:17px;
+  --radius-sm:13px;
+  --accent:#fff;
+  --hover-bg:rgba(255,255,255,.11);
+  --hover-fg:#fff;
+  --hover-border:rgba(255,255,255,.2);
+}
+
+html{
+  background:var(--bg);
+  scrollbar-color:rgba(255,255,255,.24) transparent;
+}
+body{
+  font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text","Helvetica Neue",Helvetica,Arial,sans-serif;
+  letter-spacing:-.012em;
+  background:
+    radial-gradient(1000px 600px at 50% -10%,rgba(255,255,255,.085),transparent 60%),
+    radial-gradient(800px 500px at 100% 30%,rgba(125,125,255,.055),transparent 65%),
+    radial-gradient(700px 500px at 0% 60%,rgba(0,180,255,.035),transparent 65%),
+    linear-gradient(180deg,#070709 0%,#050507 48%,#040406 100%);
+}
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  z-index:-1;
+  pointer-events:none;
+  background:
+    linear-gradient(rgba(255,255,255,.012) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.012) 1px,transparent 1px);
+  background-size:48px 48px;
+  mask-image:linear-gradient(to bottom,rgba(0,0,0,.35),transparent 65%);
+  opacity:.18;
+}
+
+/* Main navigation */
+nav{
+  padding:14px 28px;
+  min-height:68px;
+  background:rgba(20,20,23,.50)!important;
+  border-bottom:1px solid rgba(255,255,255,.085)!important;
+  box-shadow:0 8px 32px rgba(0,0,0,.14)!important;
+  backdrop-filter:saturate(180%) blur(26px)!important;
+  -webkit-backdrop-filter:saturate(180%) blur(26px)!important;
+}
+.logo{
+  font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Helvetica Neue",sans-serif;
+  font-size:20px;
+  font-weight:700;
+  letter-spacing:-.045em;
+}
+.logo span{letter-spacing:.14em}
+.nav-links{gap:26px}
+.nav-links a{font-size:13px;font-weight:500;letter-spacing:-.01em}
+.nav-links a::after{height:1px;bottom:-7px;border-radius:999px}
+.theme-toggle{
+  top:82px;
+  right:24px;
+  padding:9px 13px;
+  border-radius:999px;
+  background:rgba(25,25,29,.62)!important;
+  border:1px solid rgba(255,255,255,.13)!important;
+  box-shadow:0 12px 34px rgba(0,0,0,.22)!important;
+  backdrop-filter:saturate(180%) blur(22px)!important;
+  -webkit-backdrop-filter:saturate(180%) blur(22px)!important;
+}
+
+/* Hero */
+#hero{
+  padding:132px 20px 44px;
+  text-align:center;
+}
+.eyebrow{
+  letter-spacing:.15em;
+  font-weight:600;
+  opacity:.74;
+}
+#hero h1{
+  font-weight:700;
+  letter-spacing:-.065em;
+  text-shadow:0 4px 28px rgba(255,255,255,.06);
+}
+#hero h1 span{
+  background:none!important;
+  -webkit-background-clip:initial!important;
+  background-clip:initial!important;
+  color:#f5f5f7!important;
+}
+.subtitle{
+  color:rgba(245,245,247,.8);
+  font-weight:500;
+  letter-spacing:-.02em;
+}
+.hero-philosophy,.desc{
+  color:rgba(245,245,247,.58);
+}
+
+/* Level selector glass */
+.top-area{
+  top:68px;
+  padding:10px 0;
+  background:rgba(15,15,18,.48)!important;
+  border-top:1px solid rgba(255,255,255,.04)!important;
+  border-bottom:1px solid rgba(255,255,255,.075)!important;
+  box-shadow:0 12px 40px rgba(0,0,0,.12)!important;
+  backdrop-filter:saturate(180%) blur(26px)!important;
+  -webkit-backdrop-filter:saturate(180%) blur(26px)!important;
+}
+.level-pills{gap:7px}
+.pill,
+.sprechen-level-btn,
+.schreiben-level-btn{
+  padding:9px 16px;
+  border-radius:999px;
+  background:rgba(255,255,255,.055)!important;
+  border:1px solid rgba(255,255,255,.105)!important;
+  color:rgba(245,245,247,.7)!important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.06);
+  transition:transform .2s ease,background .2s ease,border-color .2s ease,color .2s ease,box-shadow .2s ease;
+}
+.pill:hover:not(.active),
+.sprechen-level-btn:hover:not(.active),
+.schreiben-level-btn:hover:not(.active){
+  transform:translateY(-1px);
+  background:rgba(255,255,255,.10)!important;
+  border-color:rgba(255,255,255,.18)!important;
+}
+.pill.active,
+.sprechen-level-btn.active,
+.schreiben-level-btn.active{
+  background:rgba(255,255,255,.93)!important;
+  border-color:rgba(255,255,255,.96)!important;
+  color:#111!important;
+  box-shadow:0 8px 26px rgba(255,255,255,.10),inset 0 1px 0 rgba(255,255,255,.5);
+}
+
+/* Main glass surfaces */
+.main{padding-top:24px}
+.topic-shell{
+  grid-template-columns:300px minmax(0,1fr);
+  gap:18px;
+}
+.topic-list,
+.detail{
+  background:linear-gradient(180deg,rgba(255,255,255,.072),rgba(255,255,255,.045))!important;
+  border:1px solid var(--glass-border)!important;
+  border-radius:var(--radius-xl)!important;
+  box-shadow:var(--shadow)!important;
+  backdrop-filter:saturate(160%) blur(26px)!important;
+  -webkit-backdrop-filter:saturate(160%) blur(26px)!important;
+}
+.topic-list{
+  padding:12px;
+  box-shadow:var(--shadow-soft)!important;
+}
+.topic-label{
+  padding:8px 10px 12px;
+  font-size:10px;
+  font-weight:700;
+  letter-spacing:.14em;
+  color:var(--dim);
+}
+.topic-btn,
+.a2-nav-card{
+  padding:10px 12px;
+  border-radius:12px;
+  color:rgba(245,245,247,.68)!important;
+  font-weight:500;
+  transition:transform .18s ease,background .18s ease,border-color .18s ease,color .18s ease;
+}
+.topic-btn:hover:not(.active),
+.a2-nav-card:hover:not(.active){
+  transform:translateX(2px);
+  background:rgba(255,255,255,.085)!important;
+  border-color:rgba(255,255,255,.12)!important;
+}
+.topic-btn.active,
+.a2-nav-card.active{
+  background:rgba(255,255,255,.10)!important;
+  border-color:rgba(255,255,255,.15)!important;
+  color:#fff!important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.06);
+}
+
+.detail{
+  padding:30px 32px;
+}
+.detail h2,
+.instruction-page h2,
+.sprechen-recorder-title{
+  font-weight:700;
+  letter-spacing:-.045em;
+}
+.story,
+.cafe-reading,
+.lesson-reader{
+  color:rgba(245,245,247,.84);
+}
+.story p{
+  margin-bottom:18px;
+}
+
+/* Every content portion becomes a glass card */
+.section,
+.speaking-section,
+.cafe-block,
+.instruction-card,
+.instruction-note,
+.welcome-box,
+.welcome-main,
+.schreiben-guide,
+.schreiben-exam-part,
+.spreachen-recorder-main,
+.listening-card,
+.lesson-translation,
+.sprechen-meta,
+.speaking-meta,
+.speaking-quote{
+  border:0;
+}
+
+/* Section wrappers */
+.section{
+  margin-top:24px;
+  padding:18px;
+  border:1px solid var(--glass-border-soft)!important;
+  border-radius:var(--radius-lg)!important;
+  background:rgba(255,255,255,.035)!important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.04),0 10px 28px rgba(0,0,0,.08);
+}
+.section-title{
+  padding-bottom:10px;
+  margin-bottom:12px;
+  border-bottom:1px solid rgba(255,255,255,.075);
+  font-size:15px;
+  font-weight:700;
+  letter-spacing:-.02em;
+}
+.section-note{margin-bottom:12px}
+
+/* Tables */
+.table-wrap{
+  overflow:auto;
+  border:1px solid rgba(255,255,255,.09)!important;
+  border-radius:var(--radius-md)!important;
+  background:rgba(255,255,255,.025)!important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.035);
+}
+.data-table th,.data-table td{
+  border-bottom:1px solid rgba(255,255,255,.07);
+  padding:13px 14px;
+}
+.data-table th{
+  background:rgba(255,255,255,.055)!important;
+  color:rgba(245,245,247,.62);
+  font-weight:650;
+}
+.data-table td:first-child{font-weight:600}
+
+/* Vocabulary */
+.vocab-grid{gap:10px}
+.vocab-item{
+  padding:15px 16px;
+  min-height:62px;
+  border:1px solid rgba(255,255,255,.09)!important;
+  border-radius:var(--radius-md)!important;
+  background:rgba(255,255,255,.042)!important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.035),0 8px 22px rgba(0,0,0,.06)!important;
+  transition:transform .18s ease,background .18s ease,border-color .18s ease,box-shadow .18s ease;
+}
+.vocab-item:hover{
+  transform:translateY(-2px);
+  background:rgba(255,255,255,.09)!important;
+  border-color:rgba(255,255,255,.16)!important;
+  box-shadow:0 12px 28px rgba(0,0,0,.14)!important;
+}
+
+/* Dialogue / QA glass */
+.qa-list{gap:10px}
+.qa-bubble{
+  padding:13px 14px;
+  border-radius:var(--radius-md);
+  border:1px solid rgba(255,255,255,.08)!important;
+  background:rgba(255,255,255,.04)!important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.035),0 8px 20px rgba(0,0,0,.06);
+}
+.qa-answer{
+  background:linear-gradient(135deg,rgba(255,255,255,.10),rgba(255,255,255,.055))!important;
+}
+.qa-bubble:hover{transform:translateY(-1px);border-color:rgba(255,255,255,.15)!important}
+
+/* Reading / lesson */
+.cafe-tip,
+.term-tip{
+  border-radius:12px!important;
+  background:rgba(27,27,31,.84)!important;
+  border:1px solid rgba(255,255,255,.12)!important;
+  box-shadow:0 18px 45px rgba(0,0,0,.28)!important;
+  backdrop-filter:blur(20px)!important;
+  -webkit-backdrop-filter:blur(20px)!important;
+}
+.lesson-translation{
+  margin-top:18px;
+  padding:17px 18px;
+  border-radius:var(--radius-md)!important;
+  background:rgba(255,255,255,.035)!important;
+  border:1px solid rgba(255,255,255,.08)!important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.035);
+}
+
+/* Speaking / writing / instruction cards */
+.speaking-section,
+.schreiben-guide,
+.schreiben-exam-part,
+.instruction-card,
+.instruction-note,
+.listening-card,
+.sprehen-recorder-main,
+.sprecheing-section,
+.sprecheing-meta{
+  background:rgba(255,255,255,.035)!important;
+  border:1px solid rgba(255,255,255,.08)!important;
+  border-radius:var(--radius-lg)!important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.035),0 10px 28px rgba(0,0,0,.07);
+}
+.speaking-section{
+  padding:18px;
+}
+.speaking-section-title{
+  padding:0 0 12px;
+  border-bottom:1px solid rgba(255,255,255,.07);
+}
+.speaking-meta,
+.speaking-quote{
+  padding:13px 14px;
+  background:rgba(255,255,255,.045)!important;
+  border-radius:var(--radius-md)!important;
+}
+.instruction-grid{gap:12px}
+.instruction-card{padding:16px}
+.instruction-note{padding:16px}
+.welcome-box{
+  padding:24px 26px!important;
+  background:rgba(255,255,255,.045)!important;
+  border:1px solid rgba(255,255,255,.10)!important;
+  border-radius:var(--radius-xl)!important;
+  box-shadow:var(--shadow-soft)!important;
+}
+.welcome-box .instruction-grid{
+  border-radius:var(--radius-md)!important;
+  border:1px solid rgba(255,255,255,.08)!important;
+  background:rgba(255,255,255,.025)!important;
+}
+.welcome-box .instruction-card{padding:15px}
+.welcome-box .instruction-card + .instruction-card{border-left:1px solid rgba(255,255,255,.07)!important}
+
+/* Inputs + controls */
+.exercise-toggle,
+.schreiben-download,
+.schreiben-char,
+.sprechen-secondary-btn,
+.sprechen-icon-btn,
+.sprechen-secondary-btn,
+.sprechen-icon-btn,
+.listening-play,
+.sprechen-record-btn{
+  border-radius:12px!important;
+}
+.schreiben-editor{
+  border:1px solid rgba(255,255,255,.10)!important;
+  border-radius:var(--radius-lg)!important;
+  background:rgba(255,255,255,.04)!important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.035);
+}
+.schreiben-editor:focus{
+  border-color:rgba(255,255,255,.22)!important;
+  box-shadow:0 0 0 4px rgba(255,255,255,.055)!important;
+}
+.sprechen-recorder-main,
+.sprechen-recorder-main{
+  padding:20px;
+  background:rgba(255,255,255,.035)!important;
+  border:1px solid rgba(255,255,255,.09)!important;
+  border-radius:var(--radius-xl)!important;
+}
+.sprechen-record-btn{
+  border-radius:999px!important;
+}
+.sprechen-secondary-btn,
+.sprechen-icon-btn,
+.schreiben-download,
+.exercise-toggle,
+.schreiben-char{
+  background:rgba(255,255,255,.045)!important;
+  border:1px solid rgba(255,255,255,.10)!important;
+  color:var(--text)!important;
+}
+.sprechen-secondary-btn:hover,
+.sprechen-icon-btn:hover,
+.schreiben-download:hover,
+.exercise-toggle:hover,
+.schreiben-char:hover{
+  background:rgba(255,255,255,.095)!important;
+  border-color:rgba(255,255,255,.17)!important;
+}
+.sprechen-audio-wrap,
+.sprechen-saved-item{
+  background:rgba(255,255,255,.035)!important;
+  border:1px solid rgba(255,255,255,.08)!important;
+  border-radius:var(--radius-md)!important;
+}
+
+/* Back + empty */
+.back{
+  padding:7px 10px;
+  margin-left:-10px;
+  border-radius:999px;
+  background:rgba(255,255,255,.035);
+  border:1px solid rgba(255,255,255,.06);
+}
+.back:hover{
+  background:rgba(255,255,255,.09)!important;
+  border-color:rgba(255,255,255,.13)!important;
+  color:#fff!important;
+}
+.empty{padding:48px 20px}
+
+/* Footer */
+footer{
+  padding:28px 0 48px;
+  color:rgba(245,245,247,.43);
+}
+
+/* Bright mode — frosted white Apple-like surfaces */
+body.light{
+  --bg:#f5f5f7;
+  --text:#1d1d1f;
+  --text-soft:rgba(29,29,31,.88);
+  --muted:rgba(29,29,31,.62);
+  --dim:rgba(29,29,31,.43);
+  --glass-border:rgba(60,60,67,.13);
+  --glass-border-soft:rgba(60,60,67,.08);
+  --shadow:0 24px 70px rgba(25,25,35,.10);
+  --shadow-soft:0 12px 35px rgba(25,25,35,.07);
+  background:
+    radial-gradient(1000px 580px at 50% -10%,rgba(255,255,255,.92),transparent 62%),
+    radial-gradient(700px 450px at 100% 30%,rgba(180,190,255,.18),transparent 70%),
+    radial-gradient(650px 480px at 0% 55%,rgba(160,220,255,.12),transparent 72%),
+    linear-gradient(180deg,#fbfbfd 0%,#f5f5f7 52%,#eef0f3 100%);
+  color:var(--text);
+}
+body.light::before{
+  background:
+    linear-gradient(rgba(0,0,0,.02) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(0,0,0,.02) 1px,transparent 1px);
+  opacity:.12;
+}
+body.light nav{
+  background:rgba(255,255,255,.54)!important;
+  border-bottom-color:rgba(60,60,67,.10)!important;
+  box-shadow:0 8px 32px rgba(25,25,35,.06)!important;
+}
+body.light nav .logo{color:#1d1d1f}
+body.light nav .logo span{color:rgba(29,29,31,.46)}
+body.light nav .nav-links a{color:rgba(29,29,31,.56)}
+body.light nav .nav-links a:hover,
+body.light nav .nav-links a.active{color:#1d1d1f}
+body.light nav .nav-links a::after{background:#1d1d1f}
+body.light .theme-toggle{
+  background:rgba(255,255,255,.60)!important;
+  color:#1d1d1f!important;
+  border-color:rgba(60,60,67,.12)!important;
+  box-shadow:0 12px 34px rgba(25,25,35,.09)!important;
+}
+body.light #hero h1 span{color:#1d1d1f!important}
+body.light .subtitle{color:rgba(29,29,31,.70)}
+body.light .hero-philosophy,
+body.light .desc{color:rgba(29,29,31,.54)}
+body.light .top-area{
+  background:rgba(250,250,252,.46)!important;
+  border-top-color:transparent!important;
+  border-bottom-color:rgba(60,60,67,.08)!important;
+  box-shadow:0 12px 40px rgba(25,25,35,.05)!important;
+  backdrop-filter:saturate(180%) blur(26px)!important;
+  -webkit-backdrop-filter:saturate(180%) blur(26px)!important;
+}
+body.light .pill,
+body.light .sprechen-level-btn,
+body.light .schreiben-level-btn{
+  background:rgba(255,255,255,.58)!important;
+  border-color:rgba(60,60,67,.11)!important;
+  color:rgba(29,29,31,.62)!important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.82),0 2px 10px rgba(25,25,35,.035);
+}
+body.light .pill:hover:not(.active),
+body.light .sprechen-level-btn:hover:not(.active),
+body.light .schreiben-level-btn:hover:not(.active){
+  background:rgba(255,255,255,.84)!important;
+  border-color:rgba(60,60,67,.16)!important;
+}
+body.light .pill.active,
+body.light .sprechen-level-btn.active,
+body.light .schreiben-level-btn.active{
+  background:rgba(29,29,31,.94)!important;
+  border-color:rgba(29,29,31,.94)!important;
+  color:#fff!important;
+  box-shadow:0 8px 24px rgba(25,25,35,.13);
+}
+body.light .topic-list,
+body.light .detail{
+  background:linear-gradient(180deg,rgba(255,255,255,.72),rgba(250,250,252,.60))!important;
+  border-color:rgba(60,60,67,.12)!important;
+  box-shadow:var(--shadow)!important;
+  backdrop-filter:saturate(170%) blur(26px)!important;
+  -webkit-backdrop-filter:saturate(170%) blur(26px)!important;
+}
+body.light .topic-btn,
+body.light .a2-nav-card{color:rgba(29,29,31,.63)!important}
+body.light .topic-btn:hover:not(.active),
+body.light .a2-nav-card:hover:not(.active){
+  background:rgba(255,255,255,.78)!important;
+  border-color:rgba(60,60,67,.12)!important;
+}
+body.light .topic-btn.active,
+body.light .a2-nav-card.active{
+  background:rgba(29,29,31,.92)!important;
+  border-color:rgba(29,29,31,.92)!important;
+  color:#fff!important;
+}
+body.light .detail h2,
+body.light .instruction-page h2,
+body.light .sprechen-recorder-title{color:#1d1d1f}
+body.light .story,
+body.light .cafe-reading,
+body.light .lesson-reader{color:rgba(29,29,31,.78)}
+body.light .section,
+body.light .speaking-section,
+body.light .schreiben-guide,
+body.light .schreiben-exam-part,
+body.light .instruction-card,
+body.light .instruction-note,
+body.light .listening-card,
+body.light .lesson-translation,
+body.light .speaking-meta,
+body.light .speaking-quote{
+  background:rgba(255,255,255,.50)!important;
+  border-color:rgba(60,60,67,.10)!important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.74),0 10px 28px rgba(25,25,35,.04);
+}
+body.light .section-title,
+body.light .speaking-section-title{border-bottom-color:rgba(60,60,67,.09)}
+body.light .table-wrap{
+  border-color:rgba(60,60,67,.10)!important;
+  background:rgba(255,255,255,.40)!important;
+}
+body.light .data-table th{
+  background:rgba(60,60,67,.045)!important;
+  color:rgba(29,29,31,.56);
+}
+body.light .data-table td{border-bottom-color:rgba(60,60,67,.075)}
+body.light .vocab-item{
+  background:rgba(255,255,255,.46)!important;
+  border-color:rgba(60,60,67,.10)!important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.72),0 8px 22px rgba(25,25,35,.045)!important;
+}
+body.light .vocab-item:hover{
+  background:rgba(255,255,255,.80)!important;
+  border-color:rgba(60,60,67,.15)!important;
+  box-shadow:0 12px 28px rgba(25,25,35,.08)!important;
+}
+body.light .qa-bubble{
+  background:rgba(255,255,255,.48)!important;
+  border-color:rgba(60,60,67,.09)!important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.72),0 8px 20px rgba(25,25,35,.04);
+}
+body.light .qa-answer{background:linear-gradient(135deg,rgba(255,255,255,.76),rgba(255,255,255,.54))!important}
+body.light .welcome-box{
+  background:rgba(255,255,255,.58)!important;
+  border-color:rgba(60,60,67,.11)!important;
+  box-shadow:var(--shadow-soft)!important;
+}
+body.light .welcome-box .instruction-grid{
+  border-color:rgba(60,60,67,.09)!important;
+  background:rgba(60,60,67,.025)!important;
+}
+body.light .welcome-box .instruction-card + .instruction-card{border-left-color:rgba(60,60,67,.075)!important}
+body.light .schreiben-editor{
+  background:rgba(255,255,255,.58)!important;
+  color:#1d1d1f!important;
+  border-color:rgba(60,60,67,.12)!important;
+}
+body.light .sprechen-recorder-main{
+  background:rgba(255,255,255,.50)!important;
+  border-color:rgba(60,60,67,.10)!important;
+}
+body.light .sprechen-secondary-btn,
+body.light .sprechen-icon-btn,
+body.light .schreiben-download,
+body.light .exercise-toggle,
+body.light .schreiben-char{
+  background:rgba(255,255,255,.58)!important;
+  color:#1d1d1f!important;
+  border-color:rgba(60,60,67,.11)!important;
+}
+body.light .sprechen-secondary-btn:hover,
+body.light .sprechen-icon-btn:hover,
+body.light .schreiben-download:hover,
+body.light .exercise-toggle:hover,
+body.light .schreiben-char:hover{
+  background:rgba(255,255,255,.86)!important;
+  border-color:rgba(60,60,67,.16)!important;
+}
+body.light .sprechen-audio-wrap,
+body.light .sprechen-saved-item{
+  background:rgba(255,255,255,.48)!important;
+  border-color:rgba(60,60,67,.10)!important;
+}
+body.light .back{
+  background:rgba(255,255,255,.48)!important;
+  border-color:rgba(60,60,67,.08)!important;
+  color:rgba(29,29,31,.62)!important;
+}
+body.light .back:hover{
+  background:rgba(255,255,255,.82)!important;
+  border-color:rgba(60,60,67,.13)!important;
+  color:#1d1d1f!important;
+}
+body.light footer{color:rgba(29,29,31,.40)}
+body.light .cafe-tip,
+body.light .term-tip{
+  background:rgba(255,255,255,.82)!important;
+  color:#1d1d1f!important;
+  border-color:rgba(60,60,67,.12)!important;
+  box-shadow:0 18px 45px rgba(25,25,35,.14)!important;
+}
+
+/* Mobile spacing */
+@media(max-width:900px){
+  .detail{padding:24px}
+  .topic-shell{gap:14px}
+}
+@media(max-width:620px){
+  nav{padding:13px 16px}
+  .nav-links{gap:15px}
+  #hero{padding-top:112px}
+  .detail{padding:18px;border-radius:22px!important}
+  .topic-list{border-radius:22px!important}
+  .section,.speaking-section{padding:15px;border-radius:18px!important}
+  .theme-toggle{top:72px;right:14px}
+}
+
+/* Reduced motion */
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{
+    animation-duration:.001ms!important;
+    animation-iteration-count:1!important;
+    transition-duration:.001ms!important;
+    scroll-behavior:auto!important;
+  }
+}
+</style>
+
+
+<style>
+/* Apple-style bright mode refinement — presentation only */
+body.light{
+  --apple-bg:#f5f5f7;
+  --apple-surface:rgba(255,255,255,.72);
+  --apple-surface-strong:rgba(255,255,255,.88);
+  --apple-line:rgba(0,0,0,.065);
+  --apple-text:#1d1d1f;
+  --apple-muted:#6e6e73;
+  background:
+    radial-gradient(circle at 50% -8%, rgba(255,255,255,.98), transparent 38%),
+    linear-gradient(180deg,#f8f8fa 0%,#f5f5f7 50%,#f2f2f4 100%);
+  color:var(--apple-text);
+  font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text","Helvetica Neue",Arial,sans-serif;
+}
+body.light *{
+  font-family:inherit;
+}
+
+/* Main Apple navigation: white, floating visually, but no box treatment */
+body.light nav{
+  background:rgba(255,255,255,.82)!important;
+  border-bottom:0!important;
+  box-shadow:none!important;
+  backdrop-filter:blur(24px) saturate(180%)!important;
+  -webkit-backdrop-filter:blur(24px) saturate(180%)!important;
+}
+body.light nav .logo{color:#1d1d1f!important}
+body.light nav .logo span{color:rgba(29,29,31,.48)!important}
+body.light nav .nav-links a{color:rgba(29,29,31,.62)!important}
+body.light nav .nav-links a:hover,
+body.light nav .nav-links a.active{color:#1d1d1f!important}
+body.light nav .nav-links a::after{background:#1d1d1f!important}
+
+/* Hero */
+body.light #hero{
+  background:
+    radial-gradient(circle at 50% 0,rgba(255,255,255,.95),transparent 48%),
+    transparent;
+}
+body.light #hero h1,
+body.light #hero h1 span{color:#1d1d1f!important}
+body.light #hero .eyebrow{color:#6e6e73}
+body.light #hero .subtitle{color:#424245}
+body.light #hero .hero-philosophy,
+body.light #hero .desc{color:#6e6e73}
+
+/* Level navigation: remains on the page background, no panel border/shadow */
+body.light .top-area{
+  background:rgba(255,255,255,.72)!important;
+  border:0!important;
+  box-shadow:none!important;
+  backdrop-filter:blur(24px) saturate(180%)!important;
+  -webkit-backdrop-filter:blur(24px) saturate(180%)!important;
+  padding:10px 0!important;
+}
+body.light .top-area .container{background:transparent!important;border:0!important;box-shadow:none!important}
+body.light .level-pills{gap:6px}
+body.light .pill{
+  background:transparent!important;
+  border:0!important;
+  box-shadow:none!important;
+  color:#6e6e73!important;
+  font-weight:600;
+  padding:9px 15px;
+}
+body.light .pill:hover:not(.active){
+  background:rgba(0,0,0,.045)!important;
+  color:#1d1d1f!important;
+  border:0!important;
+  box-shadow:none!important;
+}
+body.light .pill.active{
+  background:rgba(0,0,0,.075)!important;
+  color:#1d1d1f!important;
+  border:0!important;
+  box-shadow:none!important;
+}
+
+/* Content surfaces: soft Apple glass rather than heavy boxes */
+body.light .topic-list,
+body.light .detail{
+  background:rgba(255,255,255,.72)!important;
+  border:1px solid rgba(0,0,0,.055)!important;
+  box-shadow:0 12px 34px rgba(0,0,0,.055)!important;
+  backdrop-filter:blur(24px) saturate(170%);
+  -webkit-backdrop-filter:blur(24px) saturate(170%);
+}
+body.light .topic-list{border-radius:20px}
+body.light .detail{border-radius:24px}
+body.light .topic-btn{
+  color:#6e6e73!important;
+  border:0!important;
+}
+body.light .topic-btn:hover:not(.active){
+  background:rgba(0,0,0,.045)!important;
+  color:#1d1d1f!important;
+  border:0!important;
+  box-shadow:none!important;
+}
+body.light .topic-btn.active{
+  background:rgba(0,0,0,.075)!important;
+  color:#1d1d1f!important;
+  border:0!important;
+  box-shadow:none!important;
+}
+
+/* Apple-like controls inside bright mode */
+body.light .theme-toggle{
+  background:rgba(255,255,255,.78)!important;
+  color:#1d1d1f!important;
+  border:1px solid rgba(0,0,0,.07)!important;
+  box-shadow:0 8px 24px rgba(0,0,0,.07)!important;
+  backdrop-filter:blur(22px) saturate(180%);
+  -webkit-backdrop-filter:blur(22px) saturate(180%);
+}
+body.light .vocab-item,
+body.light .instruction-card,
+body.light .instruction-note,
+body.light .welcome-box,
+body.light .speaking-section,
+body.light .speaking-meta,
+body.light .speaking-quote,
+body.light .speaking-success,
+body.light .listening-card,
+body.light .schreiben-guide,
+body.light .schreiben-exam-part,
+body.light .schreiben-editor,
+body.light .sprechen-recorder-main,
+body.light .sprechen-audio-wrap,
+body.light .sprechen-saved-item,
+body.light .lesson-translation{
+  background:rgba(255,255,255,.58)!important;
+  border-color:rgba(0,0,0,.055)!important;
+  box-shadow:none!important;
+}
+body.light .vocab-item:hover,
+body.light .instruction-card:hover{
+  background:rgba(0,0,0,.035)!important;
+  border-color:rgba(0,0,0,.08)!important;
+}
+
+/* Softer typography hierarchy */
+body.light .detail h2,
+body.light .section-title,
+body.light .instruction-page h2,
+body.light .sprechen-recorder-title,
+body.light .speaking-section-title,
+body.light .cafe-subheading,
+body.light .cafe-reading h1,
+body.light .cafe-reading h2{color:#1d1d1f!important}
+body.light .story,
+body.light .cafe-reading,
+body.light .lesson-reader,
+body.light .instruction-lead,
+body.light .speaking-section p,
+body.light .speaking-section li{color:#424245!important}
+body.light .story-meta,
+body.light .section-note,
+body.light .lesson-vocab-note,
+body.light .lesson-title-note,
+body.light .lesson-guide,
+body.light .cafe-reading-list,
+body.light .sprechen-recorder-sub{color:#6e6e73!important}
+
+/* Tables sit quietly inside the glass surface */
+body.light .table-wrap{background:rgba(255,255,255,.42)!important;border-color:rgba(0,0,0,.055)!important}
+body.light .data-table th,
+body.light .speaking-table th{background:rgba(0,0,0,.028)!important;color:#6e6e73!important}
+body.light .data-table td,
+body.light .speaking-table td{border-bottom-color:rgba(0,0,0,.055)!important}
+
+/* Remove box-like hover treatment that feels unlike Apple */
+body.light .qa-bubble:hover,
+body.light .speaker:hover,
+body.light .back:hover,
+body.light .speakable:hover{
+  background:rgba(0,0,0,.04)!important;
+  color:#1d1d1f!important;
+  border-color:transparent!important;
+  box-shadow:none!important;
+}
+
+@media(max-width:700px){
+  body.light nav{padding:14px 18px}
+  body.light .top-area{padding:8px 0!important}
+}
+
+/* Final bright-mode cleanup requested: level controls float directly on the page. */
+body.light .top-area{
+  background:transparent!important;
+  border:0!important;
+  box-shadow:none!important;
+  backdrop-filter:none!important;
+  -webkit-backdrop-filter:none!important;
+  padding:10px 0!important;
+}
+body.light .level-pills{gap:6px}
+body.light .pill{
+  background:transparent!important;
+  border:0!important;
+  box-shadow:none!important;
+  color:#6e6e73!important;
+}
+body.light .pill:hover:not(.active){
+  background:transparent!important;
+  border:0!important;
+  box-shadow:none!important;
+  color:#1d1d1f!important;
+  transform:none!important;
+}
+body.light .pill.active{
+  background:#000!important;
+  border:0!important;
+  box-shadow:none!important;
+  color:#fff!important;
+}
+
+/* Comprehension translation: keep the heading on the main glass surface;
+   only the sentence table gets its own contained box. */
+body.light .translation-section{
+  background:transparent!important;
+  border:0!important;
+  box-shadow:none!important;
+  padding:18px 0!important;
+}
+body.light .translation-section .section-title{
+  border-bottom:0!important;
+  padding-bottom:9px!important;
+  margin-bottom:10px!important;
+}
+body.light .translation-section .table-wrap{
+  background:rgba(255,255,255,.54)!important;
+  border:1px solid rgba(0,0,0,.07)!important;
+  box-shadow:0 8px 24px rgba(0,0,0,.035)!important;
+  border-radius:16px!important;
+}
+body.light .translation-section .data-table th{
+  background:rgba(0,0,0,.028)!important;
+  border-bottom:1px solid rgba(0,0,0,.06)!important;
+}
+body.light .translation-section .data-table td{
+  border-bottom:1px solid rgba(0,0,0,.055)!important;
+}
+
+</style>
+
+
+<style>
+/* Final Apple-glass navigation refinement */
+.top-area{
+  background:transparent!important;
+  border:0!important;
+  box-shadow:none!important;
+  backdrop-filter:none!important;
+  -webkit-backdrop-filter:none!important;
+  padding:8px 0!important;
+}
+.top-area .container{background:transparent!important;border:0!important;box-shadow:none!important}
+
+/* Bright mode level controls: clearly buttons, but no surrounding horizontal panel */
+body.light .level-pills{gap:8px}
+body.light .pill{
+  border:1px solid rgba(0,0,0,.10)!important;
+  border-radius:999px!important;
+  background:rgba(255,255,255,.58)!important;
+  box-shadow:none!important;
+  color:#6e6e73!important;
+  transition:background .2s ease,border-color .2s ease,color .2s ease,transform .2s ease;
+}
+body.light .pill:hover:not(.active){
+  background:rgba(255,255,255,.86)!important;
+  border-color:rgba(0,0,0,.16)!important;
+  color:#1d1d1f!important;
+  transform:translateY(-1px);
+}
+body.light .pill.active{
+  background:#000!important;
+  border-color:#000!important;
+  color:#fff!important;
+  box-shadow:none!important;
+}
+
+/* The same clean button treatment for the level selectors inside content */
+body.light .sprechen-level-btn,
+body.light .schreiben-level-btn{
+  border:1px solid rgba(0,0,0,.10)!important;
+  border-radius:999px!important;
+  box-shadow:none!important;
+}
+body.light .sprechen-level-btn.active,
+body.light .schreiben-level-btn.active{
+  background:#000!important;
+  border-color:#000!important;
+  color:#fff!important;
+  box-shadow:none!important;
+}
+
+/* Translation: keep the title on the content surface; box only the sentence table */
+.section.translation-section{
+  padding-left:0!important;
+  padding-right:0!important;
+  background:transparent!important;
+  border:0!important;
+  box-shadow:none!important;
+  border-radius:0!important;
+}
+.section.translation-section .section-title{
+  border-bottom:0!important;
+  padding-bottom:8px!important;
+  margin-bottom:10px!important;
+}
+.section.translation-section .table-wrap{
+  border:1px solid rgba(255,255,255,.10)!important;
+  border-radius:16px!important;
+  background:rgba(255,255,255,.025)!important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.035)!important;
+}
+body.light .section.translation-section .table-wrap{
+  border-color:rgba(0,0,0,.08)!important;
+  background:rgba(255,255,255,.58)!important;
+  box-shadow:none!important;
+}
+
+/* Navigation underline: visible left-to-right draw animation */
+nav .nav-links a{position:relative}
+nav .nav-links a::after{
+  content:'';
+  position:absolute;
+  left:0;
+  bottom:-6px;
+  width:100%;
+  height:1.5px;
+  background:#fff!important;
+  border-radius:999px;
+  opacity:0;
+  transform:scaleX(0);
+  transform-origin:left center;
+  transition:transform .85s cubic-bezier(.16,1,.3,1),opacity .16s ease;
+  will-change:transform;
+}
+nav .nav-links a:hover::after,
+nav .nav-links a.active::after{
+  opacity:1;
+  transform:scaleX(1);
+}
+body.light nav .nav-links a::after{background:#000!important}
+
+/* Reduce nested card clutter: keep the main glass surface and the sentence
+   table as the intentional containers; section content stays open on it. */
+.detail .speaking-section,
+.detail .speaking-meta,
+.detail .speaking-quote,
+.detail .speaking-success,
+.detail .schreiben-guide,
+.detail .schreiben-exam-part,
+.detail .instruction-card,
+.detail .instruction-note,
+.detail .welcome-box,
+.detail .welcome-main,
+.detail .lesson-translation,
+.detail .cafe-block,
+.detail .cafe-exercises .cafe-exercise-card,
+.detail .listening-card,
+.detail .exercise-panel,
+.detail .sprechen-recorder-main {
+  background:transparent!important;
+  border:0!important;
+  box-shadow:none!important;
+}
+.detail .speaking-section,
+.detail .schreiben-guide,
+.detail .schreiben-exam-part,
+.detail .instruction-card,
+.detail .instruction-note,
+.detail .listening-card,
+.detail .sprechen-recorder-main {
+  padding-left:0!important;
+  padding-right:0!important;
+}
+.detail .speaking-section + .speaking-section,
+.detail .schreiben-exam-part + .schreiben-exam-part {
+  border-top:1px solid var(--line)!important;
+  padding-top:16px!important;
+}
+
+</style>
+
+<style>
+/* Schreiben: remove all decorative content boxes; keep only functional controls. */
+.detail .schreiben-page,
+.detail .schreiben-guide,
+.detail .schreiben-exam-grid,
+.detail .schreiben-exam-part,
+.detail .schreiben-feedback,
+.detail .schreiben-exam-head{
+  background:transparent!important;
+  border:0!important;
+  box-shadow:none!important;
+}
+.detail .schreiben-guide,
+.detail .schreiben-exam-part{
+  padding-left:0!important;
+  padding-right:0!important;
+  padding-top:10px!important;
+  padding-bottom:10px!important;
+}
+.detail .schreiben-exam-part + .schreiben-exam-part{
+  border-top:0!important;
+}
+.detail .schreiben-editor-wrap{
+  background:transparent!important;
+  border:0!important;
+  box-shadow:none!important;
+}
+.detail .schreiben-toolbar-actions{
+  background:transparent!important;
+  border:0!important;
+}
+.detail .schreiben-guide h3,
+.detail .schreiben-guide p,
+.detail .schreiben-exam-part h3,
+.detail .schreiben-exam-part p{
+  background:transparent!important;
+  border:0!important;
+  box-shadow:none!important;
+}
+.detail .schreiben-feedback{
+  border-top:0!important;
+  padding-top:8px!important;
+}
+</style>
+
 </head>
 <body>
 <nav aria-label="Main navigation">
@@ -347,7 +1465,7 @@ body.light .top-area .container{background:transparent!important;border:0!import
 </nav>
 <button id="themeToggle" class="theme-toggle" type="button" aria-label="Seitenmodus wechseln">☀︎ Hell</button>
 <header id="hero"><h1><span>Thema</span></h1><p class="subtitle">Learn smart, not hard.</p><p class="hero-philosophy">Nichts ist kompliziert, wenn Begeisterung und Hingabe da sind. Wer die Struktur einer Sprache versteht, erkennt ihre Wege leichter.</p></header>
-<div class="top-area"><div class="container"><div class="level-pills"><button class="pill" data-level="comprehension">Comprehension</button><button class="pill" data-level="schriben">Schreiben</button><button class="pill" data-level="sprechen">Sprechen</button><button class="pill" data-level="lesen">Lesen</button></div></div></div>
+<div class="top-area"><div class="container"><div class="level-pills"><button class="pill" data-level="comprehension">Verstehen</button><button class="pill" data-level="schriben">Schreiben</button><button class="pill" data-level="sprechen">Sprechen</button><button class="pill" data-level="lesen">Lesen</button></div></div></div>
 <main class="main container" id="main-content"><div class="topic-shell"><aside class="topic-list" aria-label="Topic navigation"><div class="topic-label" id="topicLabel">Understandable · A2</div><div id="topicButtons"></div></aside><section class="detail" id="detail" tabindex="-1" aria-live="polite" aria-label="Learning content"><div class="empty">Wähle ein Thema.</div></section></div></main>
 <footer>Developed with ♥ by Your Luqman Habib</footer>
 <script>
@@ -890,7 +2008,7 @@ function renderDialogueCell(text,term,en,role='A'){
   const before=source.slice(0,idx), after=source.slice(idx+needle.length);
   return `${esc(before)}<span class="term-link" onclick='event.stopPropagation();speakWithRole(${JSON.stringify(needle)},${JSON.stringify(role)})' aria-label="${esc(en)}">${esc(needle)}<span class="term-tip">${esc(en)}</span></span>${esc(after)}`;
 }
-const levelMeta={instructions:'Instructions',comprehension:'Comprehension',simple:'Simple · A1',understandable:'Understandable · A2',schriben:'Schreiben',sprechen:'Sprechen',lesen:'Lesen · Bücher',cafe:'Café in Berlin · Kapitel',frankfurt:'Ferien in Frankfurt',vokabular:'Vokabular'};
+const levelMeta={instructions:'Instructions',comprehension:'Verstehen',simple:'Simple · A1',understandable:'Understandable · A2',schriben:'Schreiben',sprechen:'Sprechen',lesen:'Lesen · Bücher',cafe:'Café in Berlin · Kapitel',frankfurt:'Ferien in Frankfurt',vokabular:'Vokabular'};
 const $=s=>document.querySelector(s);
 function focusDetail(){const el=document.getElementById('detail');if(!el)return;requestAnimationFrame(()=>{try{el.focus({preventScroll:true});}catch(_e){el.focus();}});}
 function esc(s){return String(s).replace(/[&<>'"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c]));}
@@ -1079,7 +2197,7 @@ function openComprehensionTopic(i){
   const fullStory=t.story.join(' ');
   const highlightPlan=buildHighlightPlan(t.story,t.vocab,contentLevel==='simple'?20:10,contentLevel==='simple'?(SIMPLE_EXTRA_HIGHLIGHTS[i]||[]):[]);
   const highlightState={used:new Set(),count:0,limit:contentLevel==='simple'?18:10};
-  $('#detail').innerHTML=`<button class="back" onclick="window.scrollTo({top:0,behavior:'smooth'})">← Comprehension</button><h2 class="story-heading" onclick='speak(${JSON.stringify(fullStory)})' title="Gesamten Text anhören">${esc(normalizeTopicTitle(t.title,true))}</h2><div class="story-meta">${t.wordCount} Wörter</div><div class="story">${t.story.map(p=>`<p>${renderHighlightedText(p,highlightPlan,highlightState)}</p>`).join('')}</div><div class="section"><div class="section-title">🌍 Übersetzung</div>${renderTable(t.translation,'translation')}</div><div class="section"><div class="section-title">📚 Wortschatz</div>${renderVocab(t.vocab)}</div>${t.grammar?`<div class="section"><div class="section-title">🧠 Grammatik</div><div class="section-note"><strong>${esc(t.grammar.title)}</strong><br>${esc(t.grammar.text)}<br><br>${t.grammar.examples.map(x=>'• '+esc(x)).join('<br>')}</div></div>`:''}${renderCultureNote(t.title)}<div class="section"><div class="section-title">🗣️ Nacherzählung</div>${renderTable(t.speaking,'speak')}</div>${t.listening?`<div class="section"><div class="section-title">🎧 Hörverstehen</div>${renderListening(t.listening)}</div>`:''}`;
+  $('#detail').innerHTML=`<button class="back" onclick="window.scrollTo({top:0,behavior:'smooth'})">← Verstehen</button><h2 class="story-heading" onclick='speak(${JSON.stringify(fullStory)})' title="Gesamten Text anhören">${esc(normalizeTopicTitle(t.title,true))}</h2><div class="story">${t.story.map(p=>`<p>${renderHighlightedText(p,highlightPlan,highlightState)}</p>`).join('')}</div><div class="section translation-section"><div class="section-title">🌍 Übersetzung</div>${renderTable(t.translation,'translation')}</div><div class="section"><div class="section-title">📚 Wortschatz</div>${renderVocab(t.vocab)}</div>${t.grammar?`<div class="section"><div class="section-title">🧠 Grammatik</div><div class="section-note"><strong>${esc(t.grammar.title)}</strong><br>${esc(t.grammar.text)}<br><br>${t.grammar.examples.map(x=>'• '+esc(x)).join('<br>')}</div></div>`:''}${renderCultureNote(t.title)}<div class="section"><div class="section-title">🗣️ Nacherzählung</div>${renderTable(t.speaking,'speak')}</div>${t.listening?`<div class="section"><div class="section-title">🎧 Hörverstehen</div>${renderListening(t.listening)}</div>`:''}`;
   focusDetail();
 }
 
@@ -1623,7 +2741,7 @@ function renderWelcome(){
         <div><strong>Schreiben:</strong> Übe das Schreiben und bereite dich auf deine Deutschprüfung vor.</div>
         <div><strong>Lesen:</strong> Lies ein Buch und höre gleichzeitig das passende Audio.</div>
         <div><strong>Sprechen:</strong> Übe das Sprechen und führe Gespräche auf Deutsch.</div>
-        <div><strong>Comprehension:</strong> Verstehe, wie die deutsche Sprache funktioniert.</div>
+        <div><strong>Verstehen:</strong> Verstehe, wie die deutsche Sprache funktioniert.</div>
       </div>
   </div>`;
 }
@@ -1643,7 +2761,7 @@ function renderTopics(){
     return;
   }
   if(level==='comprehension'){
-    $('#topicLabel').textContent=comprehensionLevel ? 'Comprehension · '+comprehensionLevel : 'Comprehension';
+    $('#topicLabel').textContent=comprehensionLevel ? 'Verstehen · '+comprehensionLevel : 'Verstehen';
     const list=getComprehensionData();
     $('#topicButtons').innerHTML=comprehensionNav(comprehensionLevel)+(comprehensionLevel ? (list.length?list.map((t,i)=>{const title=normalizeTopicTitle(t.title,true);return `<button class="topic-btn ${i===current?'active':''}" onclick="openComprehensionTopic(${i})">${esc(title)}</button>`}).join(''):`<div class="speaking-placeholder">${comprehensionLevel}<br>Noch keine Inhalte hinzugefügt.</div>`) : '<div class="speaking-placeholder">Wähle eine Stufe.</div>');
     return;
@@ -2017,7 +3135,7 @@ if(level==='lesen'){
   detailEl.innerHTML=book.type==='cafe'?renderCafeTopic(i):book.type==='frankfurt'?renderFrankfurtTopic(i):renderNewBookTopic(lessonBook,i);
   detailEl;topicsEl;void detailEl.offsetWidth;void topicsEl.offsetWidth;requestAnimationFrame(()=>{detailEl;topicsEl});window.scrollTo({top:document.querySelector('.detail').offsetTop-80,behavior:'smooth'});return;
 }
-if(level==='frankfurt'){renderTopics();const detailEl=$('#detail');const topicsEl=$('.topic-list');detailEl.innerHTML=renderFrankfurtTopic(i);detailEl;topicsEl;void detailEl.offsetWidth;void topicsEl.offsetWidth;requestAnimationFrame(()=>{detailEl;topicsEl});window.scrollTo({top:document.querySelector('.detail').offsetTop-80,behavior:'smooth'});return;}if(level==='sprechen'){renderSpeakingPanel();window.scrollTo({top:document.querySelector('.detail').offsetTop-80,behavior:'smooth'});return;}if(level==='cafe'){renderTopics();const detailEl=$('#detail');const topicsEl=$('.topic-list');detailEl.innerHTML=renderCafeTopic(i);detailEl;topicsEl;void detailEl.offsetWidth;void topicsEl.offsetWidth;requestAnimationFrame(()=>{detailEl;topicsEl});window.scrollTo({top:document.querySelector('.detail').offsetTop-80,behavior:'smooth'});return;}const t=(DATA[level]||[])[i];const detailEl=$('#detail');const topicsEl=$('.topic-list');renderTopics();if(!t){detailEl.innerHTML='<div class="empty">Noch keine Themen verfügbar.</div>';}else{const fullStory=t.story.join(' ');const highlightPlan=buildHighlightPlan(t.story,t.vocab,level==='simple'?20:10,level==='simple'?(SIMPLE_EXTRA_HIGHLIGHTS[i]||[]):[]);const highlightState={used:new Set(),count:0,limit:level==='simple'?18:10};detailEl.innerHTML=`<button class="back" onclick="window.scrollTo({top:0,behavior:'smooth'})">← Thema</button><h2 class="story-heading" onclick='speak(${JSON.stringify(fullStory)})' title="Gesamten Text anhören">${esc(normalizeTopicTitle(t.title,true))}</h2><div class="story-meta">${t.wordCount} Wörter</div><div class="story">${t.story.map(p=>`<p>${renderHighlightedText(p,highlightPlan,highlightState)}</p>`).join('')}</div><div class="section"><div class="section-title">🌍 Übersetzung</div>${renderTable(t.translation,'translation')}</div><div class="section"><div class="section-title">📚 Wortschatz</div>${renderVocab(t.vocab)}</div>${t.grammar?`<div class="section"><div class="section-title">🧠 Grammatik</div><div class="section-note"><strong>${esc(t.grammar.title)}</strong><br>${esc(t.grammar.text)}<br><br>${t.grammar.examples.map(x=>'• '+esc(x)).join('<br>')}</div></div>`:''}${renderCultureNote(t.title)}<div class="section"><div class="section-title">🗣️ Nacherzählung</div>${renderTable(t.speaking,'speak')}</div>${t.listening?`<div class="section"><div class="section-title">🎧 Hörverstehen</div>${renderListening(t.listening)}</div>`:''}`;}focusDetail();window.scrollTo({top:document.querySelector('.detail').offsetTop-80,behavior:'smooth'});}
+if(level==='frankfurt'){renderTopics();const detailEl=$('#detail');const topicsEl=$('.topic-list');detailEl.innerHTML=renderFrankfurtTopic(i);detailEl;topicsEl;void detailEl.offsetWidth;void topicsEl.offsetWidth;requestAnimationFrame(()=>{detailEl;topicsEl});window.scrollTo({top:document.querySelector('.detail').offsetTop-80,behavior:'smooth'});return;}if(level==='sprechen'){renderSpeakingPanel();window.scrollTo({top:document.querySelector('.detail').offsetTop-80,behavior:'smooth'});return;}if(level==='cafe'){renderTopics();const detailEl=$('#detail');const topicsEl=$('.topic-list');detailEl.innerHTML=renderCafeTopic(i);detailEl;topicsEl;void detailEl.offsetWidth;void topicsEl.offsetWidth;requestAnimationFrame(()=>{detailEl;topicsEl});window.scrollTo({top:document.querySelector('.detail').offsetTop-80,behavior:'smooth'});return;}const t=(DATA[level]||[])[i];const detailEl=$('#detail');const topicsEl=$('.topic-list');renderTopics();if(!t){detailEl.innerHTML='<div class="empty">Noch keine Themen verfügbar.</div>';}else{const fullStory=t.story.join(' ');const highlightPlan=buildHighlightPlan(t.story,t.vocab,level==='simple'?20:10,level==='simple'?(SIMPLE_EXTRA_HIGHLIGHTS[i]||[]):[]);const highlightState={used:new Set(),count:0,limit:level==='simple'?18:10};detailEl.innerHTML=`<button class="back" onclick="window.scrollTo({top:0,behavior:'smooth'})">← Thema</button><h2 class="story-heading" onclick='speak(${JSON.stringify(fullStory)})' title="Gesamten Text anhören">${esc(normalizeTopicTitle(t.title,true))}</h2><div class="story">${t.story.map(p=>`<p>${renderHighlightedText(p,highlightPlan,highlightState)}</p>`).join('')}</div><div class="section translation-section"><div class="section-title">🌍 Übersetzung</div>${renderTable(t.translation,'translation')}</div><div class="section"><div class="section-title">📚 Wortschatz</div>${renderVocab(t.vocab)}</div>${t.grammar?`<div class="section"><div class="section-title">🧠 Grammatik</div><div class="section-note"><strong>${esc(t.grammar.title)}</strong><br>${esc(t.grammar.text)}<br><br>${t.grammar.examples.map(x=>'• '+esc(x)).join('<br>')}</div></div>`:''}${renderCultureNote(t.title)}<div class="section"><div class="section-title">🗣️ Nacherzählung</div>${renderTable(t.speaking,'speak')}</div>${t.listening?`<div class="section"><div class="section-title">🎧 Hörverstehen</div>${renderListening(t.listening)}</div>`:''}`;}focusDetail();window.scrollTo({top:document.querySelector('.detail').offsetTop-80,behavior:'smooth'});}
 
 // Switch between Simple, Understandable, Dialoge, Café in Berlin, and Ferien in Frankfurt.
 function setLevel(l){level=l;current=0;lessonBook=-1;document.querySelectorAll('.pill[data-level]').forEach(b=>b.classList.toggle('active',b.dataset.level===l));if(l==='welcome'){renderWelcome();return;}if(l==='comprehension'){comprehensionLevel=null;renderComprehensionPanel();window.scrollTo({top:document.querySelector('.detail').offsetTop-80,behavior:'smooth'});return;}if(l==='sprechen'){document.querySelector('.topic-shell')?.classList.remove('welcome-only');sprechenLevel=null;renderTopics();renderSpeakingRecorder();window.scrollTo({top:document.querySelector('.detail').offsetTop-80,behavior:'smooth'});return;}if(l==='schriben'){document.querySelector('.topic-shell')?.classList.remove('welcome-only');schribenLevel=null;schribenSection='exam';schribenExam=0;schribenEditorVisible=true;renderSchriben();window.scrollTo({top:document.querySelector('.detail').offsetTop-80,behavior:'smooth'});return;}if(l==='instructions'){instructionSection='how';renderInstructions();return;}renderTopics();if(l==='lesen'||l==='mord'){if(l==='lesen'){showLessonBooks();}else{document.querySelector('.detail').innerHTML='<div class="empty">Noch kein Inhalt.</div>';}return;}openTopic(0)}
@@ -2028,3 +3146,73 @@ const savedTheme=localStorage.getItem('thema-theme');applyTheme(savedTheme==='li
 window.addEventListener('beforeunload',()=>{if(recorderStream)recorderStream.getTracks().forEach(t=>t.stop());});
 document.querySelectorAll('.pill[data-level]').forEach(b=>b.classList.remove('active'));renderWelcome();
 </script></body></html>
+
+<style id="final-polish-overrides">
+/* FINAL NAVIGATION HOVER ANIMATION */
+nav .nav-links a::after{
+  width:100% !important;
+  transform:scaleX(0) !important;
+  transform-origin:left center !important;
+  opacity:1 !important;
+  transition:transform 1.05s cubic-bezier(.22,.61,.36,1) !important;
+}
+nav .nav-links a:hover::after,
+nav .nav-links a.active::after{
+  width:100% !important;
+  transform:scaleX(1) !important;
+}
+
+/* FINAL: Schreiben / Sprechen / instruction content stays open on the main glass surface */
+.detail .schreiben-guide,
+.detail .schreiben-exam-part,
+.detail .schreiben-editor-wrap,
+.detail .schreiben-editor-toolbar,
+.detail .schreiben-feedback,
+.detail .schreiben-char,
+.detail .speaking-section,
+.detail .speaking-meta,
+.detail .speaking-quote,
+.detail .speaking-success,
+.detail .instruction-card,
+.detail .instruction-note,
+.detail .listening-card,
+.detail .sprechen-recorder-main,
+.detail .sprechen-audio-wrap,
+.detail .sprechen-saved-item{
+  background:transparent !important;
+  border-color:transparent !important;
+  box-shadow:none !important;
+}
+.detail .schreiben-guide,
+.detail .schreiben-exam-part,
+.detail .speaking-section,
+.detail .instruction-card,
+.detail .instruction-note,
+.detail .listening-card,
+.detail .sprechen-recorder-main,
+.detail .speaking-meta,
+.detail .speaking-quote,
+.detail .speaking-success{
+  border-width:0 !important;
+  border-radius:0 !important;
+}
+.detail .schreiben-guide,
+.detail .schreiben-exam-part,
+.detail .speaking-section,
+.detail .instruction-card,
+.detail .instruction-note,
+.detail .listening-card,
+.detail .sprechen-recorder-main{
+  padding-left:0 !important;
+  padding-right:0 !important;
+}
+.detail .schreiben-exam-part + .schreiben-exam-part,
+.detail .speaking-section + .speaking-section{
+  border-top:0 !important;
+  box-shadow:none !important;
+}
+
+/* Keep only the intentional sentence table container */
+.section.translation-section{background:transparent !important;border:0 !important;box-shadow:none !important;padding-left:0 !important;padding-right:0 !important;}
+.section.translation-section .table-wrap{border:1px solid rgba(255,255,255,.10) !important;}
+</style>
