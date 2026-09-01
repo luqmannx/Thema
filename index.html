@@ -1487,6 +1487,164 @@ body.light .thema-grammar-compact .thema-grammar-row{border-bottom-color:rgba(20
 @media(max-width:620px){.thema-heading{font-size:23px}.thema-subheading{font-size:18px}.thema-grammar-compact .thema-grammar-row{grid-template-columns:1fr;gap:3px}}
 </style>
 
+<style id="speech-line-behavior">
+.speaking-section td,.dialogue-table td{cursor:pointer}
+.dialogue-table th{position:relative;padding-right:42px}
+.dialogue-translate-btn{position:absolute;top:7px;right:7px;border:0;background:transparent;color:inherit;opacity:.46;font-size:10px;font-weight:600;padding:2px 4px;cursor:pointer;line-height:1;border-radius:5px}
+.dialogue-translate-btn:hover{opacity:.78;background:rgba(255,255,255,.07)}
+body.light .dialogue-translate-btn:hover{background:rgba(0,0,0,.05)}
+.dialogue-translation{display:none;margin-top:5px;color:var(--muted);font-size:10.5px;line-height:1.45;font-weight:400;font-style:normal;opacity:.72}
+.dialogue-table.show-translations .dialogue-translation{display:block}
+</style>
+<style id="final-polish-overrides">
+/* FINAL NAVIGATION HOVER ANIMATION */
+nav .nav-links a::after{
+  width:100% !important;
+  transform:scaleX(0) !important;
+  transform-origin:left center !important;
+  opacity:1 !important;
+  transition:transform 1.05s cubic-bezier(.22,.61,.36,1) !important;
+}
+nav .nav-links a:hover::after,
+nav .nav-links a.active::after{
+  width:100% !important;
+  transform:scaleX(1) !important;
+}
+
+/* FINAL: Schreiben / Sprechen / instruction content stays open on the main glass surface */
+.detail .schreiben-guide,
+.detail .schreiben-exam-part,
+.detail .schreiben-editor-wrap,
+.detail .schreiben-editor-toolbar,
+.detail .schreiben-feedback,
+.detail .schreiben-char,
+.detail .speaking-section,
+.detail .speaking-meta,
+.detail .speaking-quote,
+.detail .speaking-success,
+.detail .instruction-card,
+.detail .instruction-note,
+.detail .listening-card,
+.detail .sprechen-recorder-main,
+.detail .sprechen-audio-wrap,
+.detail .sprechen-saved-item{
+  background:transparent !important;
+  border-color:transparent !important;
+  box-shadow:none !important;
+}
+.detail .schreiben-guide,
+.detail .schreiben-exam-part,
+.detail .speaking-section,
+.detail .instruction-card,
+.detail .instruction-note,
+.detail .listening-card,
+.detail .sprechen-recorder-main,
+.detail .speaking-meta,
+.detail .speaking-quote,
+.detail .speaking-success{
+  border-width:0 !important;
+  border-radius:0 !important;
+}
+.detail .schreiben-guide,
+.detail .schreiben-exam-part,
+.detail .speaking-section,
+.detail .instruction-card,
+.detail .instruction-note,
+.detail .listening-card,
+.detail .sprechen-recorder-main{
+  padding-left:0 !important;
+  padding-right:0 !important;
+}
+.detail .schreiben-exam-part + .schreiben-exam-part,
+.detail .speaking-section + .speaking-section{
+  border-top:0 !important;
+  box-shadow:none !important;
+}
+
+/* Keep only the intentional sentence table container */
+.section.translation-section{background:transparent !important;border:0 !important;box-shadow:none !important;padding-left:0 !important;padding-right:0 !important;}
+.section.translation-section .table-wrap{border:1px solid rgba(255,255,255,.10) !important;}
+</style>
+
+<style id="final-reliability-overrides">
+/* Final reliability/accessibility layer. Presentation only; learning content is unchanged. */
+html{overflow-x:hidden}
+body{overflow-x:hidden;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+#detail{min-width:0}
+.story,.lesson-reader,.cafe-reading,.thema-reader,.speaking-section{overflow-wrap:anywhere}
+.table-wrap{max-width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch}
+.data-table,.speaking-table{width:100%;max-width:100%}
+.dialogue-table td,.speaking-table td{cursor:pointer}
+.dialogue-table td,.speaking-table td,.data-table td,.data-table th{overflow-wrap:anywhere;word-break:normal}
+.dialogue-translate-btn{z-index:2}
+.term-tip{z-index:100}
+button,a{touch-action:manipulation}
+@media(max-width:700px){
+  .detail{padding-left:16px!important;padding-right:16px!important}
+  .speaking-table th,.speaking-table td{padding:9px 8px;font-size:12px}
+  .dialogue-table th,.dialogue-table td{font-size:12px}
+  .dialogue-translation{font-size:10px}
+}
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{scroll-behavior:auto!important;transition-duration:0.01ms!important;animation-duration:0.01ms!important;animation-iteration-count:1!important}
+}
+</style>
+<style>
+/* Thema reading presentation: one main glass surface, with clean unboxed headings. */
+.thema-reader .thema-section-title{
+  margin-top:30px;
+  margin-bottom:14px;
+}
+.thema-reader .thema-heading,.thema-reader .thema-subheading{
+  background:transparent!important;
+  border:0!important;
+  box-shadow:none!important;
+}
+.thema-reader .thema-heading{
+  margin:34px 0 16px;
+  padding:0;
+  font-size:25px;
+  line-height:1.18;
+  letter-spacing:-.03em;
+}
+.thema-reader .thema-heading:first-child{margin-top:4px}
+.thema-reader .thema-subheading{
+  margin:26px 0 12px;
+  padding:0;
+  font-size:17px;
+  line-height:1.3;
+  font-weight:750;
+}
+.thema-reader .thema-grammar-heading{margin-top:22px}
+.thema-reader .thema-heading + p,
+.thema-reader .thema-heading + .thema-table,
+.thema-reader .thema-heading + .cafe-reading-list,
+.thema-reader .thema-subheading + p,
+.thema-reader .thema-subheading + .thema-table,
+.thema-reader .thema-subheading + .cafe-reading-list{
+  margin-bottom:18px;
+}
+.thema-reader .thema-grammar-text,.thema-reader .thema-grammar-list{
+  font-size:12.5px;
+  line-height:1.55;
+}
+.thema-reader .thema-grammar-table .data-table th,
+.thema-reader .thema-grammar-table .data-table td{
+  padding:8px 9px;
+  font-size:11.5px;
+  line-height:1.4;
+}
+.thema-reader .thema-table{margin:12px 0 16px}
+.thema-reader .thema-grammar-table{margin:8px 0 12px}
+.thema-reader .section{
+  padding:0!important;
+  margin-top:20px;
+  border:0!important;
+  border-radius:0!important;
+  background:transparent!important;
+  box-shadow:none!important;
+}
+</style>
 </head>
 <body>
 <nav aria-label="Main navigation">
@@ -1524,6 +1682,8 @@ const PRINCE_DATA = [{"title":"👑 Der Zweck heiligt die Mittel","content":"Ein
 // Café in Berlin content
 // =========================
 const CAFE_DATA = [{"title":"Café in Berlin","content":"## Introduction\n\nA young man from Sicily has just arrived in Berlin. He is learning German, meeting new people, looking for work and getting used to everyday life in Germany. The stories follow his experiences in the city, from shared apartments and language classes to food, transport, money, work and friendships.\n\nThis book is made for beginners who want to move from isolated words and short phrases to simple, flowing German texts. The stories use clear sentence structures and basic vocabulary so that you can read them without needing to understand every single word immediately.\n\nEach chapter also includes useful German-English vocabulary, common phrases, short expressions and comprehension exercises. The idea is to learn words in context and build your German step by step.\n\n## How To Read This Book\n\nYou will meet unfamiliar words. That is normal. Try to keep your **Lesefluss** (reading flow): keep reading and use the context to understand the general meaning before stopping for every new word.\n\nImportant words and phrases are highlighted in each chapter. Hover over a highlighted word for its English meaning, or click it to hear the German pronunciation.\n\nYou can also use a German-English dictionary such as dict.cc when you need a deeper explanation."},{"title":"🏠 Chapter 1: Die Wohngemeinschaft","content":"**Mein Vater sagt**, die Deutschen spielen gut Fußball. Aber **mein Vater spielt nicht** Fußball. **Er schaut Sport nur im Fernsehen**. **Mein Onkel sagt**, die Deutschen trinken viel Bier. Aber **er trinkt auch viel Bier**. Was ist deutsch und was ist normal? **Ich weiß es nicht**.\n\n**Ich bin Dino**. **Ich komme aus Sizilien**. **Seit einem Monat wohne ich in Berlin**. **Das Wetter ist schlecht hier**. **Es regnet oft und es ist kalt**. **Ich vermisse die Sonne und das Meer**. Aber **es gibt Arbeit hier**, sagen die **Statistiken**. Ich habe **noch keine Arbeit gefunden**, aber ich habe **nicht wirklich gesucht**. **Zuerst muss ich Deutsch lernen**. Und das ist **gar nicht so einfach**.\n\n**Ich wohne in Kreuzberg**. Das ist ein **Stadtteil in Berlin**. **Hier leben Menschen aus der ganzen Welt**. Ich wohne in einer WG, **kurz für: Wohngemeinschaft**. **Das bedeutet, ich wohne gemeinsam mit anderen Leuten**. **Wir sind alle Ausländer**. In meiner WG wohnt ein Mexikaner, ein Chinese, ein Amerikaner und ich. Wir **sprechen meistens Englisch**. Das ist **nicht gut**, sagt **meine Lehrerin**. **Wir müssen Deutsch sprechen**, **den ganzen Tag**, sagt sie.\n\n**Meine Lehrerin kommt aus Potsdam**. **Jeden Tag gehe ich zum Deutsch-Unterricht**. Drei Stunden, jeden Tag! Es ist oft **langweilig**. Wir lernen **Grammatik** und **machen Übungen**. **Am Abend muss ich Hausaufgaben machen**. **Meine Mitbewohner lernen auch Deutsch**. Chang, mein chinesischer Mitbewohner ist **sehr fleißig**. Er macht **immer** die Hausaufgaben. Ted, der Amerikaner, macht **nie** seine Hausaufgaben. Aber er hat ein iPad. Chang macht Teds Hausaufgaben, und Chang **darf** jeden Tag **zwei Stunden** lang das iPad **benutzen**. Ted sagt, das ist ein guter \"Deal\".\n\n**Ich versuche**, meine Hausaufgaben **selbst zu machen**. Aber ich habe **nicht viel Zeit**. Es gibt in Berlin **so viele Partys**. **Ich denke**, Partys sind **gut zum Deutsch lernen**. Aber ich habe **ein Problem**. Die Deutschen sprechen immer Englisch **mit mir**! Ich spreche **sehr viel** Englisch in Berlin. **Zu viel vielleicht**?\n\n## Übung\n\n**1. Was sagt Dinos Vater?**\n\na) Die Deutschen spielen gut Fußball.\n\nb) Die Deutschen spielen gut Basketball.\n\nc) Die Deutschen spielen gut Baseball.\n\n**2. Wie ist das Wetter in Berlin?**\n\na) Es regnet oft und es ist kalt.\n\nb) Es schneit den ganzen Tag.\n\nc) Es scheint immer die Sonne.\n\n**3. Wer wohnt in Dinos WG?**\n\na) ein Mexikaner, ein Araber und ein Chinese\n\nb) ein Spanier, ein Mexikaner und ein Amerikaner\n\nc) ein Mexikaner, ein Chinese und ein Amerikaner\n\n**4. Warum macht Chang Teds Hausaufgaben?**\n\na) Er macht gerne Hausaufgaben.\n\nb) Er bekommt Geld von Ted.\n\nc) Er darf Teds iPad benutzen.\n\n**5. Was ist Dinos Problem?**\n\na) Die Deutschen sprechen Deutsch mit ihm.\n\nb) Die Deutschen sprechen Englisch mit ihm.\n\nc) Die Deutschen sprechen nicht mit ihm."},{"title":"🌍 Chapter 2: Multikulti","content":"**Gestern habe ich Pizza gegessen**. Die Pizzeria **heißt** O Sole Mio, aber **niemand dort spricht Italienisch**. In der Pizzeria **arbeiten zwei palästinensische Brüder**. Ich habe eine Thunfischpizza gegessen. Der **Preis** war super (zwei Euro fünfzig). Die Pizza war **nicht so gut**, aber die Pizzeria ist **nur wenige Meter von meiner Wohnung entfernt**.\n\nIn unserer WG **ist es schwierig mit dem Essen**. **Niemand kocht**, aber wir haben immer **Berge von Geschirr**. Es ist ein **Mysterium**. Unser **Kühlschrank** ist wie ein **Schwarzes Loch**. **Wenn ich etwas im Supermarkt kaufe** und **in den Kühlschrank lege**, ist es **nach zwei Stunden verschwunden**.\n\nWir haben vier **Fächer** in unserem Kühlschrank. **Ganz oben** ist Gustavos, **darunter** Chongs, dann Teds und dann **meins**.\n\nTed, Chang und Gustavo sagen, sie essen nur **ihre eigenen Sachen**. **Ich sage das auch**. Aber wenn mein Fach **leer** ist, esse ich **manchmal** einen **Joghurt** oder **Käse** aus Gustavos Fach.\n\n**Es ist einfacher draußen zu essen** – und **billiger**. Es gibt **viele verschiedene** Restaurants. Es gibt **Döner aus der Türkei**, **gegrilltes Lamm aus Pakistan**, Berliner Buletten, die palästinensische Pizza **von nebenan** und **vieles mehr**.\n\nEine Berliner **Spezialität** ist die **Currywurst**. **Man erzählt**, dass sie **im Jahr 1949** in Berlin entstanden ist. Die Geschichte sagt, dass eine Berlinerin Worcestershiresauce und indisches Curry mit Ketchup mischte und die Mischung auf eine deutsche Wurst gab. **Man sagt**, die Currywurst ist **typisch deutsch**. Ist **multikulti** typisch deutsch?\n\n**Einmal** war ich **nach einer Party um zwei Uhr morgens** Döner essen mit Jamaal, einem **syrischen Freund**. Wir haben zwei Döner **bestellt**. Der **Dönermann sagte** zu Jamaal **etwas auf Arabisch**. Wir haben unseren Döner **auf einer Parkbank** gegessen. **Danach fragte** ich Jamaal: \"**Was hat er zu dir gesagt?**\"\n\n\"**Vorsicht**, Habibi, ist **Schweinefleisch drin**\", sagte Jamaal.\n\n## Übung\n\n**1. Wer arbeitet in der Pizzeria?**\n\na) zwei italienische Brüder\n\nb) zwei palästinensische Schwestern\n\nc) zwei palästinensische Brüder\n\n**2. Ist die Pizzeria weit von Dinos Wohnung entfernt?**\n\na) Ja, sie ist sehr weit entfernt.\n\nb) Nein, sie ist nur wenige Meter entfernt.\n\n**3. Was sagt Dino über die Pizza?**\n\na) Der Preis ist gut, aber die Pizza nicht.\n\nb) Die Pizza ist gut und der Preis auch.\n\nc) Die Pizza ist gut, aber der Preis nicht.\n\n**4. Warum ist der Kühlschrank wie ein Schwarzes Loch?**\n\na) Er ist sehr schmutzig.\n\nb) Dinge verschwinden.\n\nc) Er hat eine dunkle Farbe.\n\n**5. Was sind die Zutaten für eine Berliner Currywurst?**\n\na) Curry, Worcestershiresauce, Ketchup, Wurst\n\nb) Joghurt, Worcestershiresauce, Ketchup, Wurst\n\nc) Curry, Worcestershiresauce, Käse, Wurst\n\n**6. Warum warnt der Dönermann Jamaal?**\n\na) Es ist Curry im Döner.\n\nb) Das Fleisch ist alt.\n\nc) Es ist Schweinefleisch im Döner."},{"title":"👩 Chapter 3: Ingrid","content":"**In meinem Deutschkurs sitzen Menschen aus der ganzen Welt**. **Ein paar** haben einen deutschen **Freund** oder eine deutsche **Freundin**. **Andere wollen** in Deutschland arbeiten. Aber wir haben alle **das gleiche Problem**: die deutsche **Sprache**.\n\nDer Kurs ist sehr langweilig. Wir arbeiten **mit einem Buch**, **Seite für Seite**, und machen **alle Übungen**. Von einer CD **hören** wir **kurze Gespräche**. Die **Lehrerin** ist eine **Schlaftablette**. **Das Beste an** meinem Deutschkurs sind die **Pausen**. Dann **können wir Kaffee trinken** und mit den anderen Studenten **reden**.\n\nWir haben **seit ein paar Tagen** eine **neue Studentin aus Schweden**. Sie ist sehr **hübsch**. Sie hat **blonde Haare**, **blaue Augen** und ein **süßes Lächeln**. Sie heißt Ingrid. Ihr Deutsch ist sehr gut. Ich weiß nicht, **warum** sie in unserem Kurs ist. Aber **es ist gut, dass** sie hier ist.\n\nUnsere **Sprachlernschule** hat eine kleine **Küche** mit einem **Wasserkocher**. Es ist eine sehr kleine Küche, nur einen **Quadratmeter** groß. In der Pause habe ich dort mit Ingrid einen Kaffee **getrunken**. \"**Und du**, **was machst du** in Berlin?\", fragte ich.\n\nIngrid **lächelte** und sagte: \"Ich will in Berlin **Film studieren**.\"\n\n\"Ah, **du willst** eine **Schauspielerin werden**, so wie Angelina Jolie!\", sagte ich. Ingrid **schüttelte ihren Kopf**. \"Nein\", sagte sie. \"Ich will nicht **vor** die **Kamera**, sondern **hinter** die Kamera.\"\n\n\"Ach so\", sagte ich. \"Du willst ... **Dirigent** sein!\" Ingrid **lachte** und sagte. \"Ja, aber auf Deutsch sagt man **Regisseur**. Ein Regisseur **leitet ein Orchester**.\"\n\n\"Ach ... ja, **das wusste ich** ...\", sagte ich.\n\n\"**Welche Filme schaust du gerne**?\", fragte Ingrid.\n\n\"**Ich mag** Sylvester Stallone und Bruce Willis\", sagte ich.\n\n\"Ah\", sagte Ingrid.\n\n\"Hast du den Film gesehen, wo Stallone in Japan ist?\", fragte ich. \"Es gibt eine **Szene**, wo er **gegen** einen Ninja **kämpft** ...\" Ich machte **eine Bewegung mit der Hand**. Aber ich hatte die Kaffeetasse **vergessen**. Der Kaffee **flog durch die Luft** und **landete** auf den Wänden, auf dem Fußboden und auf Ingrids weißem T-Shirt.\n\n\"**Mann!**\", rief Ingrid. \"**Ich wollte** nach dem Unterricht **ins Kino gehen**. Jetzt muss ich erst **zurück nach Hause fahren**.\"\n\n\"**Keine Sorge**\", sagte ich. \"Ich habe eine gute deutsche **Waschmaschine**. Die macht **alles sauber**!\"\n\n\"Wo wohnst du?\", fragte Ingrid.\n\n\"**Um die Ecke**\", sagte ich.\n\n\"Okay, lass uns gehen\", sagte Ingrid.\n\n\"Und der **Unterricht**?\", fragte ich.\n\n\"**Oh Gott!**, es ist so langweilig\", sagte Ingrid und lächelte. \"**Nichts wie raus hier**!\"\n\n## Übung\n\n**1. Wer sitzt in Dinos Deutschkurs?**\n\na) nur Spanier\n\nb) nur Türken\n\nc) Menschen aus der ganzen Welt\n\n**2. Was ist das Beste an dem Deutschkurs?**\n\na) die Pausen\n\nb) die Gespräche von der CD\n\nc) die Übungen im Buch\n\n**3. Ingrid hat ...**\n\na) blonde Haare, blaue Augen und rote Lippen.\n\nb) blonde Haare, blaue Augen und ein süßes Lächeln.\n\nc) blonde Haare, grüne Augen und ein süßes Lächeln.\n\n**4. Was will Ingrid studieren?**\n\na) Film\n\nb) Philosophie\n\nc) Biologie\n\n**5. Was will Ingrid werden?**\n\na) Schauspielerin\n\nb) Dirigentin\n\nc) Regisseurin\n\n**6. Warum will Ingrid zurück nach Hause?**\n\na) Ihr T-Shirt ist schmutzig.\n\nb) Sie hat etwas vergessen.\n\nc) Sie ist müde."},{"title":"👕 Chapter 4: Die Waschmaschine","content":"Ich **öffnete** die **Wohnungstür** und rief: \"Hallo? **Jemand da**?\"\n\n**Niemand antwortete**. Ingrid und ich **betraten** die Wohnung. Auf dem **Wohnzimmertisch stand eine Armee von leeren Bierflaschen**. Die Sofas waren **bedeckt mit** T-Shirts, **Hosen** und **Jacken**. Auf dem Fußboden **lagen alte Zeitungen**.\n\n\"**Willkommen in meinem Reich**\", sagte ich.\n\nIngrid **nahm** eine Zeitung vom **Boden** und sagte: \"Wow, **diese** Zeitung ist **drei Jahre alt**!\"\n\n\"Ja\", sagte ich. \"Wir haben ein **kostenloses Abonnement** für die Berliner Zeitung. Aber **niemand von uns** hat Zeit, sie **zu lesen**.\"\n\nIch nahm einen Berg **Schmutzwäsche** vom Sofa und sagte: \"**Setz dich**!\"\n\n\"**Mit wie vielen** Leuten wohnst du hier?\", fragte Ingrid. **Sie setzte sich**.\n\n\"Drei\", sagte ich. \"Wohnst du auch in einer WG?\"\n\n\"Nein\", sagte Ingrid. \"Ich wohne in einer **Einzimmerwohnung**. Aber ich denke, es ist **schön**, mit anderen Menschen zusammenzuwohnen.\"\n\n\"**Schön?**\", sagte ich und setzte mich. \"Manchmal. Aber **es kann** auch **nervig sein**. Jeden Morgen, **wenn** mein Mitbewohner Gustavo **aufsteht**, spielt er laute Heavy Metal Musik.\"\n\n\"Oh\", sagte Ingrid. \"Metal **am Morgen**, das ist wie Wodka **zum Frühstück**!\"\n\nIch lachte und sagte: \"Ah ja, die Waschmaschine ist in der Küche.\"\n\n**Wir standen auf** und **wir gingen** in die Küche. \"Ignorier das Chaos, bitte!\", sagte ich. \"Die Waschmaschine ist hier in der Ecke.\"\n\nIch **wischte** den **Staub** von der Maschine und sagte: \"**Bitteschön**!\"\n\n\"**Ihr wascht** nicht so oft?\", fragte Ingrid.\n\n\"Wir haben nicht immer Zeit, aber die **Maschine** ist perfekt\", sagte ich.\n\n\"Okay\", sagte Ingrid. \"Hast du **Waschpulver**?\"\n\n\"Äh, nein\", sagte ich. \"Ist **Spüli** okay?\"\n\n\"**Besser als nichts**\", sagte Ingrid.\n\n\"**Und jetzt?**\", fragte ich.\n\n\"**Schließ deine Augen**!\", sagte Ingrid.\n\n**Ich schloss** meine Augen. **Einen Moment später hörte** ich die Wohnungstür. \"Hallo? Jemand da?\", **rief** Ted.\n\nIch öffnete die Augen. Ingrid stand nur mit **BH** bekleidet in der Küche. Ted lächelte und sagte: \"Mamma mia!\" Dann **ging** er in sein Zimmer und schloss die Tür.\n\n\"Sorry\", sagte ich. \"Ist dein T-Shirt in der Maschine?\"\n\n**Sie nickte** und fragte: \"Hast du **etwas zum Anziehen**?\"\n\n\"Einen Moment\", sagte ich und ging in mein Zimmer. Ich nahm ein T-Shirt vom Boden auf, **schnüffelte** und **legte** es **schnell** wieder zurück. Auf einem Stuhl fand ich ein **frisches** T-Shirt. Ich ging in die Küche und **gab** Ingrid das T-Shirt. **Sie zog das T-Shirt an**. Es war lang und **schwarz**, mit **Bildern** von **Totenköpfen** und einer Iron Maiden **Aufschrift**. \"Ist das Gustavos?\", fragte Ingrid. \"**Kann sein**\", sagte ich. \"**Steht dir gut**!\"\n\n## Übung\n\n**1. Was steht auf dem Wohnzimmertisch?**\n\na) eine Armee von leeren Bierflaschen\n\nb) ein Laptop\n\nc) eine Vase\n\n**2. Was liegt auf dem Boden?**\n\na) alte Bierflaschen\n\nb) alte Zeitungen\n\nc) alte Jacken\n\n**3. Was macht Gustavo jeden Morgen?**\n\na) Er singt laut.\n\nb) Er tanzt laut.\n\nc) Er hört laute Musik.\n\n**4. Wozu benutzt man normalerweise Spüli?**\n\na) zum Geschirrspülen\n\nb) zum Duschen\n\nc) für die Waschmaschine\n\n**5. Was gibt Dino Ingrid zum Anziehen?**\n\na) ein schwarzes T-Shirt\n\nb) eine alte Jacke\n\nc) ein weißes T-Shirt"},{"title":"🎭 Chapter 5: Masken","content":"Gestern war ich mit Ingrid im Kino. Der Film war **auf Norwegisch**, mit deutschen **Untertiteln**. Ich habe nicht viel **verstanden**. **Der Film handelte von** einem Mann mit einer **Maske**. Er hat die Maske **überall getragen**, im Büro, im Supermarkt und sogar im Bett. Ingrid hat gesagt, die Maske **symbolisiert** das Ego **des Mannes**.\n\nDer Film war in **schwarz-weiß**. Ich habe Ingrid gefragt, ob die **Farben** im Kino **kaputt** sind. Sie hat **gelacht** und gesagt: \"Das ist **Kunst**.\"\n\nDer Film war **ziemlich** langweilig. Es ist nichts **passiert**. Aber **das war egal**. Ich habe Ingrid **umarmt**. Sie hat **ihren Kopf auf meine Schulter gelegt**.\n\nDer Mann mit der Maske ist am **Ende** des Films in ein **Loch gefallen**. Ingrid hat gesagt, das Loch symbolisiert die **Depression** des Mannes.\n\n**Nach dem Film** haben wir **zusammen** ein Bier in einer Bar getrunken. Ingrid hat gesagt, dass sie **am nächsten Morgen** nach Hamburg fährt. Sie hat gesagt, **ihre Schwester** wohnt dort. Ich habe sie gefragt, wie lange **sie bleibt**. **Sie weiß es nicht**.\n\n\"Hast du **Geschwister**?\", fragte Ingrid.\n\n\"Ja\", sagte ich. \"Zwei Brüder und eine Schwester.\"\n\n\"Wohnen sie auch in Deutschland?\", fragte Ingrid.\n\n\"Nein\", sagte ich. \"Ein Bruder **lebt** in Rom, einer in New York, und meine Schwester wohnt **bei meiner Mutter**. Sie ist **noch sehr jung**.\"\n\n\"Ich habe nur eine Schwester. **Sie studiert Philosophie** in Hamburg\", sagte Ingrid. \"Es ist schön, eine große **Familie** zu haben, **oder?**\"\n\n\"**Naja**\", sagte ich. \"**Hier habe ich meine Ruhe**. In Sizilien **treffe** ich jeden Tag meine **Cousinen**, **Cousins**, Onkel und **Tanten**. **Sie fragen** immer, wann **ich heirate** und wann **ich beginne** zu arbeiten. Sie sagen, mein Bruder in New York **macht es richtig**. Er arbeitet den ganzen Tag und ist jetzt **reich**.\"\n\n\"**Was macht dein Bruder?**\", fragte Ingrid.\n\n\"**Irgendwas mit** Geld\", sagte ich. \"Aber er arbeitet zu viel. Er **ist gestresst**.\"\n\n**Wir haben weiter** Bier getrunken und **über das Leben gesprochen**, **bis** es ein Uhr morgens war.\n\n\"Okay, **ich muss gehen**\", sagte Ingrid. \"**Sonst verpasse** ich meinen Bus morgen!\"\n\n\"Kann ich **deine Nummer** haben?\", fragte ich.\n\n\"Ich habe **kein Handy**\", sagte Ingrid.\n\n\"Was?\", fragte ich.\n\n\"**Ich hasse** Handys\", sagte Ingrid. \"Aber du kannst meine **Email-Adresse** haben, **wenn du willst**.\"\n\nSie nahm einen **Stift** und einen **Zettel** **aus ihrer Handtasche**, **sie schrieb** etwas und gab mir den Zettel.\n\nDann **küsste sie** mich **auf die Wange**, sagte:\n\n\"Arrivederci!\" und **war verschwunden**.\n\n## Übung\n\n**1. Der Film war auf ...**\n\na) Deutsch mit englischen Untertiteln.\n\nb) Norwegisch mit deutschen Untertiteln.\n\nc) Deutsch mit norwegischen Untertiteln.\n\n**2. Der Film handelte von ...**\n\na) einem Mann mit einer Katze.\n\nb) einer Frau mit einer Maske.\n\nc) einem Mann mit einer Maske.\n\n**3. Wie viele Geschwister hat Dino?**\n\na) drei Brüder und eine Schwester\n\nb) zwei Brüder und eine Schwester\n\nc) einen Bruder und zwei Schwestern\n\n**4. Ingrids Schwester ...**\n\na) studiert Philosophie in Berlin.\n\nb) studiert Film in Hamburg.\n\nc) studiert Philosophie in Hamburg.\n\n**5. Wo wohnen Dinos Brüder?**\n\na) in New York und auf Sizilien\n\nb) auf Sizilien und in Berlin\n\nc) in New York und in Rom\n\n**6. Ingrid küsst Dino ...**\n\na) auf den Mund\n\nb) auf die Wange\n\nc) auf die Stirn"},{"title":"🏊 Chapter 6: Im Prinzenbad","content":"Es ist Ende August. Es regnet viel. Aber es ist **noch nicht** so kalt. Heute scheint die Sonne **ein bisschen**. **Ted hatte die Idee**, **schwimmen zu gehen**. Aber wo?\n\n\"**Strandbad** Wannsee\", sagte Ted.\n\n\"**Wie kommen wir dorthin?**\", fragte ich.\n\n**Er tippte** etwas **auf seinem Handy** und sagte: \"Zuerst **nehmen wir den Bus** M29, dann die **S-Bahn** S1.\"\n\n\"**Was ist mit** dem **Badeschiff**?\", fragte ich.\n\n\"Ist das ein **Hallenbad**?\", fragte Chang.\n\n\"Nein\", sagte ich. \"Das ist ein **schwimmender** Pool in der **Spree**.\"\n\n\"Ein **schwimmendes Schwimmbad im Fluss**?\", fragte Chang. \"**Verstehe ich nicht**.\"\n\n\"**Man kann** nicht direkt in der Spree baden. Der Fluss ist **zu schmutzig**\", sagte ich.\n\n\"Und das Badeschiff ist **verseucht** mit Hipstern\", sagte Ted.\n\nChang sagte: \"Oder **wir fahren an die Ostsee**.\"\n\nTed lachte. \"**Bist du verrückt?**\", fragte er.\n\n\"Warum?\", fragte ich.\n\nTed tippte auf seinem Handy und sagte: \"**Von hier bis zur Ostsee** sind es **mehr als** drei Stunden **Zugfahrt**.\"\n\n\"Oh, okay\", sagte Chang.\n\nAm Ende sind Ted, Chang und ich ins Prinzenbad gegangen. Es ist ein **Freibad**, nur wenige Minuten entfernt.\n\n**Am Eingang** stand ein Mann mit einem \"**Sicherheit**\" T-Shirt. Er hat **unsere Taschen durchsucht**.\n\n\"Was suchen Sie?\", fragte Chang.\n\n\"**Messer**, **Schlagstöcke**, **Pistolen**?\", sagte er. Wir schüttelten den Kopf.\n\nDann haben wir **Eintrittskarten** gekauft. Vier Euro **pro Person**.\n\nDas Prinzenbad ist **ein interessanter Ort**. **Man hört** hier viel Arabisch, **Türkisch** und Deutsch. **Hier sieht man** **Mädchen** in Bikinis **neben** Frauen in \"Burkinis\". **Gruppen von** türkischen **Jugendlichen** spielen im **Baby-Becken**. Deutsche **Mütter schimpfen mit ihren Kindern**. Männer vom **Sicherheitsservice patrouillieren**. **Babys schreien**. **Es riecht nach Chlor** und **Pommes**.\n\nDas Wasser hatte eine gute **Temperatur**. **Nicht zu warm, nicht zu kalt**. **Das Schwimmen** war schwierig. Die Kinder **springen** immer **von der Seite** ins Wasser. Der **Bademeister** ruft in sein Megaphon: \"**Nicht vom Beckenrand springen!**\" Aber **es interessiert die Kinder nicht**.\n\nNach dem Schwimmen haben wir Pommes gegessen. Rot-weiß, mit **Mayonnaise** und Ketchup. Dann waren wir **müde**.\n\n\"**Schön hier**\", sagte Chang.\n\n\"Wannsee ist besser\", sagte Ted.\n\n\"**Nächstes Mal**\", sagte ich.\n\nDann hörten wir **ein Donnern**. **Der Himmel wurde schwarz**. Es begann zu regnen.\n\n## Übung\n\n**1. Was ist das Badeschiff?**\n\na) ein Schwimmbad in der Spree\n\nb) ein Schwimmbad an der Ostsee\n\nc) ein Schwimmbad am Wannsee\n\n**2. Warum kann man nicht in der Spree baden?**\n\na) Der Fluss ist zu kalt.\n\nb) Der Fluss ist zu schmutzig.\n\nc) Der Fluss ist zu warm.\n\n**3. Von Berlin bis zur Ostsee sind es ...**\n\na) weniger als zwei Stunden Zugfahrt.\n\nb) mehr als drei Stunden Zugfahrt.\n\nc) mehr als sieben Stunden Zugfahrt.\n\n**4. Das Prinzenbad ist ...**\n\na) ein Freibad.\n\nb) ein Hallenbad.\n\nc) ein Strandbad.\n\n**5. Was sucht der Sicherheitsservice?**\n\na) Messer, Schlagstöcke, Wasserpistolen\n\nb) Essen, Schlagstöcke, Pistolen\n\nc) Messer, Schlagstöcke, Pistolen\n\n**6. Welche Sprachen hört Dino im Prinzenbad?**\n\na) Arabisch, Spanisch, Deutsch\n\nb) Arabisch, Türkisch, Deutsch\n\nc) Armenisch, Türkisch, Deutsch\n\n**7. Was bedeutet Pommes \"rot-weiß\"?**\n\na) Pommes mit Mayonnaise und Ketchup\n\nb) Pommes mit Mayonnaise und Tomaten\n\nc) Pommes mit Knoblauch und Ketchup"},{"title":"💰 Chapter 7: Ohne Moos nix los","content":"Ich habe Ingrid eine Email **geschrieben**. Sie hat noch nicht **geantwortet**. Vielleicht kann ich sie in Hamburg **besuchen**. **Ich war noch nie in Hamburg**. Es ist eine schöne Stadt, **habe ich gehört**.\n\n**Ich checke meine Emails** jeden Tag **ein paar Mal**. Meistens bekomme ich nur **Werbung** oder **Briefe** von nigerianischen \"Prinzen\", **welche** mir eine Million Dollar **geben wollen**.\n\nHeute habe ich eine Email **von meinem Bruder** bekommen. **Seine Emails** sind immer sehr **kurz**. \"Hallo Dino. Wie geht es Dir? Hier ist der Code. **Liebe Grüße**, Alfredo\"\n\nDer Code ist **eine Art Passwort**. Ich kann **damit zur Post gehen**, und sie geben mir **Geld**. **Er schickt mir** jeden Monat achthundert Euro.\n\nEs ist nicht viel, aber es ist besser als nichts. Es ist gut, dass Alfredo mir hilft. Es gibt nicht viel Arbeit in Berlin.\n\nJeden Tag kommen **mehr Menschen** aus **Spanien**, Amerika, England. Alle wollen in Berlin wohnen und arbeiten. Viele von ihnen sind jung und arbeiten mit Computern. Sie alle haben denselben Traum. **Sie träumen von** Start-ups und **dem großen Geld**. Aber am Ende sitzen sie nur mit ihren Laptops in Cafés und **posten** Party-Photos auf Facebook.\n\n**Meine Mutter weiß** nicht, dass Alfredo mir Geld schickt. **Sie denkt**, ich arbeite **für eine Bank**. Mein Vater sagt immer, dass deutsche Banken **sehr stark** sind. Er ist **stolz auf mich**.\n\n**Irgendwann werde ich** auch Arbeit suchen. Aber zuerst muss ich Deutsch lernen. Denn ohne Deutsch kann man in Deutschland nichts machen. Ich kenne viele Amerikaner und Engländer, welche **seit vielen Jahren** in Berlin wohnen. Aber sie sprechen **die ganze Zeit** nur Englisch **mit ihren Freunden** und ihr Deutsch ist **miserabel**.\n\nHeute bin ich zur Post gegangen. Ich habe **ein Formular ausgefüllt**, **meinen Pass gezeigt**, und dann habe ich mein Geld bekommen.\n\nDas Leben in Berlin ist nicht so **teuer**. **Ich bezahle dreihundert** Euro im Monat für mein WG-Zimmer, zweihundert für **Essen und Trinken**, circa einhundert für die **Monatskarte** für Bus und **Bahn**. Es bleibt immer **noch genug** Geld für Partys und andere Dinge.\n\nAlfredo sagt, **er will mir helfen**, bis ich einen Job gefunden habe. Niemand hat Alfredo geholfen, als er **neu** in New York war. Er hat die ganze Zeit gearbeitet, zuerst als **Taxifahrer**, dann in einer Pizzeria, dann in einer Bank **und so weiter und so fort**.\n\nJetzt hat Alfredo sehr viel Geld, aber er hat nie Zeit. Ich habe sehr viel Zeit aber nicht viel Geld.\n\n## Übung\n\n**1. Dino hat Ingrid ...**\n\na) eine SMS geschrieben.\n\nb) eine Email geschrieben.\n\nc) einen Brief geschrieben.\n\n**2. Dino bekommt Geld von ...**\n\na) seinem Vater.\n\nb) seinem Bruder.\n\nc) seinem Onkel.\n\n**3. Dinos Mutter denkt, ...**\n\na) er arbeitet in einer Bar.\n\nb) er arbeitet in einer Bank.\n\nc) er arbeitet in einem Start-up.\n\n**4. Bevor Dino sein Geld bekommt, ...**\n\na) füllt er ein Formular aus und zeigt seinen Pass.\n\nb) schreibt er einen Brief und zeigt seine Fotos.\n\nc) füllt er ein Formular aus und zeigt seine Emails.\n\n**5. Wie viel zahlt Dino für sein WG-Zimmer?**\n\na) dreihundert Euro monatlich\n\nb) zweihundert Euro monatlich\n\nc) fünfhundert Euro monatlich"},{"title":"🔥 Chapter 8: Kohle, Ratten und Gespenster","content":"Es ist jetzt **Herbst**. Das Wetter ist sehr schlecht. Der Himmel ist **grau**. Es ist kalt und regnet die ganze Zeit.\n\nUnsere Wohnung ist sehr alt. Wir haben keine **Zentralheizung**. In unserem Wohnzimmer **steht** ein alter **Kachelofen**. Das ist **ein großer, brauner Klotz** in der Ecke des Zimmers. Chang sagt, der Ofen ist **mehr als** hundert Jahre alt. Gustavo hat **mir gezeigt**, **wie er funktioniert**.\n\nDer Kachelofen hat eine kleine Tür. Zuerst **öffnet man** die Tür, dann **legt** man ein paar **Stücke Holz** und ein **Brikett hinein**. Mit einem **Feuerzeug** und ein bisschen **Zeitungspapier zündet** man das Holz **an**. Wenn das Holz **knistert**, **legt man die Kohle hinein**. **Nach einer Weile** wird es **schön warm**.\n\nWir haben eine **Tonne** Kohle bestellt. Die Kohle ist im **Keller**. Wir wohnen **im vierten Stock**. Die meisten Häuser in Berlin haben keinen **Aufzug**. Wenn wir Kohle **brauchen**, gehen wir in den Keller. Der Keller ist **dunkel** und schmutzig. **Es gibt** dort Ratten. (Chang sagt, **es gibt** dort **Gespenster** von Menschen, die im zweiten **Weltkrieg gestorben** sind.) Aber wenn es kalt ist, brauchen wir Kohle. Wir nehmen einen alten **Kartoffelsack**, gehen in den Keller, **füllen den Sack mit** Kohle und **tragen ihn** in den vierten Stock.\n\nDer Sack ist sehr **schwer**. Wir tragen ihn **zu zweit**. **Außerdem** macht die Kohle viel **Dreck**. Das **Treppenhaus** hat **schwarze Spuren**, **wenn wir fertig sind**. Unsere **Nachbarn beschweren sich**. Aber **was sollen wir tun?** Der Winter kommt **bald**. Ich habe gehört, in Berlin gibt es manchmal 30 Grad Minus.\n\nIn den **Schlafzimmern** haben wir keine Kachelöfen. Dort haben wir eine **Gasheizung**. Es ist auch nicht sehr modern, aber es funktioniert. Die Gasheizung ist ein kleiner **Kasten unter dem Fenster**. Man muss **einen Knopf drücken**, und dann gibt es ein kleines **Feuer** in dem Kasten.\n\nMeine Mitbewohner sagen, **ich soll vorsichtig sein** mit der Gasheizung. Ich habe gefragt, ob es **gefährlich** ist. \"Nein\", sagte Gustavo. \"Ja\", sagte Ted. \"Es ist gefährlich, wenn wir die **Rechnung** bekommen.\"\n\n\"Ich verstehe nicht\", sagte ich. \"Ist Gas sehr teuer in Berlin?\"\n\n\"Im Mai bekommen wir die Rechnung für den Winter. **Letztes Jahr mussten** wir 500 Euro **zahlen**!\"\n\n\"Wir bezahlen nicht jeden Monat?\", fragte ich.\n\n\"Nein\", sagte Ted. \"In unserer Miete ist Heizung **enthalten**. Aber wenn wir die Heizung sehr viel benutzen, müssen wir im **Frühling extra bezahlen**.\"\n\n\"Kachelofen, Gasofen, Rechnungen, das ist alles sehr **kompliziert**\", sagte ich.\n\n\"Willkommen in Berlin\", sagte Ted.\n\n## Übung\n\n**1. Wie ist das Wetter?**\n\na) Es ist kalt und regnet.\n\nb) Es ist kalt und schneit.\n\nc) Es ist warm und regnet.\n\n**2. Was ist ein Kachelofen?**\n\na) eine elektrische Heizung\n\nb) eine Gasheizung\n\nc) eine Kohleheizung\n\n**3. Man legt die Kohle in den Ofen, ...**\n\na) wenn das Holz brennt.\n\nb) wenn das Holz knistert.\n\nc) wenn das Holz schwarz ist.\n\n**4. Warum tragen Dino und seine Mitbewohner die Kohle vom Keller bis in den vierten Stock?**\n\na) Es gibt keinen Aufzug.\n\nb) Es ist eine Art Sport.\n\nc) Sie haben Angst vor Ratten.\n\n**5. Die Gasheizung ist gefährlich, ...**\n\na) weil sie explodieren kann.\n\nb) weil die Rechnung teuer sein kann.\n\nc) weil sie sehr alt ist.\n\n**6. Wann bekommt die WG die Rechnung für den Winter?**\n\na) im März\n\nb) im April\n\nc) im Mai"},{"title":"🐕 Chapter 9: Die Dänische Dogge","content":"In unserem Haus gibt es viele **Hunde**. Im ersten Stock wohnt ein **Schäferhund** und zwei Chihuahuas. Im zweiten Stock lebt ein Dobermann und ein **Windhund**. Im dritten Stock wohnen drei **Huskys**. Und ganz oben, im fünften Stock wohnt eine **Dänische Dogge** und ein **Rehpinscher**.\n\n**Bei uns** im vierten Stock gibt es keine Hunde, aber unsere Nachbarn haben eine **dicke** schwarze **Katze**.\n\nHeute Morgen beim Frühstück habe ich **gesehen**, dass die **Milch** leer ist. \"Wer hat die Milch leer gemacht?\", fragte ich.\n\n**Er zuckte mit den Schultern**. Ted schüttelte den Kopf. Gustavo sagte nichts.\n\n\"Gustavo?\", fragte ich.\n\n\"Okay, okay\", sagte er. \"**Ich war's**.\"\n\n\"**Ab die Post!**\", sagte ich.\n\nGustavo **verließ** die Wohnung.\n\nFünf Minuten später hörten wir ein **Geräusch**. Und dann stand **plötzlich** die Dänische Dogge vom fünften Stock in unserer Küche.\n\n\"Wo kommt der her?\", fragte Ted.\n\n\"**Keine Ahnung**\", sagte Chang. \"Vielleicht hat Gustavo vergessen, **die Tür zu schließen**.\"\n\n\"Und was machen wir jetzt?\", fragte ich.\n\n**Wir bewegten uns nicht**. Der Hund war höher als unser Küchentisch. Er hatte rote Augen. **Aus seinem Maul tropfte Speichel** auf den Fußboden. Er bewegte seinen **riesigen** Kopf und ging zur **Spüle**.\n\nDann begann er, unsere **ungewaschenen Teller abzulecken**. Er **wedelte** mit dem **Schwanz**. Seine **Zunge** war so groß wie eine **Kinderhand**.\n\nTed lachte und sagte: \"**Endlich** macht jemand unsere Teller sauber!\"\n\n**Als er fertig war**, kam der Hund zum Küchentisch. Er **fraß** **ein halbes Kilo Käse**, zwanzig **Scheiben** Salami, eine **Plastikgabel** und meine **Serviette**.\n\n**Während** der Hund den Tisch **abräumte**, bewegten wir uns nicht. **Wir hielten den Atem an**.\n\nPlötzlich **rannte** der Hund aus der Küche ins Wohnzimmer. Wir standen auf und **folgten ihm vorsichtig**. **Aus sicherer Entfernung sahen wir**, wie der Hund ein paar alte **Socken** und Zeitungen fraß. Dann wedelte er und schnüffelte an unserem **Staubsauger** in der Ecke.\n\n\"Nein!\", sagte Ted. \"Nicht! Komm, **Hundi**, Hundi ...\"\n\nAber es war **zu spät**. Die Dänische Dogge **rammte** den Staubsauger, **packte** den **Staubsaugerbeutel** und **schüttelte** ihn **wie verrückt**. Eine dunkle **Staubwolke** kam aus dem Beutel. Wir **husteten** und **schlossen die Augen**. Wenige Sekunden später war unser Wohnzimmer mit einer **dicken Staubschicht** bedeckt.\n\nDa **klingelte** es an der Tür. Es war unser Nachbar vom fünften Stock. \"Äh, sorry, habt ihr meinen Hund gesehen?\", fragte er.\n\nIch wischte den Staub von meinem Gesicht, hustete und zeigte ins Wohnzimmer. Der Hund **lag** auf dem Sofa und **schlief**.\n\n## Übung\n\n**1. Wie viele Hunde wohnen im ersten Stock?**\n\na) drei\n\nb) zwei\n\nc) einer\n\n**2. Warum verlässt Gustavo die Wohnung?**\n\na) Er geht Brot kaufen.\n\nb) Er geht Milch kaufen.\n\nc) Er geht Käse kaufen.\n\n**3. Die Dänische Dogge ...**\n\na) leckt die Teller ab.\n\nb) leckt die Tassen ab.\n\nc) leckt die Gläser ab.\n\n**4. Der Hund frisst ...**\n\na) Käse, Salami, eine Gabel und eine Serviette.\n\nb) Käse, Brot, eine Gabel und eine Serviette.\n\nc) Käse, Salami, eine Gabel und eine Kartoffel.\n\n**5. Warum gibt es eine Staubwolke im Wohnzimmer?**\n\na) Der Hund hat den Staubsaugerbeutel geschüttelt.\n\nb) Der Hund hat den Staubsauger angeschaltet.\n\nc) Der Hund hat den Staubsaugerbeutel gefressen."},{"title":"✈️ Chapter 10: Auf Wiedersehen, Berlin!","content":"Der Winter ist hier. **Es schneit** den ganzen Tag. Alles ist weiß. Es ist sehr kalt. In drei Tagen fliege ich nach Sizilien zu meiner Familie. Ich vermisse das Meer, die Sonne, unser **Olivenöl** und den **Rotwein**.\n\nBald ist **Weihnachten**. Heute habe ich **Geschenke** gekauft. Mein kleiner Bruder bekommt eine DVD über die Berliner **Clubszene**, meinem großen Bruder aus New York gebe ich einen Berliner **Aschenbecher**. Für meine Schwester habe ich einen Berliner **Bär** gekauft. Mein Vater bekommt ein Buch über **die Mauer**. Für meine Mutter **wollte ich** ein paar deutsche **Cremes besorgen**.\n\nIch ging in eine **Drogerie** und nahm Nivea Creme und ein paar andere Sachen. Dann ging ich zur **Kasse**. Die **Schlange** war nicht sehr **lang**. Nur drei Leute. Vor mir stand eine Frau mit langen, blonden Haaren.\n\n\"Ingrid?\", fragte ich.\n\n**Sie drehte sich um**, und **tatsächlich**, es war Ingrid!\n\n\"Oh\", sagte sie. \"Hi!\"\n\n\"Wie geht es dir?\", fragte ich.\n\n\"Gut\", sagte sie. \"Und dir?\"\n\n\"Okay. **Seit wann** bist du wieder in Berlin?\", fragte ich.\n\n\"Ah, äh, seit gestern\", sagte Ingrid.\n\n\"Hast du meine Emails bekommen?\", fragte ich.\n\n\"Emails?\", fragte Ingrid. \"Nein.\"\n\n\"Vielleicht sind sie im Spam-Filter **hängengeblieben**\", sagte ich.\n\n\"Vielleicht ... ja! **Das muss es sein**\", sagte Ingrid. \"Der Spam-Filter!\"\n\n\"**Schön dich wiederzusehen**\", sagte ich. \"In drei Tagen fliege ich nach Sizilien zu meiner Familie. Vielleicht hast du **vorher Zeit für einen Kaffee**?\", fragte ich.\n\n\"Oh\", sagte Ingrid. \"Ja! **Ich würde gerne** einen Kaffee mit dir trinken, aber ich fliege morgen nach Stockholm.\"\n\n\"Familie besuchen?\", fragte ich.\n\nIngrid nickte.\n\nIch bezahlte meine Sachen und **wir gingen nach draußen**. Ein **eisiger** Wind **blies** über den Asphalt. Ich **zitterte** und sagte: \"Mann, ist das kalt!\"\n\n\"Wir sagen in Schweden, es gibt kein schlechtes Wetter, nur schlechte **Kleidung**\", sagte Ingrid.\n\n\"Was machst du jetzt?\", fragte ich.\n\n\"Äh ... ich ... äh\", **stammelte** Ingrid.\n\n\"Geschenke kaufen?\", fragte ich.\n\n\"Ja, genau! Geschenke kaufen\", sagte Ingrid. \"Für Weihnachten.\"\n\n\"Okay, **viel Glück**\", sagte ich.\n\n\"Danke\", sagte sie.\n\nIch sitze im **Flugzeug**. Wir **rollen** auf die **Startbahn**. **Während** es **abhebt**, denke ich zurück an die letzten paar Monate. Ich habe Menschen aus aller Welt **getroffen**. Ich habe gelernt, wie man einen Kachelofen benutzt, wo es den besten Döner zum besten Preis gibt, und vieles mehr.\n\nEs war eine gute Zeit. Ich weiß nicht, ob ich nach meinem **Urlaub nach Berlin zurückkehren** werde. Ich habe die Sprache jetzt ein bisschen gelernt. Vielleicht gehe ich nach München? Aber das Leben dort ist sehr teuer, habe ich gehört. Leipzig ist sehr **trendig momentan**. Oder Köln, vielleicht? Die Menschen dort sind **freundlicher** als in Berlin, habe ich gehört, und es ist nicht so kalt. Auch in Österreich und der Schweiz spricht man Deutsch ...\n\nDieses Jahr ist **fast vorbei**. Und wie sagt man? \"Neues Jahr, neues Glück.\"\n\n**Eins ist sicher**. Wenn ich in Sizilien ankomme, werde ich **erst einmal** eine **richtige Pizza** essen.\n\n## Übung\n\n**1. Warum ist alles weiß?**\n\na) Es schneit den ganzen Tag.\n\nb) Es regnet den ganzen Tag.\n\nc) Die Sonne scheint.\n\n**2. Dino hat für seine Familie ...**\n\na) Formulare ausgefüllt.\n\nb) Geschenke gekauft.\n\nc) telefoniert.\n\n**3. Was wollte Dino in der Drogerie kaufen?**\n\na) Cremes für seine Tante\n\nb) Cremes für seine Mutter\n\nc) Cremes für seine Schwester\n\n**4. Wen hat Dino an der Kasse getroffen?**\n\na) Gustavo\n\nb) Ted\n\nc) Ingrid\n\n**5. Warum hat Ingrid keine Emails von Dino bekommen?**\n\na) Ingrid hat sie gelöscht.\n\nb) Sie sind im Spam-Filter hängengeblieben.\n\nc) Dino hat sie nicht geschickt.\n\n**6. Wird Dino nach seinem Urlaub nach Berlin zurückkehren?**\n\na) Ja\n\nb) Er weiß es nicht.\n\nc) Nein\n\n**7. Wenn Dino in Sizilien ankommt, will er zuerst ...**\n\na) einen Rotwein trinken.\n\nb) schwimmen gehen.\n\nc) eine Pizza essen."},{"title":"Answer Key","content":"1. a, a, c, c, b\n2. c, b, a, b, a, c\n3. c, a, b, a, c, a\n4. a, b, c, a, a\n5. b, c, b, c, c, b\n6. a, b, b, a, a, b, a\n7. b, b, b, a, a\n8. a, c, b, a, b, c\n9. a, b, a, a, a\n\n10. a, b, b, c, b, b, c"},{"title":"About the Author","content":"André Klein was born in Germany, has grown up and lived in many different places including Thailand, Sweden and Israel. He has produced two music albums, performed and organized literary readings, curated an experimental television program and is the author of various short stories and non-fiction works."},{"title":"Acknowledgements","content":"Special thanks to Vivian Farago, Dennis Thompson, Andrew Schur, Rosy Limbach, Eti Shani and Marilyn Robertson.\n\nThis book is an independent production. Did you find any typos or broken links? Send an email to the author at andre@learnoutlive.com and if your suggestion makes it into the next edition, your name will be listed here."},{"title":"You Might Also Like","content":"**Mord am Morgen** - In an abandoned house at the outskirts of a small town, an unidentified body has been found. Can you help Kommissar Harald Baumgartner and his colleague Katharina Momsen solve this case and improve your vocabulary along the way?\n\n**Ferien in Frankfurt** - In this sequel to \"Café in Berlin\", Dino makes his way towards the central German metropolis of Frankfurt am Main, caught in between quaint cider-pubs, the international banking elite, old acquaintances and the eternal question what to do with his life.\n\n**Ahoi aus Hamburg** - A picture book for the young and young at heart about an unusual friendship between two pets.\n\n**Kara und der schwarze Mönch** - This interactive adventure ebook for German learners puts you, the reader, at the heart of the action. Boost your grammar by engaging in sword fights, improve your conversation skills by interacting with interesting people and enhance your vocabulary while exploring forests and dungeons."}]
+const ELVIS_DATA = [{"title":"Elvis in Köln","content":"Felix & Theo\n\nDeutsch als Fremdsprache in drei Stufen\n\nElvis in Köln · Stufe 1\n\nDie Hauptpersonen dieser Geschichte sind:\n\nHelmut Müller, Privatdetektiv, wird zu einem Kostümfest eingeladen und weiß nicht, wie er sich verkleiden soll.\n\nBea Braun, Sekretärin von Helmut Müller, ist auch eingeladen und ein bisschen verliebt.\n\nAlfred Hübner, der hat Geburtstag und feiert im Kölner Karneval.\n\nPeet, ein Musiker aus Berlin, macht auf der Party den Disc-Jockey.\n\nKarl will nur Zigaretten holen und vermisst seine Brieftasche.\n\nIlse ist verkleidet als Marilyn Monroe und wird auch bestohlen.\n\nZorro flirtet mit Bea Braun und schaut dauernd auf die Uhr."},{"title":"📨 Eine Einladung wirft Probleme auf","content":"„Alaaf!“\n\n„Wie bitte?“ Privatdetektiv Helmut Müller schaut zu seiner Sekretärin.\n\n„Alaaf, sagte ich!“\n\n„Ist das niederländisch oder isländisch, oder chinesisch? Ich verstehe nicht ...“\n\n„Mensch, Chef, warum denn so ernst? ‚Alaaf‘ ist der Karnevalsgruß in Köln!“\n\nBea Braun kommt fröhlich ins Büro. Sie hat einen Brief in der Hand.\n\n„Sehen Sie mal! Wir haben eine Einladung bekommen.“\n\nHelmut Müller liest die Einladung.\n\n„Ach, Alfred, unser alter Freund, wird fünfzig! Das ist aber eine komische Idee, ein Maskenball.“\n\n„Das ist doch toll! Karneval in Köln! Da wollte ich schon immer mal hin, das ist die Gelegenheit!“\n\nMüller hält die Karte in der Hand und ist nicht begeistert.\n\n„Sie können ja gerne fahren, aber ohne mich ...“\n\n„Mensch, Chef! Das wird bestimmt lustig, eine Geburtstagsparty als Maskenball. Und wir haben Alfred schon so lange nicht mehr gesehen. Wissen Sie noch, damals in München, die Geschichte auf dem Oktoberfest!, oder die Sache mit den Drogendealern? Ohne Alfred hätten wir die Fälle nicht gelöst.“\n\nMüller betrachtet seine Sekretärin und erinnert sich natürlich an die beiden Fälle. Alfred Hübner, Pressefotograf und Charmeur. Klar, dass Bea Braun ihn gerne wieder sehen möchte.\n\n„Ich weiß, ich weiß. Aber wenn Sie Alfred gerne wieder sehen möchten, muss ich doch nicht dabei sein.“\n\n„Oha, höre ich da ein bisschen Eifersucht in der Stimme? Ich sagte: Wir! Schließlich sind wir beide eingeladen. Seit Alfred beim Kölner Express als Reporter arbeitet, haben wir keinen Kontakt mehr. Und das ist doch schade, oder? Los, Chef!“\n\n„Ich weiß nicht ... und noch dazu ein Maskenball. Ich habe ja nicht mal ein Kostüm ...“\n\n„Da finden wir schon was!“\n\nBea Braun setzt sich an ihren Schreibtisch, holt ein Blatt Papier und schreibt:\n\n„Wie wäre es mit ‚Obelix‘*?“\n\n„So ein Quatsch! Und Sie sind dann ‚Asterix‘*? Nein, nein, nein!“\n\n„Sie sind doch als Kind bestimmt zu Maskenbällen gegangen. Wie waren Sie denn da verkleidet?“\n\nMüller lächelt und denkt an die Zeit, als er sich als Kind auf die Karnevalszeit gefreut hat. Alle Jungen wollten Cowboys sein. Aber er, Helmut Müller, war ein Indianer.\n\n„Indianer! Ich war immer ein Indianer.“\n\n„Das geht ja nun leider nicht mehr. So dicke Indianer gibt es nicht ...“\n\n„Bea! Noch so eine Bemerkung und ich fahre nicht mit!“\n\nHelmut Müller lächelt. Natürlich ist er zu dick. Ein dicker Indianer, das geht wirklich nicht.\n\n„Entschuldigung, Chef! Hab ja nur gemeint ... Aber wie wäre es mit Sherlock Holmes?“\n\n„Unsinn!“\n\n„Oder Sie gehen als Monster?“\n\n„Blödsinn!“\n\n„Popstar?“\n\n„Kennen Sie einen Popstar mit meiner Figur?“\n\nBea legt den Zeigefinger an die Stirn und ruft begeistert:\n\n„Elvis! Genau! Sie kommen als Elvis!“"},{"title":"👕 Das passende Kostüm","content":"Privatdetektiv Helmut Müller und seine Sekretärin Bea Braun stehen vor einem Geschäft in Kreuzberg.\n\n„Kostümverleih“ steht in großen goldenen Buchstaben auf dem Schaufenster.\n\n„Also ich weiß nicht ...“\n\n„Nichts da! Nur Mut!“ Bea schiebt Müller am Ärmel und sie gehen in das Geschäft.\n\nEin junger Mann mit blond gefärbten kurzen Haaren kommt auf sie zu.\n\n„Hey! Na ihr beiden, was darf’s denn sein?“\n\n„Also mein Chef, äh, ich meine, der Herr hier möchte gerne ein Kostüm!\"\n\n„Elvis? Sie meinen Elvis Presley? Na ja, da gibt es eigentlich kein Kostüm. Hab ich auch gleich gesagt! Elvis hatte nie ein Kostüm. Einfach Jeans und ein Hemd und eine Gitarre, das war Elvis! Diese King-Kostüme können wir nicht in jeder Größe ...“\n\nMüller blickt den jungen Mann auf einmal an.\n\n„Na ja, der späte Elvis brauchte dann schon ein Kostüm“, der Verkäufer sagt, „also bitte!“\n\nDer Verkäufer geht in den Nebenraum und kommt nach ein paar Minuten mit einer großen Plastiktüte zurück.\n\nVorsichtig macht er die Verpackung auf und präsentiert den beiden einen weißen Anzug mit Pailletten.\n\n„Um Gottes willen! Niemals! Das ziehe ich nicht an! Damit sehe ich ja aus wie, äh, wie ...?“\n\n„Elvis!“\n\nBea Braun nimmt den Anzug, hält ihn Müller vor und ist begeistert.\n\n„Perfekt! Absolut perfekt! Damit sehen Sie super aus, Chef!“\n\nDer junge Verkäufer legt noch eine kleine Plastiktüte auf den Tisch.\n\n„Und was ist das?“ Helmut Müller nimmt die Tüte in die Hand.\n\n„Koteletten!“\n\n„Was?“\n\n„Koteletten! Backenbart! Der späte Elvis hatte ziemlich große Koteletten. Damit sehen Sie wirklich echt aus!“\n\nMüller füllt einen Schein aus. Bezahlen muss er erst, wenn er das Kostüm zurückbringt.\n\n„Passt bestimmt nicht! Ist sicher viel zu groß ...“\n\n„Dann kann ich es enger machen, Chef. Jetzt fahren Sie erst mal nach Hause und probieren den Anzug.“\n\nHelmut Müller steht vor dem Spiegel in seinem Schlafzimmer.\n\nDer Anzug ist nicht zu groß. Eigentlich ist er zu klein.\n\nMüller muss den Bauch einziehen, damit die Hose passt.\n\nAber das Kostüm gefällt ihm.\n\nEr dreht sich vor dem Spiegel und je länger er sich betrachtet, desto besser gefällt er sich als Elvis.\n\nIm Schrank findet er noch alte schwarze Stiefel, dann klebt er sich die Koteletten an die Backen und holt vom Schrank einen großen Karton.\n\n„Irgendwo hier müssen sie doch sein ...?“\n\nMüller sucht seine alten Elvis-Platten.\n\n„Ha! Ich hab’s gewusst! Hier sind sie!“\n\nMit den Platten geht er ins Wohnzimmer.\n\n„Jailhouse Rock! Genau, diese Platte zuerst. Und dann ... ja, ‚Heartbreak Hotel‘ und ‚Teddy Bear‘, alles Klassiker des Rock’n’Roll!“\n\nMüller legt die Platte auf und mit schwingenden Hüften geht er ins Badezimmer. Mit Haarbürste und Spray verändert er seine Frisur.\n\n„Hallo, Elvis!“\n\nZufrieden lächelt Müller in den Spiegel."},{"title":"🚆 Bea und Müller planen eine Reise","content":"„Guten Morgen, Chef!“\n\n„Guten Morgen, Bea!“\n\nMüde betritt Helmut Müller das Büro. Er hat wenig geschlafen. Er hat sehr lange Platten gehört und immer wieder vor dem Spiegel Elvis Presley imitiert.\n\n„Passt das Kostüm?“\n\n„Ja, perfekt!“\n\nMüller überlegt, wie lange es noch dauert bis zum Maskenball. Fast zwei Wochen! Da kann er ja noch ein paar Pfunde abnehmen und dann passt das Kostüm bestimmt!\n\n„Bea, Sie könnten ja gleich mal die Fahrkarten besorgen und Zimmer für uns reservieren.“\n\n„Wann wollen wir denn fahren?“\n\n„Ja, also der Maskenball ist am Samstag. Und an dem Wochenende gibt es bestimmt viel zu sehen in Köln. Wir machen einfach Betriebsurlaub und fahren am Donnerstag!“\n\n„Super, Chef! Ich ruf sofort an!“\n\nEine Stunde später ist Bea Braun ziemlich enttäuscht.\n\n„Schlechte Nachrichten, Chef! In ganz Köln kein freies Hotelzimmer! Ich habe überall angerufen, alles belegt! Wie schade ...“\n\n„Rufen Sie doch einfach den Alfred an! Sagen Sie ihm, dass wir gerne kommen, aber leider kein Zimmer haben. Vielleicht kennt er ja ...“\n\n„Wird sofort erledigt! Gute Idee!“\n\nBea wählt die Telefonnummer von Alfred Hübner.\n\n„Guten Tag! Hier ist der automatische Anrufbeantworter von Alfred Hübner. Ich bin zur Zeit nicht zu Hause, aber Sie können mir eine Nachricht hinterlassen ...“\n\n„Er ist nicht da. Nur der Anrufbeantworter!“\n\n„Geben Sie mir mal das Telefon!“\n\nNach dem Piepton spricht Müller eine Nachricht für Alfred Hübner auf den Anrufbeantworter:\n\n„Hallo, Alfred! Hier ist Helmut! Danke für die Einladung! Wir möchten gerne kommen, aber in Köln gibt es kein einziges freies Hotelzimmer! Kannst du uns was besorgen? Schick mir doch ein Fax! Bea freut sich schon so ...“\n\n„Halt, Chef!“, protestiert Bea.\n\nMüller legt lächelnd auf."},{"title":"🚉 Kölner Hauptbahnhof","content":"Der Zug fährt langsam in den Kölner Hauptbahnhof ein.\n\n„Da! Da ist er!“\n\nBea Braun winkt hinter dem Fenster des ICE.\n\n„Ich glaube, er hat uns nicht gesehen!“\n\n„Tja, dann dauert es zwei Minuten länger, bis Sie Ihren Kuss bekommen ...“\n\n„Pfffft!“\n\nLangsam gleitet die Zugtür auf und Alfred Hübner streckt beide Arme aus.\n\n„Hallo! Ich freue mich!“\n\nZuerst umarmt er Bea – ohne Kuss – und dann Helmut Müller.\n\n„Das war eine prima Idee, heute schon zu kommen! Ihr könnt mir nämlich helfen ...“\n\n„Nichts da, mein Freund! Wir sind hier nur zum Vergnügen! Wir machen nämlich Betriebsurlaub!“\n\nLächelnd zwinkert Müller Bea zu.\n\n„Genau! Wir sind hier, um uns zu amüsieren und nicht um zu arbeiten!“\n\n„Na gut, dann könnt ihr aber nicht bei mir wohnen ...“\n\nLachend gehen die drei zu Alfred Hübners Auto.\n\nSie fahren am Dom vorbei, Richtung Norden und Alfred erklärt seinen Freunden den Weg.\n\nNach ca. 10 Minuten halten sie vor einem schönen Altbau.\n\n„Hier wohne ich: Thürmchenswall 62! Wir bringen jetzt euer Gepäck nach oben und dann müssen wir sofort wieder los!“\n\n„Wieso? Wir sind doch gerade erst angekommen ...?“\n\n„Helmut, ich dachte, du willst etwas erleben? Heute ist Weiberfastnacht, da müssen wir hin!“\n\nBea Braun, Helmut Müller und Alfred Hübner spazieren am Rhein entlang Richtung Altstadt. Sie wollen zum ‚Alten Markt‘. Auf den Straßen treffen sie immer mehr verkleidete Menschen. Alle sind bester Laune.\n\nJe näher sie zu dem Platz kommen, desto dichter wird die Menschenmenge. Und bei lauter Musik, Tanz und ausgelassener Stimmung werden die drei Freunde von der Menge verschluckt."},{"title":"🎉 Die Vorbereitungen zum Maskenball","content":"Nach einem gemütlichen Frühstück fahren die drei am nächsten Morgen zum ‚Halve Hahn‘.\n\n„Also, hier ist die Garderobe. Da könnt ihr eure Sachen aufhängen. Im Saal findet der Maskenball statt. Dort hinten ist die Bar und hier dachte ich, könnten wir das Buffet aufbauen ...“\n\nAlfred Hübner zeigt Bea und Helmut Müller die Räume.\n\n„Prima! Und wo ist die Musik?“\n\n„Darum kümmert sich Peet. Der kommt später mit seiner Stereoanlage, Boxen und viel Musik.“\n\n„Hoffentlich hat er auch Rock’n’Roll dabei! Unser Elvis liebt ...“\n\n„Bea! Sie wollen mir auch nicht verraten, wie Ihr Kostüm aussieht! Das soll doch eine Überraschung werden!“\n\n„O Gott! Tschuldigung, Chef!“\n\nAber Alfred hat gar nicht zugehört. Er packt bunte Papierschlangen, Lampions und sonstiges Dekorationsmaterial aus.\n\n„Bea und ich, wir dekorieren die Tanzfläche, und du, Helmut, die Bar!“\n\nAlfred gibt Müller eine Rolle mit buntem Papier, Klebeband und Schere.\n\nNach einer Stunde schauen die Räume ganz anders aus: ein Dschungel aus Luftschlangen, bunten Säulen, farbigen Lampions.\n\n„Prima! Das gefällt mir gut! Jetzt sieht es aus wie die Bühne für einen Maskenball! Wie spät ist es?“\n\nBea steht in der Mitte der Tanzfläche und ist begeistert.\n\n„Erst vier Uhr! Wir haben noch Zeit! Ich schlage vor, wir gehen erst mal Kaffee trinken. Dann gehen wir nach Hause und ziehen uns um und kommen so gegen sieben Uhr zurück. Um 7 Uhr kommt das Essen fürs Buffet und bestimmt kommen dann auch die ersten Gäste!“\n\nAlfred schaut zufrieden auf den Saal."},{"title":"🎭 Der Maskenball","content":"„Beeilung, das Taxi ist da!“\n\n„Moment, einen Moment bitte, meine Koteletten fehlen noch ...“\n\nEndlich ist die Verkleidung komplett und Elvis tritt aus dem Badezimmer.\n\n„Klasse!“\n\n„Super! Helmut, äh, ich meine Elvis, du siehst spitze aus!“\n\nAlfred Hübner, als orientalischer Scheich verkleidet, und Bea Braun, im Kostüm eines Go-go-Girls, bewundern Müller.\n\nZufrieden dreht sich der Privatdetektiv um die eigene Achse, dann schaut er Bea Braun an:\n\n„Ist das nicht ein bisschen zu kalt für diese Jahreszeit?“\n\nKritisch betrachtet Müller das knappe Kostüm von Bea.\n\n„Chef! Go-go-Girls tanzen, dabei wird ihnen warm!“\n\n„Schluss jetzt, ihr beiden! Das Taxi wartet!“\n\nAlfred schiebt die beiden Detektive aus der Wohnung.\n\nDas Taxi hält vor der Gaststätte. Am Eingang steht ein Schild: „Private Veranstaltung!“\n\nIm Saal hören sie laute Musik. Peet probiert die Musikanlage.\n\nSie hängen ihre Mäntel in der Garderobe auf, dann begrüßt Helmut Müller seinen alten Freund:\n\n„Mensch, Peet, dich habe ich ja seit einer Ewigkeit nicht mehr gesehen! Wie geht es dir?“\n\n„Danke, bestens! Das Kostüm steht dir prima. Ach, und da ist auch Bea ...“\n\n„Hallo!“\n\nZusammen gehen sie zum Buffet: Salate, belegte Brötchen, Frikadellen, Käse, Obst und ein riesiger Topf mit Gulaschsuppe.\n\nAlle helfen und Müller muss immer wieder mal probieren.\n\n„Jetzt ist aber Schluss, Helmut! Sonst ist das Buffet schon leer, bevor das Fest überhaupt angefangen hat! Finger weg!“\n\n„Ich muss ja nur ausprobieren, wie es schmeckt ...“\n\nDie ersten Gäste kommen.\n\nViele Bekannte aus alten Tagen. Es dauert immer einige Zeit, bis sie sich erkennen, alle sind verkleidet:\n\nPiraten, Punks, Cowboys, Clowns, Nixen, Cowgirls, Hexen.\n\nDer Saal füllt sich immer mehr: Müller sieht einen Torero, einige Matrosen und Kapitäne, einen Mann verkleidet als Zorro mit schwarzer Maske, einen Nikolaus, Greta Garbo, Marilyn Monroe mit blonder Perücke.\n\nMüller amüsiert sich."},{"title":"👜 Die gestohlenen Sachen","content":"Helmut Müller steht am Buffet und unterhält sich mit alten Freunden.\n\nPlötzlich zupft ihn jemand am Ärmel.\n\n„Helmut, kommst du bitte mal, es gibt ein Problem ...“\n\nEr folgt Alfred zur Garderobe.\n\n„Ein Problem? Wieso? Alle amüsieren sich prächtig! Oder geht das Bier aus?“\n\n„Nein, im Ernst. Komm mal mit!“\n\nIn der Garderobe steht Karl. Er sieht ziemlich ratlos aus.\n\n„Ich bin sicher, dass ich sie in die Manteltasche gesteckt habe ...“\n\n„Was ist los, Karl?“\n\n„Meine Brieftasche, ich wollte nur Zigaretten holen und da war sie weg ...“\n\n„Bist du sicher?“\n\n„Klar, Mann! Ich stecke sie immer ein, da ist ja auch mein Führerschein drin und Kreditkarten und ...“\n\n„Hallo, ihr Süßen, darf ich mal vorbei ...?“\n\n„Hallo, Ilse! Klar, geh nur ...“\n\nIlse, verkleidet als Marilyn Monroe, geht in die Garderobe.\n\n„So ein Mist, wo ist sie denn?“\n\nIlse sucht unter den Mänteln und Jacken nach ihrer Handtasche.\n\n„Eben war sie doch noch da ...“\n\n„Was suchst du denn, Ilse?“\n\nAlfred Hübner betrachtet nachdenklich die Suche.\n\n„Meine Handtasche! Ich war vorhin auf der Toilette und habe sie wieder unter meinen Mantel gehängt, jetzt find ich sie nicht mehr ...“\n\nKarl drängt sich an Müller vorbei in die Garderobe.\n\n„Irgendwer klaut hier! Meine Brieftasche ist auch weg!“\n\n„Um Gottes willen, das darf doch nicht wahr sein! In der Handtasche sind alle meine Schlüssel, für die Wohnung, fürs Auto ... mein Auto! Macht mal Platz, ich muss nach meinem Auto sehen ...“\n\nAlfred, Karl, Ilse und Müller drängen aus der Garderobe zur Tür.\n\n„Gott sei Dank! Da drüben steht es!“\n\nIlse deutet auf einen blauen Porsche auf der gegenüberliegenden Straßenseite.\n\n„Du hast doch nur Freunde und Bekannte eingeladen, oder?“\n\nMüller geht in die Gaststätte zurück, die kalte Nachtluft und die Vorstellung, dass ein Dieb unter den Gästen ist, lassen ihn frieren.\n\n„Klar, ich kenne alle!“\n\nAlfred Hübner ist verzweifelt.\n\n„Wir müssen das Auto beobachten! Wenn jemand meine Autoschlüssel geklaut hat, dann klaut er auch das Auto!“\n\nIlse ist jetzt ziemlich aufgeregt.\n\n„Mach doch was, Helmut! Du bist doch Detektiv!“\n\n„Moment mal, Ilse. Überlege doch bitte zuerst, wo du die Tasche hingehängt hast. Zuerst müssen wir alle Möglichkeiten prüfen, bevor wir von Diebstahl reden ...“\n\n„Also, ich war auf der Toilette, aber das habe ich ja schon gesagt. Und dann habe ich die Tasche unter meinen Mantel gehängt. Und dann habe ich mit dem Zorro kurz geredet und dann bin ich wieder in den Saal gegangen ...“\n\n„Wer ist Zorro?“\n\n„Also, mit dieser blöden Maske, ... ich weiß nicht.“\n\nAlfred schaut auf seine Freunde.\n\n„Kennt ihr ihn nicht?“\n\n„Nein, niemand, den ich kenne ... Aber wie du schon gesagt hast, mit dieser Maske erkennt man ihn nicht!“\n\n„Wo ist er jetzt?“\n\nHelmut Müller, Alfred, Karl und Ilse stehen an der Garderobentür und schauen in den Saal.\n\nDie Party ist in vollem Gang. Die kostümierten Gäste tanzen, stehen in kleinen Gruppen, reden, lachen, essen, trinken.\n\n„Da! Dahinten!“\n\n„Wo denn?“\n\n„Dahinten, an der Bar!“\n\nMüller stellt sich auf die Zehenspitzen, um besser sehen zu können. Tatsächlich. Zorro steht an der Bar und neben ihm Bea Braun! Beide amüsieren sich. Zorro flüstert immer wieder in Beas Ohr und Müller sieht, wie seine Sekretärin laut lacht.\n\n„Bitte, Helmut, äh, kannst du das diskret machen, ich meine, das Fest, äh, die Leute ...“\n\n„Verstehe, Alfred. Ich schlage vor, du bleibst hier an der Garderobe und ich knöpfe mir mal Zorro vor. Ihr beiden könnt euch ja amüsieren ...“\n\n„Sehr witzig! Aber auf den Schreck brauche ich was zu trinken. Kommst du mit, Karl?“\n\nMüller drängt sich durch den Saal. Die Gäste tanzen, ziehen ihn mit sich, tanzen mit ihm.\n\n„Hallo, Elvis! Gibst du mir ein Autogramm?“\n\n„Wann ist dein Auftritt?“\n\n„Komm, Elvis, tanz mit mir!“\n\nMüller befreit sich aus dem Gedränge und erreicht die Bar. Bea und Zorro sind verschwunden.\n\n„Peet, hast du meine Sekretärin gesehen?“\n\n„Du meinst, das Go-go-Girl? Tja, klar, die habe ich gesehen. Aber die ist schon besetzt! Zorro, der Rächer ...“\n\n„Quatsch nicht! Wo sind sie ...?“\n\n„Da musst du schon besser aufpassen, Meisterdetektiv! Nein, ich weiß es nicht. Eben waren sie noch da, vielleicht sind sie tanzen ...“\n\nMüller stellt sich wieder auf die Zehenspitzen und schaut in den Saal.\n\nDie Musik dröhnt und auf der Tanzfläche herrscht ein Durcheinander von Kostümen.\n\nDa! Auf der anderen Seite der Tanzfläche sieht er Bea. Eng umschlungen tanzt sie mit Zorro.\n\n„Bea! Bea!“\n\nMüller ruft und winkt mit beiden Armen. Aber die Musik ist viel zu laut und nur ein paar Gäste in seiner Nähe blicken erstaunt auf den Privatdetektiv.\n\nWieder drängt sich Müller in die Menge und versucht die andere Seite des Saals zu erreichen.\n\nBeide sind weg.\n\n„Helmut! Helmut!“\n\nDie Rufe kommen vom Ausgang.\n\nMüller zwängt sich in Richtung Garderobe. Auch hier stehen viele Gäste, das Buffet ist belagert."},{"title":"🚓 Der Dieb und die Polizei","content":"Endlich steht er im Gang zu den Toiletten. Alfred läuft ihm entgegen. Sein Kostüm ist zerrissen und er hat ein blaues Auge.\n\n„Er ist weg! Der Mistkerl ist weg! Mit dem Porsche von Ilse und mit deiner Freundin!“\n\n„Sekretärin! Bea ist meine Sekretärin ...“\n\n„Ist doch egal! Sie ist mit ihm abgehauen! Und ich konnte ihn nicht aufhalten ...!“\n\n„Gib mir mal eine Zigarette ...“\n\nEigentlich hat Helmut Müller schon lange mit dem Rauchen aufgehört, aber jetzt vergisst er seine Vorsätze.\n\n„So ein Mist! Bea! Immer diese Männergeschichten ... aber mit einem Dieb, das kann ich nicht glauben!“\n\n„Immer mit der Ruhe, Helmut! Vielleicht hat sie der Typ ja entführt?“\n\nAlfred und Helmut Müller sitzen in einer Ecke der Gaststätte und rauchen.\n\n„Du hast ja Recht, Alfred. Immer mit der Ruhe. Was ist denn nun eigentlich alles geklaut worden?“\n\n„Die Handtasche von Ilse und ihr Wagen und ... Mensch, ihre Wohnungsschlüssel! Wir müssen sofort die Polizei anrufen, sonst geht der Typ noch in die Wohnung von Ilse ...!“\n\n„So blöd wird er ja wohl nicht sein. Aber wir sollten wirklich die Polizei anrufen. Das schöne Fest .... und alles wegen so einem Trottel! O.k., Alfred: Ich suche Ilse und du suchst ein Telefon. Irgendwer hat bestimmt ein Handy dabei. Dann rufen wir die Polizei an, geben das Autokennzeichen durch und die Adresse von Ilses Wohnung. Und Karl brauchen wir auch, wegen der Kreditkarten ...“\n\n„Herr Müller?“\n\n„Äh, ja bitte ...?“\n\nDer Besitzer der Gaststätte steht neben Müller mit einem Telefon.\n\n„Ein Anruf für Sie!“\n\n„Ein Anruf? Für mich? Wer ruft mich denn hier an? Hallo, Müller hier ...“\n\n„Hallo, Chef! Melde, der Dieb ist gefangen!“\n\n„Bea! Wo sind Sie? Was ist los? Welcher Dieb ...?“\n\n„Zorro! Zorro, der Dieb! Ich sitze hier in seinem Wohnzimmer und der Dieb ist im Badezimmer eingesperrt! Die Polizei habe ich auch schon angerufen ...“\n\n„Äh, und Sie, äh, ich meine ...?“\n\n„Ich warte auf Sie! Sie könnten mich doch abholen. Ich wollte schon immer mal mit Elvis tanzen! Ich schlage vor, Sie nehmen ein Taxi. Die Adresse ist Filzengraben 20 und dann bringen wir den Porsche zurück und amüsieren uns ...!“\n\nMüller nimmt ein Taxi und fährt zu der Adresse. Vor dem Haus stehen zwei Polizeiautos.\n\nZorro, diesmal ohne Maske, wird in Handschellen abgeführt. Müller kennt ihn nicht.\n\nNach einem kurzen Gespräch mit den Beamten fährt er zusammen mit Bea im Porsche von Ilse wieder zurück zur Geburtstagsparty.\n\n„Ja, äh, also Bea, ich muss gestehen, ich bin wirklich neugierig. Ich dachte schon ...“\n\n„Was haben Sie gedacht? Dass ich mit einem Dieb gemeinsame Sache mache ...? Also Chef!“\n\n„Nein, natürlich nicht! Ich meine nur, ich bin neugierig, wie Sie den Fall, äh, ich meine den Dieb, also ...“\n\n„Wie ich draufgekommen bin?“\n\n„Genau! Sie wussten doch gar nichts von den Diebstählen?“\n\n„Chef, können Sie mir sagen, wie spät es ist?“\n\n„Was hat das jetzt damit zu tun? Warum wollen Sie die Uhrzeit wissen?“\n\n„Schauen Sie doch mal auf Ihre Uhr, Chef!“\n\n„Äh, wenn’s denn sein muss. Moment!“\n\nMüller versucht den Ärmel seines Anzugs zurückzuziehen.\n\n„Keine Uhr!“\n\n„Na, wo ist denn die Uhr?“\n\nMüller überlegt und dann fällt ihm ein, dass er sie in seine Manteltasche gesteckt hat, und der Mantel hängt in der Garderobe ...\n\n„Also, ich sitze an der Bar und unterhalte mich mit Peet. Da kommt so ein Typ, ich meine Zorro. Er unterhält sich mit mir. Aber irgendetwas stimmt mit diesem Typen nicht. Dauernd schaut er in den Saal, er wirkt nervös. Und plötzlich schaut er auf die Uhr. Auf Ihre Uhr! Und wenn ich eine Uhr wieder erkenne, dann Ihre Uhr! Sie lassen sie doch andauernd auf dem Schreibtisch liegen: ‚Bea, haben Sie meine Uhr gesehen?‘“\n\nBea kichert und erzählt weiter:\n\n„Ja, und dann hat er mich zum Tanzen aufgefordert und beim Tanzen hat er mich zu einer Stadtrundfahrt eingeladen. Und da dachte ich ...“"},{"title":"🎺 Der Rosenmontagszug","content":"„Mensch, Bea! Mit einem wildfremden Ganoven wollten Sie ...“\n\n„Na ja, ein bisschen hatte ich schon Angst. Vor allem als der Typ Alfred ein blaues Auge geschlagen hat.\n\nAlfred wollte ihn aufhalten und da wusste ich, dass irgendetwas nicht stimmt! Und vor allem, als er mich zu dem Porsche gezogen hat: Er hat zu lange nach dem richtigen Schlüssel gesucht und der Sitz war falsch eingestellt, seine Beine waren viel zu lang. Und den Rest kennen Sie ja. Die Stadtrundfahrt war ziemlich kurz. Er ist direkt zu seiner Wohnung gefahren. ‚Trinken wir bei mir noch was ...?‘ Und bei der ersten Gelegenheit habe ich nach dem Badezimmer gefragt und hab den Schlüssel abgezogen. Und den Drink habe ich dann über mein Kostüm geschüttet und er ist gleich ins Badezimmer gelaufen, um ein Handtuch zu holen, und ... bingo!“\n\nErstaunt hört Müller die Geschichte.\n\n„Ja, äh, Kollegin, also, wir beide könnten Partner werden ...“\n\nBea Braun, Helmut Müller und Alfred Hübner stehen am Straßenrand in einer Menschenmenge. Alle sind kostümiert und guter Stimmung. Sie betrachten den Rosenmontagszug.\n\nMusik- und Tanzgruppen in prächtigen Kostümen ziehen an ihnen vorbei. Auf großen, geschmückten Wagen winken Prinzessinnen und Prinzen der Karnevalsgesellschaften den Menschen am Straßenrand zu. Sie werfen Bonbons und Schokolade in die Menge.\n\n„Alaaf! Alaaf!“\n\nHelmut Müller schaut auf seine Uhr.\n\n„Ich will ja kein Spielverderber sein, aber in zwei Stunden fährt unser Zug ...“\n\n„Schade! Ich könnte bis zum Kehraus weiterfeiern ...!“\n\n„Also ihr beiden, kommt gut nach Hause. Es hat mich riesig gefreut, dass ihr gekommen seid!“\n\n„Jetzt bist du dran! Besuch uns doch bald mal in Berlin!“\n\nAlfred Hübner verabschiedet sich und diesmal bekommt Bea auch einen Kuss.\n\nKurze Zeit später sitzen Bea Braun und Helmut Müller im Speisewagen.\n\n„Der Typ, äh, Zorro, also der Dieb, den Sie gefangen haben, wurde schon lange von der Polizei gesucht. Er hat sich immer auf Maskenbällen eingeschlichen und geklaut. Die Polizei hat in seiner Wohnung eine Menge Sachen gefunden. Ich soll Ihnen im Namen der Kölner Polizei ausdrücklich danken ...“\n\n„Muss i denn, muss i denn zum Städtele hinaus ...“\n\n„Bea! Hören Sie mir überhaupt zu? Was singen Sie da ...?“\n\n„Kennen Sie das nicht, Elvis? Das ist ein altes Volkslied. Ihr berühmter Kollege, also der junge Elvis Presley, hat das gesungen. Er hat in den fünfziger Jahren seinen Militärdienst in der Nähe von Heidelberg geleistet. Und damals hat er das Lied aufgenommen. Ein bisschen hätten Sie sich schon informieren können, Elvis ...“\n\n„Elvis! Elvis! Schluss jetzt mit Elvis. Das war ein Kostüm, lustig, aber eben nur ein Karnevalskostüm.“\n\n„So? Dann schauen Sie doch mal in den Spiegel, Elvis!“\n\nMüller beugt sich über den Tisch und blickt in den Spiegel.\n\nENDE"},{"title":"📚 Landeskundliche Anmerkungen","content":"1. Oktoberfest = Volksfest in München (s. den Krimi „Oktoberfest“ in der Reihe „Felix & Theo“).\n\n2. Drogendealer = Kriminelle, die mit Drogen (Heroin, Kokain, Crack usw.) handeln/dealen (engl.: to deal).\n\n3. Kölner Express = Kölner Boulevardzeitung.\n\n4. und 5. Asterix und Obelix sind die Helden einer französischen Comicstrip-Serie.\n\n6. Sherlock Holmes, weltbekannte Detektivfigur in Kriminalromanen von Sir Arthur Conan Doyle (1859–1930).\n\n7. Elvis = Elvis Presley (1935–1977), weltberühmter Rock’n’Roll-Sänger, Gitarrist und Filmstar.\n\n8. Halve Hahn = halber Hahn: So heißt in Kölner Gaststätten ein halbes Brötchen mit einer Scheibe Käse drauf.\n\n9. Go-go-Girl = Vortänzerin in einem amerikanischen Tanzlokal.\n\n10. Rosenmontagszug: Im kölschen Karneval ziehen am Rosenmontag geschmückte Karnevalswagen mit großen Pappfiguren durch die Stadt, die Ereignisse und Personen aus dem öffentlichen Leben durch den Kakao ziehen. Tausende von Menschen stehen am Straßenrand und fangen die „Kamelle“ (Bonbons) auf, die von den Wagen in die Menge geworfen werden.\n\n11. Karnevalsgesellschaften organisieren den offiziellen kölschen Karneval, die Prunksitzungen und den Rosenmontagszug. Wer in bestimmten Berufszweigen Karriere machen möchte, kommt um eine Mitgliedschaft in einer der Gesellschaften kaum herum.\n\n12. Kehraus = Karnevalsdienstag, letzter Tag des Karnevals. Am Aschermittwoch ist alles vorbei, wie es in einem alten kölschen Karnevalslied heißt."},{"title":"✍️ Übungen und Tests","content":"1. Was steht im Text?\n\nR / F\n\nBea hat noch nie Karneval in Köln gefeiert.\n\n„Alaaf“ ist ein niederländisches Wort.\n\nMüller ist eifersüchtig auf Alfred.\n\nMüller liebt Maskenbälle.\n\nAls Kind mochte er Karneval nicht.\n\nEr will kein Obelix-Kostüm.\n\nEr ist sehr schlank.\n\nElvis Presley war ziemlich dick.\n\n2. Gucken Sie sich die Bilder an: Als wer will Müller zum Kölner Karneval gehen?\n\n3. Bea bereitet die Reise nach Köln vor. Woran muss sie denken?\n\nTermine · Telefonate · Kosten · Gepäck · …\n\n4. Ordnen Sie die Überschriften den Abschnitten 1.-4. zu und schreiben Sie eine kurze Zusammenfassung zu jedem Abschnitt.\n\nEine Einladung wirft Probleme auf\n\nDas passende Kostüm\n\nBea und Müller planen eine Reise\n\n„Köln Hauptbahnhof, Köln Hauptbahnhof!“\n\n5.-6. Fahren Sie auch zum Kölner Karneval! Wie verkleiden Sie sich? Beschreiben Sie Ihr Kostüm oder malen Sie ein Bild. Sie können diese Redemittel benutzen:\n\nverkleide mich als ...\n\ngehe als ...\n\nmöchte ... werden/sein.\n\nziehe ... an.\n\nklebe mir ... an.\n\nbinde ... um.\n\nsetze ... auf.\n\nschminke mich ... (mit ...).\n\nfärbe mir die Haare ...\n\n6. Helfen Sie Helmut Müller. Was geschieht?\n\nwann? · wo? · warum? · wie? · wem?\n\nKarl · Ilse · Alfred · Müller · Zorro · Bea\n\nWer verdächtigen Sie? Warum? Machen Sie einen kurzen Bericht für Helmut Müller.\n\n7.-8. Beschreiben Sie, wie sich Müller, Bea, Alfred und Zorro in Abschnitt 7 und 8 verhalten. Sie können die Wortkisten zu Hilfe nehmen.\n\nVerben:\n\nrauchen · tanzen · frieren · sich amüsieren · flüstern · verschwinden · überlegen · sich unterhalten · anrufen · abhauen · nachdenken · klauen · wieder erkennen\n\nAdjektive:\n\nnervös · ruhig · klug · enttäuscht · stolz · ärgerlich · umsichtig · gewalttätig · listig · fröhlich · eifersüchtig · neugierig · verzweifelt · ängstlich · erstaunt\n\nBeispiel: Müller ist eifersüchtig auf Zorro.\n\n1.-9. Stellen Sie sich noch einmal die ganze Geschichte vor und ordnen Sie zu.\n\na) hat sich als Elvis verkleidet.\n\nb) hat einen Maskenball veranstaltet.\n\nc) hat ihre Handtasche gesucht.\n\nd) hat Zorro im Bad eingesperrt.\n\ne) hat eine Einladung nach Berlin geschickt.\n\nf) hat Müllers Uhr an Zorros Arm entdeckt.\n\ng) hat sich auf dem Ball eingeschlichen.\n\nh) hat seine Brieftasche gesucht.\n\ni) hat Karl, Ilse und Müller beklaut.\n\nj) hat mit Zorro getanzt.\n\nk) hat Alfred geschlagen.\n\nl) ist mit Bea nach Köln gefahren.\n\nm) hat eine Maske getragen.\n\nn) war eifersüchtig auf Zorro.\n\no) ist mit Zorro nach Hause gefahren.\n\np) hat Zorro in Handschellen abgeführt.\n\n1.-9. Was geschah wann? Ordnen Sie die Sätze, die Sie oben zusammengebaut haben, in der richtigen zeitlichen Reihenfolge.\n\nStart: e)"}];
+const ELVIS_TRANSLATIONS = {"Alaaf":"Cologne carnival greeting","Karnevalsgruß":"carnival greeting","Einladung":"invitation","Maskenball":"costume ball","Gelegenheit":"opportunity","Eifersucht":"jealousy","Kostüm":"costume","Obelix":"Obelix","Asterix":"Asterix","Indianer":"Native American / Indian","Sherlock Holmes":"Sherlock Holmes","Popstar":"pop star","Elvis":"Elvis","Kostümverleih":"costume rental shop","goldenen Buchstaben":"golden letters","Elvis-Kostüm":"Elvis costume","Pailletten":"sequins","Koteletten":"sideburns","Backenbart":"sideburns / beard","Rock’n’Roll":"rock and roll","Jailhouse Rock":"Jailhouse Rock","Heartbreak Hotel":"Heartbreak Hotel","wenig geschlafen":"slept little","imitiert":"imitated","Fahrkarten":"tickets","Zimmer":"room","Betriebsurlaub":"company holiday","freies Hotelzimmer":"available hotel room","Anrufbeantworter":"answering machine","Nachricht":"message","besorgen":"get / arrange","Piepton":"beep","Kölner Hauptbahnhof":"Cologne Central Station","ICE":"Intercity Express","Kuss":"kiss","umarmt":"hugged","amüsieren":"have fun","Altbau":"old building","Gepäck":"luggage","Dom":"Cologne Cathedral","Weiberfastnacht":"Women’s Carnival Night","verkleidete Menschen":"people in costumes","Menschenmenge":"crowd","Halve Hahn":"half a sandwich with cheese","Garderobe":"cloakroom","Bar":"bar","Buffet":"buffet","Stereoanlage":"stereo system","dekorieren":"decorate","Tanzfläche":"dance floor","Lampions":"lanterns","Luftschlangen":"streamers","Klebeband":"adhesive tape","Saal":"hall","Verkleidung":"disguise / costume","orientalischer Scheich":"oriental sheikh","Go-go-Girl":"go-go girl","Gaststätte":"restaurant / pub","Musikanlage":"sound system","schwarzer Maske":"black mask","Torero":"bullfighter","Marilyn Monroe":"Marilyn Monroe","amüsiert":"enjoys himself","Brieftasche":"wallet","Zigaretten":"cigarettes","Führerschein":"driver’s licence","Kreditkarten":"credit cards","Handtasche":"handbag","Autoschlüssel":"car keys","Dieb":"thief","frieren":"be cold","aufgeregt":"agitated / excited","Garderobentür":"cloakroom door","Zorro":"Zorro","flüstert":"whispers","Gedränge":"crowd / crush","Autogramm":"autograph","eng umschlungen":"closely embracing","zerrissen":"torn","blaues Auge":"black eye","abgehauen":"run off","Rauchen":"smoking","Polizei anrufen":"call the police","Autokennzeichen":"number plate","Adresse":"address","Handschellen":"handcuffs","eingesperrt":"locked up","Filzengraben 20":"Filzengraben 20","Stadtrundfahrt":"city tour","Keine Uhr":"no watch","neugierig":"curious","Ganoven":"crooks / gangsters","Angst":"fear","Porsche":"Porsche","richtigen Schlüssel":"correct key","Badezimmer":"bathroom","Handtuch":"towel","Drink":"drink","bingo":"bingo","Rosenmontagszug":"Rose Monday parade","Karnevalsgesellschaften":"carnival associations","Kehraus":"Shrove Tuesday / end of carnival","Speisewagen":"dining car","Volkslied":"folk song","Militärdienst":"military service","fünfziger Jahren":"1950s","Partner":"partner"};
 const CAFE_TRANSLATIONS = {"Lesefluss":"reading flow","Mein Vater sagt":"My father says","mein Vater spielt nicht":"my father does not play","Er schaut Sport nur im Fernsehen":"He only watches sports on TV","Mein Onkel sagt":"My uncle says","er trinkt auch viel Bier":"he also drinks a lot of beer","Ich weiß es nicht":"I don't know","Ich bin Dino":"I am Dino","Ich komme aus Sizilien":"I come from Sicily","Seit einem Monat wohne ich in Berlin":"I have been living in Berlin for a month","Das Wetter ist schlecht hier":"The weather is bad here","Es regnet oft und es ist kalt":"It often rains and it is cold","Ich vermisse die Sonne und das Meer":"I miss the sun and the sea","es gibt Arbeit hier":"there is work here","Statistiken":"statistics","noch keine Arbeit gefunden":"haven't found a job yet","nicht wirklich gesucht":"haven't really looked","Zuerst muss ich Deutsch lernen":"First I have to learn German","gar nicht so einfach":"not so easy at all","Ich wohne in Kreuzberg":"I live in Kreuzberg","Stadtteil in Berlin":"district of Berlin","Hier leben Menschen aus der ganzen Welt":"People from all over the world live here","kurz für: Wohngemeinschaft":"short for: shared apartment","Das bedeutet, ich wohne gemeinsam mit anderen Leuten":"That means I live together with other people","Wir sind alle Ausländer":"We are all foreigners","sprechen meistens Englisch":"mostly speak English","nicht gut":"not good","meine Lehrerin":"my teacher","Wir müssen Deutsch sprechen":"We must speak German","den ganzen Tag":"all day","Jeden Tag gehe ich zum Deutsch-Unterricht":"Every day I go to German class","langweilig":"boring","Grammatik":"grammar","machen Übungen":"do exercises","Am Abend muss ich Hausaufgaben machen":"In the evening I have to do homework","Meine Mitbewohner lernen auch Deutsch":"My roommates also learn German","sehr fleißig":"very hardworking","immer":"always","nie":"never","darf":"is allowed to","zwei Stunden":"two hours","benutzen":"use","Ich versuche":"I try","selbst zu machen":"to do it myself","nicht viel Zeit":"not much time","so viele Partys":"so many parties","Ich denke":"I think","gut zum Deutsch lernen":"good for learning German","sehr viel":"a lot of","mit mir":"with me","Zu viel vielleicht":"Maybe too much","Gestern habe ich Pizza gegessen":"Yesterday I ate pizza","heißt":"is called","niemand dort spricht Italienisch":"nobody there speaks Italian","arbeiten zwei palästinensische Brüder":"two Palestinian brothers work","Preis":"price","nicht so gut":"not so good","nur wenige Meter von meiner Wohnung entfernt":"only a few meters from my apartment","ist es schwierig mit dem Essen":"food is difficult","Niemand kocht":"nobody cooks","Berge von Geschirr":"piles of dishes","Mysterium":"mystery","Kühlschrank":"fridge","Schwarzes Loch":"black hole","Wenn ich etwas im Supermarkt kaufe":"when I buy something at the supermarket","in den Kühlschrank lege":"put it in the fridge","nach zwei Stunden verschwunden":"gone after two hours","Fächer":"compartments","Ganz oben":"at the very top","darunter":"below that","meins":"mine","ihre eigenen Sachen":"their own things","Ich sage das auch":"I say that too","leer":"empty","manchmal":"sometimes","Joghurt":"yogurt","Käse":"cheese","Es ist einfacher draußen zu essen":"It's easier to eat out","billiger":"cheaper","viele verschiedene":"many different","Döner aus der Türkei":"doner kebab from Turkey","gegrilltes Lamm aus Pakistan":"grilled lamb from Pakistan","von nebenan":"from next door","vieles mehr":"much more","Spezialität":"specialty","Currywurst":"curry sausage","eine interessante Geschichte":"an interesting history","Im Jahr 1949":"In 1949","eine Berliner Frau":"a Berlin woman","britischen Soldaten":"British soldiers","indisches Curry bekommen":"received Indian curry","Zutaten":"ingredients","vermischt":"mixed","deutsche Wurst":"German sausage","Man sagt":"They say","typisch deutsch":"typically German","multikulti":"multicultural","Einmal":"Once","nach einer Party um zwei Uhr morgens":"after a party at two in the morning","syrischen Freund":"Syrian friend","bestellt":"ordered","Dönermann sagte":"the kebab seller said","etwas auf Arabisch":"something in Arabic","auf einer Parkbank":"on a park bench","Danach fragte":"Afterwards I asked","Was hat er zu dir gesagt?":"What did he say to you?","Vorsicht":"Careful","Schweinefleisch drin":"there is pork in it","In meinem Deutschkurs sitzen Menschen aus der ganzen Welt":"People from all over the world sit in my German course","Ein paar":"A few","Freund":"friend/boyfriend","Freundin":"friend/girlfriend","Andere wollen":"Others want","das gleiche Problem":"the same problem","Sprache":"language","mit einem Buch":"with a book","Seite für Seite":"page by page","alle Übungen":"all the exercises","hören":"hear/listen","kurze Gespräche":"short conversations","Lehrerin":"teacher","Schlaftablette":"sleeping pill (a boring person)","Das Beste an":"The best thing about","Pausen":"breaks","können wir Kaffee trinken":"we can drink coffee","reden":"talk","seit ein paar Tagen":"for a few days","neue Studentin aus Schweden":"new student from Sweden","hübsch":"pretty","blonde Haare":"blond hair","blaue Augen":"blue eyes","süßes Lächeln":"sweet smile","warum":"why","es ist gut, dass":"it's good that","Sprachlernschule":"language school","Küche":"kitchen","Wasserkocher":"electric kettle","Quadratmeter":"square meter","getrunken":"drank","Und du":"And you","was machst du":"what are you doing","lächelte":"smiled","Film studieren":"study film","du willst":"you want to","Schauspielerin werden":"become an actress","schüttelte ihren Kopf":"shook her head","vor":"in front of","Kamera":"camera","hinter":"behind","Dirigent":"conductor","lachte":"laughed","Regisseur":"director","leitet ein Orchester":"conducts an orchestra","das wusste ich":"I knew that","Welche Filme schaust du gerne":"Which films do you like watching","Ich mag":"I like","Szene":"scene","gegen":"against","kämpft":"fights","eine Bewegung mit der Hand":"a movement with the hand","vergessen":"forgot","flog durch die Luft":"flew through the air","landete":"landed","Mann!":"Man!","Ich wollte":"I wanted to","ins Kino gehen":"go to the cinema","zurück nach Hause fahren":"go back home","Keine Sorge":"Don't worry","Waschmaschine":"washing machine","alles sauber":"everything clean","Um die Ecke":"around the corner","Unterricht":"class","Oh Gott!":"Oh God!","Nichts wie raus hier":"Let's get out of here","Wohnungstür":"apartment door","Jemand da":"Anyone there","Niemand antwortete":"Nobody answered","betraten":"entered","Wohnzimmertisch stand eine Armee von leeren Bierflaschen":"there was an army of empty beer bottles on the living room table","bedeckt mit":"covered with","Hosen":"trousers","Jacken":"jackets","lagen alte Zeitungen":"old newspapers were lying","Willkommen in meinem Reich":"Welcome to my kingdom","nahm":"took","Boden":"floor","diese":"this","drei Jahre alt":"three years old","kostenloses Abonnement":"free subscription","niemand von uns":"none of us","zu lesen":"to read","Schmutzwäsche":"dirty laundry","Setz dich":"Sit down","Mit wie vielen":"With how many","Sie setzte sich":"She sat down","Einzimmerwohnung":"one-room apartment","schön":"nice","Schön?":"Nice?","es kann":"it can","nervig sein":"be annoying","wenn":"when","aufsteht":"gets up","am Morgen":"in the morning","zum Frühstück":"for breakfast","Wir standen auf":"We stood up","wir gingen":"we went","wischte":"wiped","Staub":"dust","Bitteschön":"Here you go","Ihr wascht":"you wash","Maschine":"machine","Waschpulver":"laundry detergent","Spüli":"dish soap","Besser als nichts":"better than nothing","Und jetzt?":"And now?","Schließ deine Augen":"Close your eyes","Ich schloss":"I closed","Einen Moment später hörte":"A moment later I heard","rief":"called out","BH":"bra","Sie nickte":"She nodded","etwas zum Anziehen":"something to wear","schnüffelte":"sniffed","legte":"put","schnell":"quickly","frisches":"fresh","gab":"gave","Sie zog das T-Shirt an":"She put the T-shirt on","schwarz":"black","Bildern":"pictures","Totenköpfen":"skulls","Aufschrift":"inscription/print","Kann sein":"Could be","Steht dir gut":"It suits you","auf Norwegisch":"in Norwegian","Untertiteln":"subtitles","verstanden":"understood","Der Film handelte von":"The film was about","Maske":"mask","überall getragen":"worn everywhere","symbolisiert":"symbolizes","des Mannes":"of the man","schwarz-weiß":"black and white","Farben":"colors","kaputt":"broken","gelacht":"laughed","Kunst":"art","ziemlich":"quite/rather","passiert":"happened","das war egal":"that didn't matter","umarmt":"hugged","ihren Kopf auf meine Schulter gelegt":"laid her head on my shoulder","Ende":"end","Loch gefallen":"fell into a hole","Depression":"depression","Nach dem Film":"After the film","zusammen":"together","am nächsten Morgen":"the next morning","ihre Schwester":"her sister","sie bleibt":"she stays","Sie weiß es nicht":"She doesn't know","Geschwister":"siblings","lebt":"lives","bei meiner Mutter":"with my mother","noch sehr jung":"still very young","Sie studiert Philosophie":"She studies philosophy","Familie":"family","oder?":"right?","Naja":"well","Hier habe ich meine Ruhe":"Here I have my peace","treffe":"meet","Cousinen":"female cousins","Cousins":"male cousins","Tanten":"aunts","Sie fragen":"They ask","ich heirate":"I get married","ich beginne":"I begin","macht es richtig":"does it right","reich":"rich","Was macht dein Bruder?":"What does your brother do?","Irgendwas mit":"something to do with","ist gestresst":"is stressed","Wir haben weiter":"We continued","über das Leben gesprochen":"talking about life","bis":"until","ich muss gehen":"I have to go","Sonst verpasse":"Otherwise I will miss","deine Nummer":"your number","kein Handy":"no mobile phone","Ich hasse":"I hate","Email-Adresse":"email address","wenn du willst":"if you want","Stift":"pen","Zettel":"piece of paper","aus ihrer Handtasche":"from her handbag","sie schrieb":"she wrote","küsste sie":"she kissed","auf die Wange":"on the cheek","war verschwunden":"was gone","noch nicht":"not yet","ein bisschen":"a little","Ted hatte die Idee":"Ted had the idea","schwimmen zu gehen":"to go swimming","Strandbad":"lido/beach swimming pool","Wie kommen wir dorthin?":"How do we get there?","Er tippte":"He typed","auf seinem Handy":"on his phone","nehmen wir den Bus":"we take the bus","Was ist mit":"What about","Badeschiff":"floating pool","Hallenbad":"indoor swimming pool","schwimmender":"floating","Spree":"Spree River","schwimmendes Schwimmbad im Fluss":"floating swimming pool in the river","Verstehe ich nicht":"I don't understand","Man kann":"one can","zu schmutzig":"too dirty","verseucht":"contaminated/infested","wir fahren an die Ostsee":"we go to the Baltic Sea","Bist du verrückt?":"Are you crazy?","Von hier bis zur Ostsee":"From here to the Baltic Sea","mehr als":"more than","Zugfahrt":"train journey","Freibad":"outdoor swimming pool","Am Eingang":"At the entrance","Sicherheit":"security","unsere Taschen durchsucht":"searched our bags","Messer":"knives","Schlagstöcke":"batons","Pistolen":"guns","Eintrittskarten":"tickets","pro Person":"per person","ein interessanter Ort":"an interesting place","Man hört":"you hear","Türkisch":"Turkish","Hier sieht man":"here you see","Mädchen":"girls","neben":"next to","Gruppen von":"groups of","Jugendlichen":"teenagers","Baby-Becken":"children's pool","Mütter schimpfen mit ihren Kindern":"mothers scold their children","Sicherheitsservice patrouillieren":"security staff patrol","Babys schreien":"babies cry","Es riecht nach Chlor":"it smells of chlorine","Pommes":"fries","Temperatur":"temperature","Nicht zu warm, nicht zu kalt":"not too warm, not too cold","Das Schwimmen":"swimming","springen":"jump","von der Seite":"from the side","Bademeister":"lifeguard","Nicht vom Beckenrand springen!":"Don't jump from the pool edge!","es interessiert die Kinder nicht":"the children do not care","Mayonnaise":"mayonnaise","müde":"tired","Schön hier":"Nice here","Nächstes Mal":"Next time","ein Donnern":"a rumble/thunder","Der Himmel wurde schwarz":"The sky turned black","geschrieben":"written","geantwortet":"replied","besuchen":"visit","Ich war noch nie in Hamburg":"I've never been to Hamburg","habe ich gehört":"I have heard","Ich checke meine Emails":"I check my emails","ein paar Mal":"a few times","Werbung":"advertising","Briefe":"letters","welche":"which","geben wollen":"want to give","von meinem Bruder":"from my brother","Seine Emails":"His emails","kurz":"short","Liebe Grüße":"Best wishes","eine Art Passwort":"a kind of password","damit zur Post gehen":"go to the post office with it","Geld":"money","Er schickt mir":"He sends me","mehr Menschen":"more people","Spanien":"Spain","Sie träumen von":"They dream of","dem großen Geld":"big money","posten":"post","Meine Mutter weiß":"My mother knows","Sie denkt":"She thinks","für eine Bank":"for a bank","sehr stark":"very strong","stolz auf mich":"proud of me","Irgendwann werde ich":"Someday I will","seit vielen Jahren":"for many years","die ganze Zeit":"all the time","mit ihren Freunden":"with their friends","miserabel":"miserable","ein Formular ausgefüllt":"filled out a form","meinen Pass gezeigt":"shown my passport","teuer":"expensive","Ich bezahle dreihundert":"I pay three hundred","Essen und Trinken":"food and drink","Monatskarte":"monthly pass","Bahn":"train/rail","noch genug":"still enough","er will mir helfen":"he wants to help me","neu":"new","Taxifahrer":"taxi driver","und so weiter und so fort":"and so on and so forth","Herbst":"autumn","grau":"grey","Zentralheizung":"central heating","steht":"stands","Kachelofen":"tiled stove","ein großer, brauner Klotz":"a large brown block","mir gezeigt":"shown me","wie er funktioniert":"how it works","öffnet man":"you open","legt":"put","Stücke Holz":"pieces of wood","Brikett hinein":"a briquette inside","Feuerzeug":"lighter","Zeitungspapier zündet":"newspaper lights","an":"on/lit","knistert":"crackles","legt man die Kohle hinein":"you put the coal in","Nach einer Weile":"after a while","schön warm":"nice and warm","Tonne":"ton","Keller":"basement","im vierten Stock":"on the fourth floor","Aufzug":"lift/elevator","brauchen":"need","dunkel":"dark","Es gibt":"there are","Gespenster":"ghosts","Weltkrieg gestorben":"died in the world war","Kartoffelsack":"potato sack","füllen den Sack mit":"fill the sack with","tragen ihn":"carry it","schwer":"heavy","zu zweit":"two together","Außerdem":"Besides","Dreck":"dirt","Treppenhaus":"stairwell","schwarze Spuren":"black marks","wenn wir fertig sind":"when we are finished","Nachbarn beschweren sich":"neighbors complain","was sollen wir tun?":"what should we do?","bald":"soon","Schlafzimmern":"bedrooms","Gasheizung":"gas heating","Kasten unter dem Fenster":"box under the window","einen Knopf drücken":"press a button","Feuer":"fire","ich soll vorsichtig sein":"I should be careful","gefährlich":"dangerous","Rechnung":"bill","Letztes Jahr mussten":"Last year we had to","zahlen":"pay","enthalten":"included","Frühling extra bezahlen":"pay extra in spring","kompliziert":"complicated","Hunde":"dogs","Schäferhund":"German shepherd","Windhund":"greyhound","Huskys":"huskies","Dänische Dogge":"Great Dane","Rehpinscher":"miniature pinscher","Bei uns":"where we live","dicke":"fat/thick","Katze":"cat","gesehen":"seen","Milch":"milk","Er zuckte mit den Schultern":"He shrugged","Ich war's":"It was me","Ab die Post!":"Off you go!","verließ":"left","Geräusch":"sound/noise","plötzlich":"suddenly","Keine Ahnung":"No idea","die Tür zu schließen":"close the door","Wir bewegten uns nicht":"We did not move","Aus seinem Maul tropfte Speichel":"Saliva dripped from its mouth","riesigen":"huge","Spüle":"sink","ungewaschenen Teller abzulecken":"lick the unwashed plates","wedelte":"wagged","Schwanz":"tail","Zunge":"tongue","Kinderhand":"child's hand","Endlich":"Finally","Als er fertig war":"When he was finished","fraß":"ate","ein halbes Kilo Käse":"half a kilo of cheese","Scheiben":"slices","Plastikgabel":"plastic fork","Serviette":"napkin","Während":"While","abräumte":"cleared away","Wir hielten den Atem an":"We held our breath","rannte":"ran","folgten ihm vorsichtig":"followed him carefully","Aus sicherer Entfernung sahen wir":"From a safe distance we saw","Socken":"socks","Staubsauger":"vacuum cleaner","Hundi":"doggy","zu spät":"too late","rammte":"rammed","packte":"grabbed","Staubsaugerbeutel":"vacuum bag","schüttelte":"shook","wie verrückt":"like crazy","Staubwolke":"cloud of dust","husteten":"coughed","schlossen die Augen":"closed our eyes","klingelte":"rang","lag":"lay","schlief":"slept","Es schneit":"It is snowing","Olivenöl":"olive oil","Rotwein":"red wine","Weihnachten":"Christmas","Geschenke":"gifts","Clubszene":"club scene","Aschenbecher":"ashtray","Bär":"bear","die Mauer":"the Wall","wollte ich":"I wanted to","Cremes besorgen":"get some creams","Drogerie":"drugstore","Kasse":"checkout","Schlange":"queue","lang":"long","Sie drehte sich um":"She turned around","tatsächlich":"actually","Seit wann":"Since when","hängengeblieben":"got stuck","Das muss es sein":"That must be it","Schön dich wiederzusehen":"Nice to see you again","vorher Zeit für einen Kaffee":"time for a coffee beforehand","Ich würde gerne":"I would like to","wir gingen nach draußen":"we went outside","eisiger":"icy","blies":"blew","zitterte":"shivered","Kleidung":"clothing","stammelte":"stammered","viel Glück":"good luck","Flugzeug":"airplane","rollen":"roll","Startbahn":"runway","abhebt":"takes off","getroffen":"met","Urlaub nach Berlin zurückkehren":"return to Berlin after vacation","trendig momentan":"trendy at the moment","freundlicher":"friendlier","fast vorbei":"almost over","Eins ist sicher":"One thing is certain","erst einmal":"first of all/for now","richtige Pizza":"proper pizza","Mord am Morgen":"Murder in the Morning","Ferien in Frankfurt":"Vacation in Frankfurt","Ahoi aus Hamburg":"Ahoy from Hamburg","Kara und der schwarze Mönch":"Kara and the Black Monk","Meine Lehrerin kommt aus Potsdam":"My teacher is from Potsdam","ein Problem":"a problem","hat":"has","öffnete":"opened","ging":"went","S-Bahn":"suburban train","es gibt":"there is / there are","dicken Staubschicht":"thick layer of dust","Man erzählt":"A story says","im Jahr 1949":"in 1949"};
 function getBookKnownLevelTerms(){
   const known=new Set();
@@ -1760,7 +1920,7 @@ function renderMordBookContent(markdown,vocab=[],chapterIndex=null){
   chapterTerms.forEach(c=>variantsFor(c.term).forEach(v=>usable.push({base:c.term,en:c.en,term:v})));
   usable.sort((a,b)=>b.term.length-a.term.length);
 
-  const renderText=(text)=>{
+  const renderText=(text,clickContext=null)=>{
     const plain=String(text||'').replace(/\*\*/g,'');
     if(!usable.length) return esc(plain);
     const re=new RegExp('(^|[^\p{L}])('+usable.map(x=>escapeRegExp(x.term)).join('|')+')(?=$|[^\p{L}])','giu');
@@ -1775,7 +1935,7 @@ function renderMordBookContent(markdown,vocab=[],chapterIndex=null){
       const start=m.index+(m[1]?m[1].length:0);
       out+=esc(plain.slice(last,start));
       const safeRaw=JSON.stringify(raw), safeEn=esc(hit.en);
-      out+=`<span class="term-link" tabindex="0" role="button" onclick='event.stopPropagation();speak(${safeRaw})' onkeydown='if(event.key==="Enter"||event.key===" " ){event.preventDefault();event.stopPropagation();speak(${safeRaw})}' aria-label="${safeEn}">${esc(raw)}<span class="term-tip">${safeEn}</span></span>`;
+      out+=`<span class="term-link" tabindex="0" role="button" onclick='event.stopPropagation();speak(${JSON.stringify(clickContext||raw)})' onkeydown='if(event.key==="Enter"||event.key===" " ){event.preventDefault();event.stopPropagation();speak(${JSON.stringify(clickContext||raw)})}' aria-label="${safeEn}">${esc(raw)}<span class="term-tip">${safeEn}</span></span>`;
       last=start+raw.length;
       emitted.add(key);
     }
@@ -1785,9 +1945,9 @@ function renderMordBookContent(markdown,vocab=[],chapterIndex=null){
 
   return cleaned.split(/\n\s*\n/).map(block=>{
     const text=block.trim(); if(!text) return '';
-    if(/^###\s+/.test(text)) return `<h3 class="cafe-subheading">${renderText(text.replace(/^###\s+/,''))}</h3>`;
-    if(/^##\s+/.test(text)) return `<h3 class="cafe-subheading">${renderText(text.replace(/^##\s+/,''))}</h3>`;
-    if(/^#\s+/.test(text)) return `<h2 class="cafe-subheading">${renderText(text.replace(/^#\s+/,''))}</h2>`;
+    if(/^###\s+/.test(text)){const heading=text.replace(/^###\s+/,'').trim(); return `<h3 class="cafe-subheading">${renderText(heading,heading)}</h3>`;}
+    if(/^##\s+/.test(text)){const heading=text.replace(/^##\s+/,'').trim(); return `<h3 class="cafe-subheading">${renderText(heading,heading)}</h3>`;}
+    if(/^#\s+/.test(text)){const heading=text.replace(/^#\s+/,'').trim(); return `<h2 class="cafe-subheading">${renderText(heading,heading)}</h2>`;}
     return `<p>${renderText(text).replace(/\n/g,'<br>')}</p>`;
   }).join('');
 }
@@ -1797,8 +1957,10 @@ const FRANKFURT_DATA = [{"title":"Ferien in Frankfurt","content":"## Introductio
 const FRANKFURT_ANSWERS = [[],["b","a","c"],["a","b","b","b","a"],["b","b","b","b","a"],["b","b","b","b","b"],["b","b","a","a","b"],["b","a","b","b","b"],["b","b","b","b","a"],["b","b","b","b","b"],["b","b","b","b","b"],["b","b","b","b","b"]];
 const FRANKFURT_HIGHLIGHTS = [[["Gepäck","luggage"],["verschwunden","disappeared"],["Gepäckband","baggage carousel"],["Passagiere","passengers"],["Es ist nicht angekommen","It did not arrive"],["Gepäckabschnitt","baggage claim tag"],["Ihre Bordkarte","your boarding pass"],["Formular","form"],["erst in zwei Wochen","only in two weeks"],["Gepäckstücke verloren","bags lost"]],[["Kofferraum","trunk/boot"],["glücklicherweise","fortunately"],["Glück im Unglück","a lucky break in a bad situation"],["Wolkenkratzer","skyscrapers"],["Deutschlands finanzielles Herz","Germany's financial heart"],["Börse","stock exchange"],["eine Weile","a while"],["Dämmerung","twilight"],["Loft mit Ausblick auf","loft overlooking"],["Wusstest du, dass","did you know that"]],[["fast eine Woche lang","for almost a week"],["sehe ich nicht oft","I don't see him often"],["immer noch nicht angekommen","still has not arrived"],["In der Zwischenzeit trage ich","in the meantime I wear"],["zu lang","too long"],["Fußgängerzone","pedestrian zone"],["gekauft","bought"],["mit der U-Bahn nach Hause gefahren","went home by subway"],["besser Deutsch spricht","speaks German well"],["gemütliches Sofa","comfortable sofa"]],[["geduscht","showered"],["brünette junge Frau","young brunette woman"],["Erdgeschoss","ground floor"],["Vermieter","landlord"],["Ausblick auf den Main","view of the Main"],["Niemand ist zu Hause","nobody is home"],["Moomendemal","wait a moment"],["Hessisch","Hessian dialect"],["Äbbelwoi","apple wine"],["andere Pläne","other plans"]],[["Apfelwein-Kneipe","apple-wine pub"],["sauer","sour"],["Bembel","apple-wine jug"],["Mineralwasser","sparkling/mineral water"],["süße Variante","sweet version"],["Einheimische","locals"],["Keine Sorge","don't worry"],["Handkäse mit Musik","hand cheese with music"],["durch die Nase zu atmen","breathe through the nose"],["Blähungen","flatulence"]],[["Frankfurter Altstadt","Frankfurt old town"],["Rathaus","town hall"],["Fachwerkhäuser","half-timbered houses"],["Rekonstruktionen","reconstructions"],["Zweiten Weltkrieg","Second World War"],["Mainufer","banks of the Main"],["Aussichtsplattform","observation platform"],["Eintritt bezahlen","pay admission"],["Fahrstuhl","elevator"],["Taunus","Taunus hills"]],[["mein Gepäck angekommen","my luggage arrived"],["Beulen","dents"],["Kratzer","scratches"],["Zum ersten Mal seit sieben Tagen","for the first time in seven days"],["Mittag gegessen","had lunch"],["italienisches Restaurant","Italian restaurant"],["fast wie zu Hause","almost like home"],["Kater","hangover"],["lange Geschichte","long story"],["alle meine Sachen","all my things"]],[["Notfall","emergency"],["Zwischenstopp","stopover"],["sechs Stunden Aufenthalt","six-hour layover"],["abholen","pick up"],["Schön, dich kennenzulernen","nice to meet you"],["du studierst doch","you study, right"],["Ich studiere Deutsch","I study German"],["S-Bahn","urban railway"],["Handynummer","mobile number"],["angelogen","lied to"]],[["Blaulicht","blue emergency lights"],["Polizisten","police officers"],["Hände hoch","hands up"],["Überfall","robbery"],["Rotlichtviertel","red-light district"],["Täter","perpetrator"],["Handschellen","handcuffs"],["gefasst","caught"],["aufregend","exciting"],["Stadt der Gegensätze","city of contrasts"]],[["fast vorbei","almost over"],["zurück nach Sizilien","back to Sicily"],["sauer schmeckt","tastes sour"],["kennengelernt","got to know"],["vermissen","miss"],["Versprechen","promise"],["Egal, wo ich bin","wherever I am"],["Besonderes","something special"],["nasser Asphalt","wet asphalt"],["Das ist sicher","that is certain"]]];
 const FRANKFURT_TRANSLATIONS = {"Gepäck":"luggage","verschwunden":"disappeared","Gepäckband":"baggage carousel","Passagiere":"passengers","Es ist nicht angekommen":"It did not arrive","Gepäckabschnitt":"baggage claim tag","Ihre Bordkarte":"your boarding pass","Formular":"form","erst in zwei Wochen":"only in two weeks","Gepäckstücke verloren":"bags lost","Kofferraum":"trunk/boot","glücklicherweise":"fortunately","Glück im Unglück":"a lucky break in a bad situation","Wolkenkratzer":"skyscrapers","Deutschlands finanzielles Herz":"Germany's financial heart","Börse":"stock exchange","eine Weile":"a while","Dämmerung":"twilight","Loft mit Ausblick auf":"loft overlooking","Wusstest du, dass":"did you know that","fast eine Woche lang":"for almost a week","sehe ich nicht oft":"I don't see him often","immer noch nicht angekommen":"still has not arrived","In der Zwischenzeit trage ich":"in the meantime I wear","zu lang":"too long","Fußgängerzone":"pedestrian zone","gekauft":"bought","mit der U-Bahn nach Hause gefahren":"went home by subway","besser Deutsch spricht":"speaks German well","gemütliches Sofa":"comfortable sofa","geduscht":"showered","brünette junge Frau":"young brunette woman","Erdgeschoss":"ground floor","Vermieter":"landlord","Ausblick auf den Main":"view of the Main","Niemand ist zu Hause":"nobody is home","Moomendemal":"wait a moment","Hessisch":"Hessian dialect","Äbbelwoi":"apple wine","andere Pläne":"other plans","Apfelwein-Kneipe":"apple-wine pub","sauer":"sour","Bembel":"apple-wine jug","Mineralwasser":"sparkling/mineral water","süße Variante":"sweet version","Einheimische":"locals","Keine Sorge":"don't worry","Handkäse mit Musik":"hand cheese with music","durch die Nase zu atmen":"breathe through the nose","Blähungen":"flatulence","Frankfurter Altstadt":"Frankfurt old town","Rathaus":"town hall","Fachwerkhäuser":"half-timbered houses","Rekonstruktionen":"reconstructions","Zweiten Weltkrieg":"Second World War","Mainufer":"banks of the Main","Aussichtsplattform":"observation platform","Eintritt bezahlen":"pay admission","Fahrstuhl":"elevator","Taunus":"Taunus hills","mein Gepäck angekommen":"my luggage arrived","Beulen":"dents","Kratzer":"scratches","Zum ersten Mal seit sieben Tagen":"for the first time in seven days","Mittag gegessen":"had lunch","italienisches Restaurant":"Italian restaurant","fast wie zu Hause":"almost like home","Kater":"hangover","lange Geschichte":"long story","alle meine Sachen":"all my things","Notfall":"emergency","Zwischenstopp":"stopover","sechs Stunden Aufenthalt":"six-hour layover","abholen":"pick up","Schön, dich kennenzulernen":"nice to meet you","du studierst doch":"you study, right","Ich studiere Deutsch":"I study German","S-Bahn":"urban railway","Handynummer":"mobile number","angelogen":"lied to","Blaulicht":"blue emergency lights","Polizisten":"police officers","Hände hoch":"hands up","Überfall":"robbery","Rotlichtviertel":"red-light district","Täter":"perpetrator","Handschellen":"handcuffs","gefasst":"caught","aufregend":"exciting","Stadt der Gegensätze":"city of contrasts","fast vorbei":"almost over","zurück nach Sizilien":"back to Sicily","sauer schmeckt":"tastes sour","kennengelernt":"got to know","vermissen":"miss","Versprechen":"promise","Egal, wo ich bin":"wherever I am","Besonderes":"something special","nasser Asphalt":"wet asphalt","Das ist sicher":"that is certain"};
+const ELVIS_CHAPTER_HIGHLIGHTS={"1":[["Privatdetektiv","private detective"],["Sekretärin","secretary"],["Brief","letter"],["Einladung","invitation"],["Geburtstag","birthday"],["Maskenball","costume ball"],["Gelegenheit","opportunity"],["Eifersucht","jealousy"],["Kontakt","contact"],["Reporter","reporter"],["Kostüm","costume"],["Obelix","Obelix"],["Asterix","Asterix"],["Indianer","Native American / Indian"],["Karnevalszeit","carnival season"],["Cowboys","cowboys"],["Sherlock Holmes","Sherlock Holmes"],["Monster","monster"],["Popstar","pop star"],["Elvis","Elvis"],["Chef","boss"],["Freund","friend"]],"2":[["Privatdetektiv","private detective"],["Kostümverleih","costume rental shop"],["Geschäft","shop / store"],["Schaufenster","shop window"],["goldenen Buchstaben","golden letters"],["Chef","boss"],["Hemd","shirt"],["Gitarre","guitar"],["Verkäufer","salesman"],["Nebenraum","back room"],["Plastiktüte","plastic bag"],["Verpackung","packaging"],["Anzug","suit"],["Pailletten","sequins"],["Koteletten","sideburns"],["Backenbart","sideburns / beard"],["Schein","form"],["bezahlen","pay"],["Schlafzimmer","bedroom"],["Spiegel","mirror"],["Bauch","belly"],["schwarze Stiefel","black boots"],["Platten","records"],["Badezimmer","bathroom"],["Rock’n’Roll","rock and roll"]],"3":[["Büro","office"],["müde","tired"],["wenig geschlafen","slept little"],["Platten","records"],["Maskenball","costume ball"],["Pfunde","pounds"],["Fahrkarten","tickets"],["Zimmer","room"],["Wochenende","weekend"],["Köln","Cologne"],["Betriebsurlaub","company holiday"],["Donnerstag","Thursday"],["enttäuscht","disappointed"],["Hotelzimmer","hotel room"],["anrufen","call"],["Anrufbeantworter","answering machine"],["Telefonnummer","telephone number"],["Nachricht","message"],["Piepton","beep"],["Fax","fax"],["Chef","boss"],["Einladung","invitation"],["besorgen","get / arrange"],["protestiert","protests"]],"4":[["Zug","train"],["Kölner Hauptbahnhof","Cologne Central Station"],["ICE","Intercity Express"],["Fenster","window"],["umarmen","hug"],["Kuss","kiss"],["Betriebsurlaub","company holiday"],["Vergnügen","fun / pleasure"],["Freunde","friends"],["Auto","car"],["Dom","Cologne Cathedral"],["Norden","north"],["Altbau","older building"],["Gepäck","luggage"],["angekommen","arrived"],["Weiberfastnacht","Women’s Carnival Night"],["Rhein","Rhine"],["Altstadt","old town"],["Alten Markt","Old Market"],["verkleidete Menschen","people in costumes"],["Menschenmenge","crowd"],["Straßen","streets"],["Musik","music"]],"5":[["Frühstück","breakfast"],["Halve Hahn","half a sandwich with cheese"],["Garderobe","cloakroom"],["Saal","hall"],["Maskenball","costume ball"],["Bar","bar"],["Buffet","buffet"],["Stereoanlage","stereo system"],["Boxen","speakers"],["Rock’n’Roll","rock and roll"],["Kostüm","costume"],["Überraschung","surprise"],["Papierschlangen","paper streamers"],["Lampions","lanterns"],["Dekorationsmaterial","decoration material"],["Tanzfläche","dance floor"],["bunten Papier","colored paper"],["Klebeband","adhesive tape"],["Schere","scissors"],["Luftschlangen","streamers"],["bunten Säulen","colored columns"],["Bühne","stage"],["begeistert","enthusiastic"],["Kaffee trinken","drink coffee"],["umziehen","change clothes"],["Gäste","guests"],["zufrieden","satisfied"]],"6":[["Beeilung","hurry"],["Koteletten","sideburns"],["Verkleidung","costume / disguise"],["Badezimmer","bathroom"],["orientalischer Scheich","oriental sheikh"],["Go-go-Girl","go-go girl"],["Privatdetektiv","private detective"],["Jahreszeit","season"],["knappe Kostüm","skimpy costume"],["Taxi","taxi"],["Gaststätte","restaurant / pub"],["Schild","sign"],["Private Veranstaltung","private event"],["Saal","hall"],["Musikanlage","sound system"],["Garderobe","cloakroom"],["Kostüm","costume"],["Buffet","buffet"],["Salate","salads"],["belegte Brötchen","sandwiches"],["Frikadellen","meatballs"],["Gulaschsuppe","goulash soup"],["Gäste","guests"],["Piraten","pirates"],["Punks","punks"],["Cowboys","cowboys"],["Clowns","clowns"],["Nixen","mermaids"],["Cowgirls","cowgirls"],["Hexen","witches"],["Torero","bullfighter"],["Matrosen","sailors"],["Kapitäne","captains"],["schwarzer Maske","black mask"],["Marilyn Monroe","Marilyn Monroe"],["amüsiert","enjoys himself"]],"7":[["Buffet","buffet"],["Problem","problem"],["Garderobe","cloakroom"],["ratlos","confused / at a loss"],["Brieftasche","wallet"],["Zigaretten","cigarettes"],["Manteltasche","coat pocket"],["Führerschein","driver’s licence"],["Kreditkarten","credit cards"],["Handtasche","handbag"],["Toilette","toilet / restroom"],["Mänteln","coats"],["Jacken","jackets"],["Schlüssel","keys"],["Wohnung","apartment"],["Auto","car"],["Porsche","Porsche"],["Straßenseite","side of the street"],["Nachtluft","night air"],["Dieb","thief"],["frieren","be cold"],["verzweifelt","desperate"],["aufgeregt","excited"],["Autoschlüssel","car keys"],["Möglichkeiten","possibilities"],["Diebstahl","theft"],["Maske","mask"],["Zorro","Zorro"],["flüstert","whispers"],["Gedränge","crowd / crush"],["Autogramm","autograph"],["Tanzfläche","dance floor"],["eng umschlungen","closely embracing"]],"8":[["zerrissen","torn"],["blaues Auge","black eye"],["Mistkerl","jerk"],["Porsche","Porsche"],["abgehauen","run off"],["Rauchen","smoking"],["Vorsätze","resolutions"],["Männergeschichten","love affairs"],["Handtasche","handbag"],["Wagen","car"],["Wohnungsschlüssel","apartment keys"],["Polizei anrufen","call the police"],["Telefon","telephone"],["Handy","mobile phone"],["Autokennzeichen","number plate"],["Adresse","address"],["Kreditkarten","credit cards"],["Anruf","call"],["Gaststätte","restaurant / pub"],["Wohnzimmer","living room"],["eingesperrt","locked up"],["gefangen","caught"],["Handschellen","handcuffs"],["Beamten","police officers"],["neugierig","curious"],["Dieb","thief"],["Stadtrundfahrt","city tour"],["Uhrzeit","time"],["Schreibtisch","desk"],["Tanzen","dancing"],["Zorro","Zorro"],["Bea","Bea"],["Mantel","coat"],["Garderobe","cloakroom"]],"9":[["wildfremden Ganoven","complete stranger / crook"],["Ganoven","crooks / gangsters"],["Angst","fear"],["blaues Auge","black eye"],["aufhalten","stop / hold back"],["Porsche","Porsche"],["richtigen Schlüssel","correct key"],["Sitz","seat"],["Beine","legs"],["Stadtrundfahrt","city tour"],["Wohnung","apartment"],["Gelegenheit","opportunity"],["Badezimmer","bathroom"],["Schlüssel","key"],["Drink","drink"],["Handtuch","towel"],["bingo","bingo"],["Erstaunt","surprised / astonished"],["Menschenmenge","crowd"],["Rosenmontagszug","Rose Monday parade"],["Musik- und Tanzgruppen","music and dance groups"],["Kostümen","costumes"],["Wagen","floats / cars"],["Prinzessinnen","princesses"],["Prinzen","princes"],["Karnevalsgesellschaften","carnival associations"],["Bonbons","sweets / candies"],["Schokolade","chocolate"],["Kehraus","end of carnival"],["Speisewagen","dining car"],["Volkslied","folk song"],["fünfziger Jahren","1950s"],["Militärdienst","military service"],["Spiegel","mirror"],["Karnevalskostüm","carnival costume"],["Partner","partner"]]};
 const CAFE_ANSWERS=[[],['a','a','c','c','b'],['c','b','a','b','a','c'],['c','a','b','a','c','a'],['a','b','c','a','a'],['b','c','b','c','c','b'],['a','c','b','a','b','c'],['b','b','b','a','a'],['a','c','b','a','b','c'],['a','b','a','a','a'],['a','b','b','c','b','b','c']];
 function cafeDisplayTitle(title){return String(title).replace(/^(.+?)\s+Chapter\s+\d+:\s*/,'$1 ');}
+function mordDisplayTitle(title){return String(title).replace(/^([\p{Extended_Pictographic}\uFE0F\u200D\s]*?)Chapter\s+\d+:\s*/u,'$1').replace(/^\s+/,'').trim();}
 function parseCafeExercise(content, chapterIndex){
   const m=content.split(/\n## Übung\s*\n/i);
   if(m.length!==2) return {main:content,exercise:[]};
@@ -1898,7 +2060,7 @@ const DIALOGUE_SPEAKERS=[["Paul","Anna"],["Ali","Lisa"],["Müller","Schmidt"],["
 const A2_SPEAKING_HTML = `
 <div class="sprechen-copy a2-speaking">
   <div class="speaking-section speaking-exam-structure">
-    <button class="speaking-section-title" type="button" onclick='speak("GOETHE ZERTIFIKAT A2 SPRECHEN. Aufbau nach dem Goethe-Institut Modellsatz.")'>📋 GOETHE-ZERTIFIKAT A2 SPRECHEN <span>🔊</span></button>
+    <button class="speaking-section-title" type="button" data-speaking-heading="1">📋 GOETHE-ZERTIFIKAT A2 SPRECHEN <span>🔊</span></button>
     <p><em>Orientierung: Goethe-Institut Modellsatz</em></p>
     <p><strong>Gesamtaufbau:</strong> Das Sprechen besteht aus drei Teilen.</p>
     <div class="table-wrap"><table class="speaking-table"><thead><tr><th>Teil</th><th>Aufgabe</th><th>Was Sie tun</th></tr></thead><tbody>
@@ -1909,7 +2071,7 @@ const A2_SPEAKING_HTML = `
   </div>
 
   <div class="speaking-section">
-    <button class="speaking-section-title" type="button" onclick='speak("Teil 1. Fragen zur Person. Sie bekommen vier Karten und stellen Ihrem Partner oder Ihrer Partnerin vier Fragen.")'>🗣️ TEIL 1 – FRAGEN ZUR PERSON <span>🔊</span></button>
+    <button class="speaking-section-title" type="button" data-speaking-heading="1">🗣️ TEIL 1 – FRAGEN ZUR PERSON <span>🔊</span></button>
     <p><em>Beispielkarten nach dem offiziellen Aufgabenformat: Sie formulieren aus dem Stichwort eine Frage.</em></p>
     <div class="table-wrap"><table class="speaking-table"><thead><tr><th>Karte</th><th>Mögliche Frage + Beispielantwort</th></tr></thead><tbody>
       <tr><td><strong>Geburtstag?</strong></td><td>Wann hast du Geburtstag? – Ich habe am 12. Mai Geburtstag.</td></tr>
@@ -1920,7 +2082,7 @@ const A2_SPEAKING_HTML = `
   </div>
 
   <div class="speaking-section">
-    <button class="speaking-section-title" type="button" onclick='speak("Teil 2. Über sich erzählen. Sie bekommen eine Karte und erzählen etwas über Ihr Leben zu einer Frage und vier Stichwörtern.")'>🗣️ TEIL 2 – ÜBER SICH ERZÄHLEN <span>🔊</span></button>
+    <button class="speaking-section-title" type="button" data-speaking-heading="1">🗣️ TEIL 2 – ÜBER SICH ERZÄHLEN <span>🔊</span></button>
     <p><em>Beispielkarten nach dem offiziellen Aufgabenformat: Erzählen Sie zu einer Frage mit vier Stichwörtern etwas über Ihr Leben.</em></p>
     <div class="table-wrap"><table class="speaking-table"><thead><tr><th>Karte</th><th>Beispiel</th></tr></thead><tbody>
       <tr><td><strong>Was machen Sie mit Ihrem Geld?</strong><br>Kleidung? · Lebensmittel, Miete? · Sparen? · Reisen?</td><td>Ich gebe mein Geld für Lebensmittel und Miete aus. Etwas Geld spare ich jeden Monat. Wenn ich genug habe, reise ich gern.</td></tr>
@@ -1929,7 +2091,7 @@ const A2_SPEAKING_HTML = `
   </div>
 
   <div class="speaking-section">
-    <button class="speaking-section-title" type="button" onclick='speak("Teil 3. Gemeinsam planen. Sie planen etwas mit Ihrem Partner oder Ihrer Partnerin und finden gemeinsam eine Lösung.")'>🗣️ TEIL 3 – GEMEINSAM PLANEN <span>🔊</span></button>
+    <button class="speaking-section-title" type="button" data-speaking-heading="1">🗣️ TEIL 3 – GEMEINSAM PLANEN <span>🔊</span></button>
     <p><em>Sie planen etwas mit Ihrem Partner/Ihrer Partnerin und finden gemeinsam eine Lösung.</em></p>
     <p><strong>Situation:</strong> Ihr Freund Patrick hat Geburtstag. Sie möchten ein Geschenk für ihn kaufen. Finden Sie einen Termin.</p>
     <div class="table-wrap"><table class="speaking-table"><thead><tr><th>PAUL</th><th>ANNA</th></tr></thead><tbody>
@@ -1944,7 +2106,7 @@ const A2_SPEAKING_HTML = `
   </div>
 
   <div class="speaking-section">
-    <button class="speaking-section-title" type="button" onclick='speak("Weitere mögliche Teil drei Situationen. Ausflug planen. Party organisieren. Geschenk kaufen. Freizeitaktivität.")'>📚 WEITERE MÖGLICHE TEIL-3-SITUATIONEN <span>🔊</span></button>
+    <button class="speaking-section-title" type="button" data-speaking-heading="1">📚 WEITERE MÖGLICHE TEIL-3-SITUATIONEN <span>🔊</span></button>
     <div class="table-wrap"><table class="speaking-table"><thead><tr><th>THEMA</th><th>SITUATION</th></tr></thead><tbody>
       <tr><td>Ausflug planen</td><td>Sie möchten mit Ihrem Partner/Ihrer Partnerin einen Tagesausflug machen. Planen Sie: Wohin? Wann? Wie kommen Sie hin? Was nehmen Sie mit?</td></tr>
       <tr><td>Party organisieren</td><td>Sie möchten eine Party für einen Freund organisieren. Planen Sie: Wo? Wann? Wer kommt? Was gibt es zu essen und zu trinken?</td></tr>
@@ -1959,86 +2121,105 @@ let cachedGermanFemaleVoice=null;
 let cachedGermanMaleVoice=null;
 function getGermanVoice(role){
   if(!('speechSynthesis' in window)) return null;
-  const voices=speechSynthesis.getVoices().filter(v=>/^de(-|_)/i.test(v.lang||''));
-  if(!voices.length) return null;
-  if(cachedGermanFemaleVoice && role==='A') return cachedGermanFemaleVoice;
-  if(cachedGermanMaleVoice && role==='B') return cachedGermanMaleVoice;
+  const all=(speechSynthesis.getVoices?speechSynthesis.getVoices():[]);
+  const german=all.filter(v=>/^de(-|_)/i.test(v.lang||'') || /german|deutsch/i.test(v.name||''));
+  if(!german.length) return null;
+  if(role==='A' && cachedGermanFemaleVoice) return cachedGermanFemaleVoice;
+  if(role==='B' && cachedGermanMaleVoice) return cachedGermanMaleVoice;
 
-  const femaleHints=['female','frau','katja','anna','hedda','petra','vicki','marie','susan','german female','google deutsch weib'];
-  const maleHints=['male','herr','stefan','markus','michael','thomas','andreas','martin','daniel','david','jan','lukas','hans','klaus','conrad','german male','google deutsch männ'];
-  const hints=role==='A'?femaleHints:maleHints;
-  const hinted=voices.find(v=>hints.some(h=>(v.name||'').toLowerCase().includes(h)));
+  const femaleRe=/(katja|hedda|anna|anja|julia|petra|vicki|marie|female|frau|weib|deutsch.*weib|google deutsch weib|microsoft.*(katja|hedda|ana))/i;
+  const maleRe=/(stefan|markus|michael|thomas|andreas|martin|daniel|hans|klaus|conrad|male|herr|männ|deutsch.*männ|google deutsch männ|microsoft.*stefan)/i;
 
-  if(role==='A'){
-    cachedGermanFemaleVoice=hinted || voices.find(v=>/^de-DE$/i.test(v.lang)) || voices[0];
+  if(role==='A') {
+    cachedGermanFemaleVoice = german.find(v=>femaleRe.test(v.name||''))
+      || german.find(v=>/de-DE/i.test(v.lang))
+      || german[0];
     return cachedGermanFemaleVoice;
   }
 
-  cachedGermanMaleVoice=hinted || voices.find(v=>v!==cachedGermanFemaleVoice && /^de-DE$/i.test(v.lang)) || voices.find(v=>v!==cachedGermanFemaleVoice) || voices[0];
+  cachedGermanMaleVoice = german.find(v=>maleRe.test(v.name||''))
+    || german.find(v=>v!==cachedGermanFemaleVoice && /de-DE/i.test(v.lang))
+    || german.find(v=>v!==cachedGermanFemaleVoice)
+    || german[0];
   return cachedGermanMaleVoice;
 }
 if('speechSynthesis' in window){
-  speechSynthesis.addEventListener('voiceschanged',()=>{cachedGermanFemaleVoice=null;cachedGermanMaleVoice=null;getGermanVoice('A');getGermanVoice('B');});
+  speechSynthesis.addEventListener('voiceschanged',()=>{
+    cachedGermanFemaleVoice=null;
+    cachedGermanMaleVoice=null;
+    getGermanVoice('A');
+    getGermanVoice('B');
+  });
 }
+const STUDENT_SPEECH_RATE=.90;
 function speakWithRole(text,role){
-  if(!('speechSynthesis' in window)) return;
-  const u=new SpeechSynthesisUtterance(String(text||''));
+  const textValue=speechCleanText(text);
+  if(!textValue || !('speechSynthesis' in window)) return;
+  const synth=window.speechSynthesis;
+  synth.cancel();
+  const u=new SpeechSynthesisUtterance(textValue);
   u.lang='de-DE';
-  u.rate=.95;
-  u.volume=1.12;
-  u.pitch=role==='A'?1.06:.98;
+  u.rate=STUDENT_SPEECH_RATE;
+  u.volume=1;
+  u.pitch=role==='A'?1.06:.96;
   const voice=getGermanVoice(role);
   if(voice) u.voice=voice;
-  speechSynthesis.speak(u);
+  synth.speak(u);
 }
 function speakDialogue(i){
   const t=DIALOGUE_DATA[i];
   if(!t || !('speechSynthesis' in window)) return;
-  speechSynthesis.cancel();
-  const pairs=[];
-  for(let j=0;j<t.rows.length;j+=2){ pairs.push([t.rows[j], t.rows[j+1] || ['', '', '', '']]); }
+  const synth=window.speechSynthesis;
+  synth.cancel();
+  const parts=[];
+  for(let j=0;j<t.rows.length;j+=2){
+    const left=speechCleanText(t.rows[j]?.[0]||'');
+    const right=speechCleanText(t.rows[j+1]?.[0]||'');
+    if(left) parts.push({text:left,role:'A'});
+    if(right) parts.push({text:right,role:'B'});
+  }
   let index=0;
   const playNext=()=>{
-    if(index>=pairs.length) return;
-    const a=String(pairs[index][0]?.[0]||'').trim();
-    const b=String(pairs[index][1]?.[0]||'').trim();
-    index+=1;
-    const parts=[];
-    if(a) parts.push({text:a,role:'A'});
-    if(b) parts.push({text:b,role:'B'});
-    let k=0;
-    const nextPart=()=>{
-      if(k>=parts.length){playNext();return;}
-      const part=parts[k++];
-      const u=new SpeechSynthesisUtterance(part.text);
-      u.lang='de-DE';
-      u.rate=.95;
-      u.volume=1.12;
-      u.pitch=part.role==='A'?1.06:.98;
-      const voice=getGermanVoice(part.role);
-      if(voice) u.voice=voice;
-      u.onend=nextPart;
-      speechSynthesis.speak(u);
-    };
-    nextPart();
+    if(index>=parts.length) return;
+    const part=parts[index++];
+    const u=new SpeechSynthesisUtterance(part.text);
+    u.lang='de-DE';
+    u.rate=STUDENT_SPEECH_RATE;
+    u.volume=1;
+    u.pitch=part.role==='A'?1.06:.96;
+    const voice=getGermanVoice(part.role);
+    if(voice) u.voice=voice;
+    u.onend=()=>setTimeout(playNext,180);
+    synth.speak(u);
   };
   playNext();
 }
-function renderDialogueTopic(i){
-  const t=DIALOGUE_DATA[i];
-  if(!t) return '<div class="empty">Noch keine Dialoge.</div>';
-  const pairs=[];
-  for(let j=0;j<t.rows.length;j+=2){ pairs.push([t.rows[j], t.rows[j+1] || ['', '', '', '']]); }
-  const medicalNote=(i===14||i===15)?'<div class="section-note">Hinweis: Dieser Dialog ist ein Sprachlernbeispiel, keine medizinische Beratung.</div>':'';
-  return `<button class="back" onclick="window.scrollTo({top:0,behavior:'smooth'})">← Dialog</button><h2 class="dialogue-heading" tabindex="0" role="button" onclick='speakDialogue(${i})' onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();speakDialogue(${i});}">${esc(t.title)}</h2><div class="section-note">Klicke auf die unterstrichene Stelle, um nur diese Stelle zu hören.</div>${medicalNote}<div class="table-wrap"><table class="data-table dialogue-table"><thead><tr><th>${esc((DIALOGUE_SPEAKERS[i]&&DIALOGUE_SPEAKERS[i][0])||'Gesprächspartner')} 🇩🇪</th><th>${esc((DIALOGUE_SPEAKERS[i]&&DIALOGUE_SPEAKERS[i][1])||'Gesprächspartner')} 🇩🇪</th></tr></thead><tbody>${pairs.map(pair=>`<tr><td>${renderDialogueCell(pair[0][0],pair[0][1],pair[0][2],'A')}</td><td>${renderDialogueCell(pair[1][0],pair[1][1],pair[1][2],'B')}</td></tr>`).join('')}</tbody></table></div>`;
-}
-function renderDialogueCell(text,term,en,role='A'){
-  const source=String(text||'');
-  const needle=String(term||'');
-  const idx=source.indexOf(needle);
-  if(idx<0 || !needle) return esc(source);
-  const before=source.slice(0,idx), after=source.slice(idx+needle.length);
-  return `${esc(before)}<span class="term-link" onclick='event.stopPropagation();speakWithRole(${JSON.stringify(needle)},${JSON.stringify(role)})' aria-label="${esc(en)}">${esc(needle)}<span class="term-tip">${esc(en)}</span></span>${esc(after)}`;
+function speakDialogueTable(table){
+  if(!table || !('speechSynthesis' in window)) return;
+  const synth=window.speechSynthesis;
+  synth.cancel();
+  const parts=[];
+  table.querySelectorAll('tbody tr').forEach(row=>{
+    [...row.querySelectorAll('td')].forEach((cell,col)=>{
+      const text=speechTextFromElement(cell);
+      if(text) parts.push({text,role:col%2===0?'A':'B'});
+    });
+  });
+  let index=0;
+  const playNext=()=>{
+    if(index>=parts.length) return;
+    const part=parts[index++];
+    const u=new SpeechSynthesisUtterance(part.text);
+    u.lang='de-DE';
+    u.rate=STUDENT_SPEECH_RATE;
+    u.volume=1;
+    u.pitch=part.role==='A'?1.06:.96;
+    const voice=getGermanVoice(part.role);
+    if(voice) u.voice=voice;
+    u.onend=()=>setTimeout(playNext,180);
+    synth.speak(u);
+  };
+  playNext();
 }
 const levelMeta={instructions:'Instructions',comprehension:'Verstehen',simple:'Simple · A1',understandable:'Understandable · A2',schriben:'Schreiben',sprechen:'Sprechen',lesen:'Lesen · Bücher',cafe:'Café in Berlin · Kapitel',frankfurt:'Ferien in Frankfurt',vokabular:'Vokabular'};
 const $=s=>document.querySelector(s);
@@ -2058,18 +2239,14 @@ function speak(text){
     synth.cancel();
     const u=new SpeechSynthesisUtterance(textValue);
     u.lang='de-DE';
-    u.rate=.88;
+    u.rate=STUDENT_SPEECH_RATE;
     u.pitch=1;
     const voices=synth.getVoices ? synth.getVoices() : [];
     const deVoice=voices.find(v=>/^de(-|_)/i.test(v.lang)) || voices.find(v=>/german|deutsch/i.test(v.name||''));
     if(deVoice) u.voice=deVoice;
     themaUtterance=u;
     const play=()=>{try{ synth.speak(themaUtterance); }catch(err){ console.warn('Speech synthesis failed:',err); }};
-    if(synth.getVoices && !voices.length){
-      setTimeout(play,80);
-    }else{
-      play();
-    }
+    play();
   }catch(err){
     console.warn('Speech synthesis failed:',err);
   }
@@ -2128,7 +2305,7 @@ let lessonBook=-1;
 function showLessonBooks(){
   lessonBook=-1;
   renderTopics();
-  $('#detail').innerHTML=`<div class="lesson-guide"><div class="lesson-guide-title">Click on a book to read.</div></div>`;
+  $('#detail').innerHTML=`<div class="lesson-guide"><div class="lesson-guide-title">Click on a book to read.</div><div class="lesson-vocab-note" style="margin:8px 0 0"></div></div>`;
 }
 
 const RICH_DAD_EMOJIS=['💰','📊','🏢','🎓','⚡','🔄','💵','💡','🏦','🧠'];
@@ -2139,7 +2316,7 @@ function decorateBookSectionTitle(bookIndex,i,title){
 }
 
 function lessonBookData(i){
-  if(i===0) return {title:'Café in Berlin',data:CAFE_DATA,type:'cafe'};
+  if(i===0) return {title:'☕ Café in Berlin',data:CAFE_DATA,type:'cafe'};
   if(i===1) return {title:'🧳 Ferien in Frankfurt',data:FRANKFURT_DATA,type:'frankfurt'};
   if(i===2) return {title:'📜 48 Gesetze',data:LAWS_DATA,type:'laws'};
   if(i===3) return {title:'👑 Der Fürst',data:PRINCE_DATA,type:'prince'};
@@ -2147,6 +2324,7 @@ function lessonBookData(i){
   if(i===5) return {title:'🧠 Ego ist der Feind',data:EGO_ENEMY_DATA,type:'ego'};
   if(i===6) return {title:'📖 Plötzlich in Palermo',data:DINO_BOOK_DATA,type:'dino'};
   if(i===7) return {title:'🕵️ Mord am Morgen',data:MORD_BOOK_DATA,type:'mord'};
+  if(i===8) return {title:'🎭 Elvis in Köln',data:ELVIS_DATA,type:'elvis'};
   return null;
 }
 
@@ -2310,71 +2488,194 @@ function renderThemaBlocks(blocks,highlightPlan,highlightState){
 }
 
 
-function speakTextChunks(text){
-  const source=String(text||'').replace(/\s+/g,' ').trim();
-  if(!source) return;
+function speechCleanText(text){
+  return String(text||'')
+    .replace(/\u00a0/g,' ')
+    .replace(/\r/g,'')
+    .replace(/\s+/g,' ')
+    .trim();
+}
+function speechTextFromElement(el){
+  if(!el) return '';
+  const clone=el.cloneNode(true);
+  clone.querySelectorAll('.term-tip,.qa-en,.speaking-english,.lesson-vocab-note,.lesson-translation-title,.transcript-toggle,.listening-en,.dialogue-translation').forEach(n=>n.remove());
+  return speechCleanText(clone.textContent||'');
+}
+function speechNaturalSegments(root){
+  if(!root) return [];
+  const segments=[];
+  const push=(text)=>{ const t=speechCleanText(text); if(t) segments.push(t); };
+  root.querySelectorAll('p, li, .cafe-reading-list > div, .lesson-reader p, .story p, .lesson-translation > div:last-child').forEach(el=>{
+    if(el.closest('.lesson-translation-title,.speaking-section')) return;
+    push(el.innerText || el.textContent || '');
+  });
+  if(!segments.length && !root.matches('.speaking-section')) push(root.innerText || root.textContent || '');
+  return segments;
+}
+function speakTextChunks(textOrRoot){
+  if(textOrRoot && textOrRoot.classList?.contains('speaking-section')){ speakSpeakingSection(textOrRoot); return; }
+  const segments=textOrRoot && textOrRoot.nodeType ? speechNaturalSegments(textOrRoot) : [speechCleanText(textOrRoot)];
+  const cleaned=segments.map(speechCleanText).filter(Boolean);
+  if(!cleaned.length) return;
   const synth=window.speechSynthesis;
   if(!synth || typeof window.SpeechSynthesisUtterance!=='function') return;
   synth.cancel();
-  const chunks=[];
-  source.split(/(?<=[.!?。])\s+/).forEach(sentence=>{
-    let part=sentence.trim();
-    while(part.length>220){
-      let cut=part.lastIndexOf(' ',220);
-      if(cut<80) cut=220;
-      chunks.push(part.slice(0,cut).trim());
-      part=part.slice(cut).trim();
-    }
-    if(part) chunks.push(part);
-  });
   const voices=synth.getVoices?synth.getVoices():[];
-  const deVoice=voices.find(v=>/^de(-|_)/i.test(v.lang)) || voices.find(v=>/german|deutsch/i.test(v.name||''));
-  chunks.forEach((chunk,i)=>{
-    const u=new SpeechSynthesisUtterance(chunk);
-    u.lang='de-DE'; u.rate=.88; u.pitch=1;
+  const deVoice=voices.find(v=>/^de-DE$/i.test(v.lang)) || voices.find(v=>/^de(-|_)/i.test(v.lang)) || voices.find(v=>/german|deutsch/i.test(v.name||''));
+  let index=0;
+  const playNext=()=>{
+    if(index>=cleaned.length) return;
+    const u=new SpeechSynthesisUtterance(cleaned[index++]);
+    u.lang='de-DE';
+    u.rate=STUDENT_SPEECH_RATE;
+    u.pitch=.99;
+    u.volume=1;
     if(deVoice) u.voice=deVoice;
-    if(i===0) u.onstart=()=>{};
+    u.onend=()=>setTimeout(playNext,180);
     synth.speak(u);
+  };
+  playNext();
+}
+function speakingTableRows(section){
+  return [...section.querySelectorAll('.speaking-table tbody tr')];
+}
+function speakSpeakingSection(section){
+  if(!section || !('speechSynthesis' in window)) return;
+  const synth=window.speechSynthesis;
+  synth.cancel();
+  const intro=[...section.children].filter(el=>!el.matches('.speaking-section-title,.table-wrap,.speaking-table')).flatMap(el=>{
+    const text=speechTextFromElement(el);
+    return text?[text]:[];
   });
+  const cells=[];
+  speakingTableRows(section).forEach(row=>{
+    const td=[...row.querySelectorAll('td')];
+    td.forEach((cell,col)=>{
+      const text=speechTextFromElement(cell);
+      if(text) cells.push({text,role:col%2===0?'A':'B'});
+    });
+  });
+  const items=[...intro.map(text=>({text,role:'N'})),...cells];
+  if(!items.length) return;
+  const voices=synth.getVoices?synth.getVoices():[];
+  const neutral=voices.find(v=>/^de-DE$/i.test(v.lang)) || voices.find(v=>/^de(-|_)/i.test(v.lang)) || voices.find(v=>/german|deutsch/i.test(v.name||''));
+  let index=0;
+  const playNext=()=>{
+    if(index>=items.length) return;
+    const item=items[index++];
+    const u=new SpeechSynthesisUtterance(item.text);
+    u.lang='de-DE'; u.rate=STUDENT_SPEECH_RATE; u.volume=1;
+    if(item.role==='A'){ u.pitch=1.05; const v=getGermanVoice('A'); if(v)u.voice=v; }
+    else if(item.role==='B'){ u.pitch=.95; const v=getGermanVoice('B'); if(v)u.voice=v; }
+    else { u.pitch=.99; if(neutral)u.voice=neutral; }
+    u.onend=()=>setTimeout(playNext,180);
+    synth.speak(u);
+  };
+  playNext();
 }
-function speakThemaMainHeading(heading){
-  const reader=heading?.nextElementSibling?.matches('.thema-reader') ? heading.nextElementSibling : document.querySelector('.thema-reader');
-  const text=reader?.innerText || heading?.innerText || '';
-  speakTextChunks(text);
-}
-function speakThemaHeading(heading){
-  if(!heading) return;
-  const parts=[];
-  let node=heading.nextElementSibling;
-  while(node && !node.matches('.thema-heading,.thema-subheading')){
-    if(node.matches('.thema-section-title') && parts.length) break;
-    const text=(node.innerText||'').trim();
-    if(text) parts.push(text);
-    node=node.nextElementSibling;
+function headingContentRoot(heading){
+  if(!heading) return null;
+  if(heading.matches('.story-heading,.cafe-chapter-heading')){
+    const next=heading.nextElementSibling;
+    if(next?.matches('.lesson-vocab-note')) return next.nextElementSibling;
+    return next;
   }
-  speakTextChunks(parts.join(' ') || heading.innerText || '');
+  if(heading.matches('.speaking-section-title')) return heading.closest('.speaking-section');
+  if(heading.matches('.section-title')) return heading.closest('.section');
+  if(heading.matches('.dialogue-heading')) return heading.nextElementSibling || heading.parentElement;
+  if(heading.matches('.thema-main-heading')) return heading.parentElement?.querySelector(':scope > .thema-reader');
+  return heading.nextElementSibling;
 }
-
+function speakHeadingContent(heading){
+  if(!heading) return;
+  if(heading.matches('.thema-main-heading')){ speakThemaMainHeading(heading); return; }
+  if(heading.matches('.thema-heading,.thema-subheading')){ speakThemaHeading(heading); return; }
+  if(heading.matches('.speaking-section-title')){
+    speakSpeakingSection(heading.closest('.speaking-section'));
+    return;
+  }
+  if(heading.matches('.dialogue-heading')){
+    const table=heading.nextElementSibling?.nextElementSibling?.querySelector('.dialogue-table')
+      || heading.parentElement?.querySelector('.dialogue-table');
+    if(table){ speakDialogueTable(table); return; }
+  }
+  const root=headingContentRoot(heading);
+  if(!root) return;
+  const clone=root.cloneNode(true);
+  clone.querySelectorAll('h1,h2,h3,h4,h5,h6,.lesson-book-heading,.lesson-vocab-note,.back,.lesson-translation-title,.section-title,.term-tip,.qa-en,.speaking-english,.listening-en,.transcript-toggle,.speaking-section-title').forEach(el=>el.remove());
+  speakTextChunks(clone);
+}
+function speakDialogueLine(target){
+  if(!target) return false;
+  if(target.closest('.term-link,.sound-word,.speakable,.speaker,button,a,input,textarea,select')) return false;
+  const cell=target.closest('.dialogue-table td');
+  if(!cell) return false;
+  const row=cell.closest('tr');
+  if(!row) return false;
+  const cells=[...row.querySelectorAll('td')];
+  const col=cells.indexOf(cell);
+  if(col<0) return false;
+  const text=speechTextFromElement(cell);
+  if(!text) return false;
+  speakWithRole(text,col===0?'A':'B');
+  return true;
+}
+function speakSpeakingLine(target){
+  if(!target) return false;
+  if(target.closest('.term-link,.sound-word,.speakable,.speaker,button,a,input,textarea,select')) return false;
+  const cell=target.closest('.speaking-section td');
+  if(!cell) return false;
+  const row=cell.closest('tr');
+  if(!row) return false;
+  const cells=[...row.querySelectorAll('td')];
+  const col=cells.indexOf(cell);
+  if(col<0) return false;
+  const text=speechTextFromElement(cell);
+  if(!text) return false;
+  speakWithRole(text,col%2===0?'A':'B');
+  return true;
+}
 
 function installThemaHeadingSpeech(){
   const detail=document.getElementById('detail');
   if(!detail || detail.dataset.themaHeadingSpeech==='1') return;
   detail.dataset.themaHeadingSpeech='1';
+
+  const headingSelector=[
+    '.story-heading','.cafe-chapter-heading','.dialogue-heading','.speaking-section-title',
+    '.section-title','.thema-main-heading','.thema-heading','.thema-subheading'
+  ].join(',');
+
   detail.addEventListener('click',event=>{
     const target=event.target instanceof Element ? event.target : null;
     if(!target) return;
-    const main=target.closest('[data-thema-main-heading="1"]');
-    if(main){
+    const heading=target.closest(headingSelector);
+    if(heading && detail.contains(heading)){
       event.preventDefault();
-      event.stopPropagation();
-      speakThemaMainHeading(main);
+      event.stopImmediatePropagation();
+      speakHeadingContent(heading);
       return;
     }
-    const heading=target.closest('[data-thema-heading="1"]');
-    if(heading){
+    if(speakDialogueLine(target)){
       event.preventDefault();
-      event.stopPropagation();
-      speakThemaHeading(heading);
+      event.stopImmediatePropagation();
+      return;
+    }
+    if(speakSpeakingLine(target)){
+      event.preventDefault();
+      event.stopImmediatePropagation();
+    }
+  },true);
+
+  detail.addEventListener('keydown',event=>{
+    if(event.key!=='Enter' && event.key!==' ') return;
+    const target=event.target instanceof Element ? event.target : null;
+    if(!target) return;
+    const heading=target.closest(headingSelector);
+    if(heading && detail.contains(heading)){
+      event.preventDefault();
+      event.stopImmediatePropagation();
+      speakHeadingContent(heading);
     }
   },true);
 }
@@ -2615,6 +2916,70 @@ async function getSavedSprechen(id){
 async function playSavedSprechen(id){const r=await getSavedSprechen(id);if(!r)return;const url=URL.createObjectURL(r.blob);const audio=new Audio(url);audio.onended=()=>URL.revokeObjectURL(url);audio.play();}
 async function downloadSavedSprechen(id){const r=await getSavedSprechen(id);if(!r)return;const url=URL.createObjectURL(r.blob);const ext=(r.type||'').includes('ogg')?'ogg':'webm';const a=document.createElement('a');a.href=url;a.download=`${r.name}.${ext}`;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1500);}
 async function deleteSavedSprechen(id){const db=await openSpeakingDB();await new Promise((resolve,reject)=>{const tx=db.transaction(SPEAKING_STORE,'readwrite');tx.objectStore(SPEAKING_STORE).delete(id);tx.oncomplete=resolve;tx.onerror=()=>reject(tx.error)});db.close();loadSavedSprechenRecordings();}
+
+const dialogueTranslationCache=new Map();
+
+async function translateDialogueSentence(text){
+  const german=String(text||'').replace(/\s+/g,' ').trim();
+  if(!german) return '';
+  const key=german.toLocaleLowerCase();
+  if(dialogueTranslationCache.has(key)) return dialogueTranslationCache.get(key);
+  try{
+    const url='https://api.mymemory.translated.net/get?langpair=de|en&q='+encodeURIComponent(german);
+    const response=await fetch(url,{headers:{'Accept':'application/json'}});
+    if(!response.ok) throw new Error('Translation request failed');
+    const data=await response.json();
+    const translated=String(data?.responseData?.translatedText||'').trim();
+    if(!translated) throw new Error('No translation returned');
+    dialogueTranslationCache.set(key,translated);
+    return translated;
+  }catch(err){
+    console.warn('Dialogue sentence translation failed:',err);
+    return '';
+  }
+}
+
+function renderDialogueCell(text,term,en,role='A'){
+  const source=String(text||'');
+  const needle=String(term||'');
+  const sentence=source.replace(/\s+/g,' ').trim();
+  const idx=source.indexOf(needle);
+  const translationHtml=`<div class="dialogue-translation" data-german="${esc(sentence)}" aria-live="polite"></div>`;
+  if(idx<0 || !needle) return `${esc(source)}${translationHtml}`;
+  const before=source.slice(0,idx), after=source.slice(idx+needle.length);
+  return `${esc(before)}<span class="term-link" onclick='event.stopPropagation();speakWithRole(${JSON.stringify(needle)},${JSON.stringify(role)})' aria-label="${esc(en)}">${esc(needle)}<span class="term-tip">${esc(en)}</span></span>${esc(after)}${translationHtml}`;
+}
+
+async function toggleDialogueTranslations(table){
+  if(!table) return;
+  const open=table.classList.toggle('show-translations');
+  table.querySelectorAll('.dialogue-translate-btn').forEach(btn=>{
+    btn.textContent=open?'DE':'EN';
+    btn.setAttribute('aria-label',open?'Hide translations':'Show translations');
+    btn.title=open?'Hide translations':'Translation';
+  });
+  if(!open) return;
+  const targets=[...table.querySelectorAll('.dialogue-translation[data-german]')];
+  await Promise.all(targets.map(async el=>{
+    if(el.dataset.loaded==='1') return;
+    if(el.dataset.loading==='1') return;
+    el.dataset.loading='1';
+    el.textContent='…';
+    const translated=await translateDialogueSentence(el.dataset.german||'');
+    el.textContent=translated||'English translation unavailable.';
+    el.dataset.loaded='1';
+    el.dataset.loading='0';
+  }));
+}
+
+function renderDialogueTopic(i){
+  const t=DIALOGUE_DATA[i];
+  if(!t) return '<div class="empty">Noch keine Dialoge.</div>';
+  const pairs=[];
+  for(let j=0;j<t.rows.length;j+=2){ pairs.push([t.rows[j], t.rows[j+1] || ['', '', '', '']]); }
+  const medicalNote=(i===14||i===15)?'<div class="section-note">Hinweis: Dieser Dialog ist ein Sprachlernbeispiel, keine medizinische Beratung.</div>':'';
+  return `<button class="back" onclick="window.scrollTo({top:0,behavior:'smooth'})">← Dialog</button><h2 class="dialogue-heading" tabindex="0" role="button" onclick='speakDialogue(${i})' onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();speakDialogue(${i});}">${esc(t.title)}</h2>${medicalNote}<div class="table-wrap"><table class="data-table dialogue-table"><thead><tr><th>${esc((DIALOGUE_SPEAKERS[i]&&DIALOGUE_SPEAKERS[i][0])||'Gesprächspartner')} 🇩🇪<button type="button" class="dialogue-translate-btn" onclick="event.stopPropagation();toggleDialogueTranslations(this.closest('.dialogue-table'))" aria-label="Show translations" title="Translation">EN</button></th><th>${esc((DIALOGUE_SPEAKERS[i]&&DIALOGUE_SPEAKERS[i][1])||'Gesprächspartner')} 🇩🇪<button type="button" class="dialogue-translate-btn" onclick="event.stopPropagation();toggleDialogueTranslations(this.closest('.dialogue-table'))" aria-label="Show translations" title="Translation">EN</button></th></tr></thead><tbody>${pairs.map(pair=>`<tr><td>${renderDialogueCell(pair[0][0],pair[0][1],pair[0][2],'A')}</td><td>${renderDialogueCell(pair[1][0],pair[1][1],pair[1][2],'B')}</td></tr>`).join('')}</tbody></table></div>`;
+}
 
 function renderSpeakingPanel(){
   const panel=$('#detail');
@@ -3295,14 +3660,15 @@ function renderTopics(){
     if(lessonBook<0){
       $('#topicLabel').textContent='Lesen · Bücher';
       const books=[
-        ['Café in Berlin',0],
+        ['☕ Café in Berlin',0],
         ['🧳 Ferien in Frankfurt',1],
         ['📜 48 Gesetze',2],
         ['👑 Der Fürst',3],
         ['💰 Rich Dad Poor Dad',4],
         ['🧠 Ego ist der Feind',5],
         ['📖 Plötzlich in Palermo',6],
-        ['🕵️ Mord am Morgen',7]
+        ['🕵️ Mord am Morgen',7],
+        ['🎭 Elvis in Köln',8]
       ];
       $('#topicButtons').innerHTML=books.map(([title,i])=>`<button class="topic-btn" onclick="openLessonBook(${i})">${esc(title)}</button>`).join('');
       return;
@@ -3310,7 +3676,7 @@ function renderTopics(){
     const book=lessonBookData(lessonBook);
     $('#topicLabel').textContent=book ? book.title : 'Lesen';
     const data=book?.data||[];
-    $('#topicButtons').innerHTML=`<button class="topic-btn" onclick="showLessonBooks()">← Bücher</button>` + (data.length ? data.map((t,i)=>{let title=(book.type==='laws'||book.type==='prince'||book.type==='richdad'||book.type==='ego'||book.type==='mord')?t.title:(i>=1&&i<=10?cafeDisplayTitle(t.title):t.title); if(book.type==='richdad'||book.type==='ego') title=decorateBookSectionTitle(lessonBook,i,title); title=normalizeTopicTitle(title,true); return `<button class="topic-btn ${i===current?'active':''}" onclick="openTopic(${i})">${esc(title)}</button>`}).join('') : '<div class="empty">Noch kein Inhalt.</div>');
+    $('#topicButtons').innerHTML=`<button class="topic-btn" onclick="showLessonBooks()">← Bücher</button>` + (data.length ? data.map((t,i)=>{let title=(book.type==='laws'||book.type==='prince'||book.type==='richdad'||book.type==='ego'||book.type==='mord')?t.title:(i>=1&&i<=10?cafeDisplayTitle(t.title):t.title); if(book.type==='mord') title=mordDisplayTitle(title); if(book.type==='richdad'||book.type==='ego') title=decorateBookSectionTitle(lessonBook,i,title); title=normalizeTopicTitle(title,true); return `<button class="topic-btn ${i===current?'active':''}" onclick="openTopic(${i})">${esc(title)}</button>`}).join('') : '<div class="empty">Noch kein Inhalt.</div>');
     return;
   }
   if(level==='comprehension'){openComprehensionTopic(i);window.scrollTo({top:document.querySelector('.detail').offsetTop-80,behavior:'smooth'});return;}if(level==='frankfurt'){
@@ -3608,6 +3974,125 @@ function renderBoldBookContent(markdown,vocab=[]){
   }).join('');
 }
 
+function speakElvisHeadingContext(target, fallback=''){
+  const heading=target && target.closest ? target.closest('.cafe-subheading') : null;
+  if(!heading){ speak(fallback || ''); return; }
+  const readableText=el=>{
+    const clone=el.cloneNode(true);
+    clone.querySelectorAll?.('.term-tip').forEach(n=>n.remove());
+    return (clone.innerText || clone.textContent || '').replace(/\s+/g,' ').trim();
+  };
+  const parts=[];
+  const headingText=readableText(heading);
+  if(headingText) parts.push(headingText);
+  let node=heading.nextElementSibling;
+  while(node){
+    if(node.matches && node.matches('h1,h2,h3,h4,h5,h6')) break;
+    const text=readableText(node);
+    if(text){
+      parts.push(text);
+      if(node.matches && node.matches('p')) break;
+    }
+    node=node.nextElementSibling;
+  }
+  speak(parts.join(' ') || fallback || headingText);
+}
+
+function elvisRichText(text, chapterHighlights=[], clickContext=null){
+  const used=new Set();
+  const highlightUsed=new Set();
+  const hl=[...chapterHighlights].sort((a,b)=>b[0].length-a[0].length);
+  function escapeRegExp(str){return String(str).replace(/[.*+?^${}()|[\]\\]/g,'\\$&');}
+  function plainPart(rawText){
+    if(!hl.length) return esc(rawText);
+    const re=new RegExp(hl.map(x=>escapeRegExp(x[0])).join('|'),'gi');
+    let out='', last=0, m;
+    while((m=re.exec(rawText))!==null){
+      const matched=m[0];
+      const idx=hl.findIndex(x=>x[0].toLocaleLowerCase()===matched.toLocaleLowerCase());
+      if(idx<0 || highlightUsed.has(idx)) continue;
+      highlightUsed.add(idx);
+      out+=esc(rawText.slice(last,m.index));
+      const en=hl[idx][1];
+      out+=`<span class="term-link" tabindex="0" role="button" onclick='event.preventDefault();event.stopPropagation();speakElvisHeadingContext(this, ${JSON.stringify(clickContext||matched)})' onkeydown='if(event.key==="Enter"||event.key===" "){event.preventDefault();event.stopPropagation();speakElvisHeadingContext(this, ${JSON.stringify(clickContext||matched)});}' aria-label="${esc(en)}">${esc(matched)}<span class="term-tip">${esc(en)}</span></span>`;
+      last=m.index+matched.length;
+    }
+    return out+esc(rawText.slice(last));
+  }
+  return String(text||'').split(/(\*\*[^*]+\*\*)/g).map(part=>{
+    if(part.startsWith('**')&&part.endsWith('**')){
+      const raw=part.slice(2,-2).trim();
+      const key=raw.toLocaleLowerCase();
+      if(used.has(key)) return esc(raw);
+      used.add(key);
+      const en=ELVIS_TRANSLATIONS[raw]||ELVIS_TRANSLATIONS[key]||'';
+      if(!en) return esc(raw);
+      return `<span class="term-link" tabindex="0" role="button" onclick='event.preventDefault();event.stopPropagation();speakElvisHeadingContext(this, ${JSON.stringify(clickContext||raw)})' onkeydown='if(event.key==="Enter"||event.key===" "){event.preventDefault();event.stopPropagation();speakElvisHeadingContext(this, ${JSON.stringify(clickContext||raw)})}' aria-label="${esc(en)}">${esc(raw)}<span class="term-tip">${esc(en)}</span></span>`;
+    }
+    return plainPart(part);
+  }).join('').replace(/\n/g,'<br>');
+}
+function renderElvisContent(markdown, chapterIndex){
+  const chapterHighlights=ELVIS_CHAPTER_HIGHLIGHTS[chapterIndex]||[];
+  const blocks=cleanBookMarkup(markdown||'').split(/\n\s*\n/);
+  return blocks.map((block,blockIndex)=>{
+    const text=block.trim(); if(!text) return '';
+    const nextBlock=(blocks[blockIndex+1]||'').trim();
+    const nextContext=nextBlock && !/^#{1,6}\s+/.test(nextBlock) ? nextBlock.replace(/\n+/g,' ') : '';
+    if(/^###\s+/.test(text)){
+      const heading=text.replace(/^###\s+/,'').trim();
+      const context=[heading,nextContext].filter(Boolean).join(' ');
+      return `<h3 class="cafe-subheading" onclick='event.stopPropagation();speak(${JSON.stringify(context)})' title="Abschnitt anhören">${elvisRichText(heading,chapterHighlights,context)}</h3>`;
+    }
+    if(/^##\s+/.test(text)){
+      const heading=text.replace(/^##\s+/,'').trim();
+      const context=[heading,nextContext].filter(Boolean).join(' ');
+      return `<h3 class="cafe-subheading" onclick='event.stopPropagation();speak(${JSON.stringify(context)})' title="Abschnitt anhören">${elvisRichText(heading,chapterHighlights,context)}</h3>`;
+    }
+    if(/^#\s+/.test(text)){
+      const heading=text.replace(/^#\s+/,'').trim();
+      const context=[heading,nextContext].filter(Boolean).join(' ');
+      return `<h2 class="cafe-subheading" onclick='event.stopPropagation();speak(${JSON.stringify(context)})' title="Abschnitt anhören">${elvisRichText(heading,chapterHighlights,context)}</h2>`;
+    }
+    if(/^\d+\.\s+/.test(text)){
+      const lines=text.split('\n').map(line=>line.trim()).filter(Boolean);
+      return `<div class="cafe-reading-list">${lines.map(line=>`<div>${elvisRichText(line,chapterHighlights)}</div>`).join('')}</div>`;
+    }
+    return `<p>${elvisRichText(text,chapterHighlights)}</p>`;
+  }).join('');
+}
+function renderElvisTopic(i){
+  const t=ELVIS_DATA[i];
+  if(!t) return '<div class="empty">Noch kein Kapitel.</div>';
+  const full=cleanBookMarkup(t.content||'');
+  const title=normalizeTopicTitle(t.title,true);
+  if(i===11){
+    return `<button class="back" onclick="showLessonBooks()">← Bücher</button><div class="lesson-book-heading">🎭 Elvis in Köln · Stufe 1</div><h2 class="cafe-chapter-heading" onclick='speak(${JSON.stringify(full)})' title="Abschnitt anhören">${esc(title)}</h2><div class="cafe-reading"><div class="section"><div class="section-title">✍️ Übungen und Tests</div>${renderElvisExerciseContent()}</div></div>`;
+  }
+  const speakText=full.replace(/\*\*/g,'').replace(/\n+/g,' ');
+  return `<button class="back" onclick="showLessonBooks()">← Bücher</button><div class="lesson-book-heading">🎭 Elvis in Köln · Stufe 1</div><h2 class="cafe-chapter-heading" onclick='speak(${JSON.stringify(speakText)})' title="Kapitel anhören">${esc(title)}</h2><div class="cafe-reading">${renderElvisContent(full,i)}</div>`;
+}
+function renderElvisExerciseContent(){
+  const id='elvis-exercises-'+Math.random().toString(36).slice(2,9);
+  const rf=[
+    'Bea hat noch nie Karneval in Köln gefeiert.',
+    '„Alaaf“ ist ein niederländisches Wort.',
+    'Müller ist eifersüchtig auf Alfred.',
+    'Müller liebt Maskenbälle.',
+    'Als Kind mochte er Karneval nicht.',
+    'Er will kein Obelix-Kostüm.',
+    'Er ist sehr schlank.',
+    'Elvis Presley war ziemlich dick.'
+  ];
+  const headings=['Eine Einladung wirft Probleme auf','Das passende Kostüm','Bea und Müller planen eine Reise','„Köln Hauptbahnhof, Köln Hauptbahnhof!“'];
+  const phrases=['verkleide mich als ...','gehe als ...','möchte ... werden/sein.','ziehe ... an.','klebe mir ... an.','binde ... um.','setze ... auf.','schminke mich ... (mit ...).','färbe mir die Haare ...'];
+  const whenRows=['Karl','Ilse','Alfred','Müller','Zorro','Bea'];
+  const verbs=['rauchen','tanzen','frieren','sich amüsieren','flüstern','verschwinden','überlegen','sich unterhalten','anrufen','abhauen','nachdenken','klauen','wieder erkennen'];
+  const adjectives=['nervös','ruhig','klug','enttäuscht','stolz','ärgerlich','umsichtig','gewalttätig','listig','fröhlich','eifersüchtig','neugierig','verzweifelt','ängstlich','erstaunt'];
+  const persons=['Zorro','Alfred','die Polizei','Müller','Ilse','Karl','Bea'];
+  const actions=['a) hat sich als Elvis verkleidet.','b) hat einen Maskenball veranstaltet.','c) hat ihre Handtasche gesucht.','d) hat Zorro im Bad eingesperrt.','e) hat eine Einladung nach Berlin geschickt.','f) hat Müllers Uhr an Zorros Arm entdeckt.','g) hat sich auf dem Ball eingeschlichen.','h) hat seine Brieftasche gesucht.','i) hat Karl, Ilse und Müller beklaut.','j) hat mit Zorro getanzt.','k) hat Alfred geschlagen.','l) ist mit Bea nach Köln gefahren.','m) hat eine Maske getragen.','n) war eifersüchtig auf Zorro.','o) ist mit Zorro nach Hause gefahren.','p) hat Zorro in Handschellen abgeführt.'];
+  return `<button class="exercise-toggle" type="button" aria-expanded="false" aria-controls="${id}" onclick="toggleExercise('${id}',this)"><span>✍️ Übungen und Tests</span><span class="exercise-chevron" aria-hidden="true">＋</span></button><div id="${id}" class="cafe-exercises" hidden style="display:none"><div class="cafe-exercise-card"><div class="cafe-exercise-question">1. Was steht im Text?</div><div class="table-wrap"><table class="data-table"><thead><tr><th>Aussage</th><th>R</th><th>F</th></tr></thead><tbody>${rf.map(x=>`<tr><td>${esc(x)}</td><td>□</td><td>□</td></tr>`).join('')}</tbody></table></div></div><div class="cafe-exercise-card"><div class="cafe-exercise-question">2. Gucken Sie sich die Bilder an: Als wer will Müller zum Kölner Karneval gehen?</div></div><div class="cafe-exercise-card"><div class="cafe-exercise-question">3. Bea bereitet die Reise nach Köln vor. Woran muss sie denken?</div><div class="table-wrap"><table class="data-table"><thead><tr><th>Termine</th><th>Telefonate</th><th>Kosten</th><th>Gepäck</th><th>…</th></tr></thead><tbody><tr><td></td><td></td><td></td><td></td><td></td></tr></tbody></table></div></div><div class="cafe-exercise-card"><div class="cafe-exercise-question">4. Ordnen Sie die Überschriften den Abschnitten 1.-4. zu und schreiben Sie eine kurze Zusammenfassung zu jedem Abschnitt.</div>${headings.map(x=>`<div>${esc(x)}</div>`).join('')}</div><div class="cafe-exercise-card"><div class="cafe-exercise-question">5.-6. Fahren Sie auch zum Kölner Karneval! Wie verkleiden Sie sich?</div><div class="cafe-reading-list">${phrases.map(x=>`<div>${esc(x)}</div>`).join('')}</div></div><div class="cafe-exercise-card"><div class="cafe-exercise-question">6. Helfen Sie Helmut Müller. Was geschieht?</div><div class="table-wrap"><table class="data-table"><thead><tr><th>Person</th><th>wann?</th><th>wo?</th><th>warum?</th><th>wie?</th><th>wem?</th></tr></thead><tbody>${whenRows.map(x=>`<tr><td>${esc(x)}</td><td></td><td></td><td></td><td></td><td></td></tr>`).join('')}</tbody></table></div><p class="lesson-guide-title">Wer verdächtigen Sie? Warum? Machen Sie einen kurzen Bericht für Helmut Müller.</p></div><div class="cafe-exercise-card"><div class="cafe-exercise-question">7.-8. Beschreiben Sie, wie sich Müller, Bea, Alfred und Zorro in Abschnitt 7 und 8 verhalten.</div><div class="lesson-vocab-note">Verben</div><div class="cafe-reading-list">${verbs.map(x=>`<div>${esc(x)}</div>`).join('')}</div><div class="lesson-vocab-note">Adjektive</div><div class="cafe-reading-list">${adjectives.map(x=>`<div>${esc(x)}</div>`).join('')}</div><p class="lesson-guide-title">Beispiel: Müller ist eifersüchtig auf Zorro.</p></div><div class="cafe-exercise-card"><div class="cafe-exercise-question">1.-9. Stellen Sie sich noch einmal die ganze Geschichte vor und ordnen Sie zu.</div><div class="table-wrap"><table class="data-table"><thead><tr><th>Person</th><th>Aktion</th></tr></thead><tbody>${persons.map(x=>`<tr><td>${esc(x)}</td><td></td></tr>`).join('')}</tbody></table></div><div class="cafe-reading-list">${actions.map(a=>`<div>${esc(a)}</div>`).join('')}</div><p class="lesson-guide-title">Ordnen Sie die Aussagen den Personen zu.</p><p class="lesson-guide-title">1.-9. Was geschah wann? Ordnen Sie die Sätze, die Sie oben zusammengebaut haben, in der richtigen zeitlichen Reihenfolge.</p><p class="lesson-guide-title">Start: e)</p></div></div>`;
+}
 function renderNewBookTopic(bookIndex,i){
   const book=lessonBookData(bookIndex);
   const t=book?.data?.[i];
@@ -3616,7 +4101,7 @@ function renderNewBookTopic(bookIndex,i){
     const answers=book.type==='dino' ? DINO_BOOK_ANSWERS[i]||[] : MORD_BOOK_ANSWERS[i-1]||[];
     const parsed=parseBookExercise(t.content,answers);
     const chapterText=parsed.main.replace(/\*\*/g,'').replace(/^#\s+[^^\n]*\n*/,'').replace(/\n+/g,' ');
-    const displayTitle=normalizeTopicTitle(t.title,true);
+    const displayTitle=normalizeTopicTitle(book.type==='mord'?mordDisplayTitle(t.title):t.title,true);
     const vocabMatch=book.type==='mord' ? parsed.main.match(/(?:^|\n)\*\*Vocabulary:\*\*[\s\S]*?(?=\n---|$)/i) : null;
     let mainText=parsed.main;
     let vocabHtml='';
@@ -3628,7 +4113,7 @@ function renderNewBookTopic(bookIndex,i){
       mainText=mainText.replace(vocabMatch[0],'').trim();
     }
     const parsedMain={main:mainText,exercise:parsed.exercise,vocab:book.type==='mord'?rows:(t.vocab||[])};
-    return `<button class="back" onclick="showLessonBooks()">← Bücher</button><div class="lesson-book-heading">${esc(book.title)}</div><h2 class="story-heading" onclick='speak(${JSON.stringify(chapterText)})' title="Text anhören">${esc(displayTitle)}</h2><div class="lesson-vocab-note">Underlined words = useful vocabulary · Hover for English meaning · Click to hear</div><div class="lesson-reader">${book.type==='mord' ? renderMordBookContent(parsedMain.main, parsedMain.vocab||[], i) : renderBoldBookContent(parsedMain.main, parsedMain.vocab||[])}</div>${vocabHtml}${renderCafeExercise(parsedMain.exercise)}`;
+    return `<button class="back" onclick="showLessonBooks()">← Bücher</button><div class="lesson-book-heading">${esc(book.title)}</div><h2 class="story-heading" onclick='speak(${JSON.stringify(chapterText)})' title="Text anhören">${esc(displayTitle)}</h2><div class="lesson-reader">${book.type==='mord' ? renderMordBookContent(parsedMain.main, parsedMain.vocab||[], i) : renderBoldBookContent(parsedMain.main, parsedMain.vocab||[])}</div>${vocabHtml}${renderCafeExercise(parsedMain.exercise)}`;
   }
   const full=cleanBookMarkup(t.content||'');
   const displayFull=full.replace(/^\s*#{1,6}\s+/gm,'');
@@ -3637,7 +4122,7 @@ function renderNewBookTopic(bookIndex,i){
   const translation=getBookTranslation(bookIndex,i);
   const translationBox=translation?`<div class="lesson-translation"><div class="lesson-translation-title">🇬🇧 Exact English translation</div><div>${esc(translation)}</div></div>`:'';
   const displayTitle=normalizeTopicTitle((bookIndex===4||bookIndex===5)?decorateBookSectionTitle(bookIndex,i,t.title):t.title,true);
-  return `<button class="back" onclick="showLessonBooks()">← Bücher</button><div class="lesson-book-heading">${esc(book.title)}</div><h2 class="story-heading" onclick='speak(${JSON.stringify(full)})' title="Text anhören">${esc(displayTitle)}</h2><div class="lesson-vocab-note">Underlined words = useful vocabulary · Hover for English meaning · Click to hear</div><div class="lesson-reader">${paras}</div>${translationBox}`;
+  return `<button class="back" onclick="showLessonBooks()">← Bücher</button><div class="lesson-book-heading">${esc(book.title)}</div><h2 class="story-heading" onclick='speak(${JSON.stringify(full)})' title="Text anhören">${esc(displayTitle)}</h2><div class="lesson-reader">${paras}</div>${translationBox}`;
 }
 
 function openTopic(i){current=i;if(level==='instructions'){renderInstructions();return;}if(level==='vokabular'){ openVocabTopic(i); return; }
@@ -3646,10 +4131,10 @@ if(level==='lesen'){
   const book=lessonBookData(lessonBook);
   renderTopics();
   const detailEl=$('#detail');const topicsEl=$('.topic-list');
-  detailEl.innerHTML=book.type==='cafe'?renderCafeTopic(i):book.type==='frankfurt'?renderFrankfurtTopic(i):renderNewBookTopic(lessonBook,i);
-  detailEl;topicsEl;void detailEl.offsetWidth;void topicsEl.offsetWidth;requestAnimationFrame(()=>{detailEl;topicsEl});window.scrollTo({top:document.querySelector('.detail').offsetTop-80,behavior:'smooth'});return;
+  detailEl.innerHTML=book.type==='cafe'?renderCafeTopic(i):book.type==='frankfurt'?renderFrankfurtTopic(i):book.type==='elvis'?renderElvisTopic(i):renderNewBookTopic(lessonBook,i);
+  void detailEl.offsetWidth; void topicsEl.offsetWidth;window.scrollTo({top:document.querySelector('.detail').offsetTop-80,behavior:'smooth'});return;
 }
-if(level==='frankfurt'){renderTopics();const detailEl=$('#detail');const topicsEl=$('.topic-list');detailEl.innerHTML=renderFrankfurtTopic(i);detailEl;topicsEl;void detailEl.offsetWidth;void topicsEl.offsetWidth;requestAnimationFrame(()=>{detailEl;topicsEl});window.scrollTo({top:document.querySelector('.detail').offsetTop-80,behavior:'smooth'});return;}if(level==='sprechen'){renderSpeakingPanel();window.scrollTo({top:document.querySelector('.detail').offsetTop-80,behavior:'smooth'});return;}if(level==='cafe'){renderTopics();const detailEl=$('#detail');const topicsEl=$('.topic-list');detailEl.innerHTML=renderCafeTopic(i);detailEl;topicsEl;void detailEl.offsetWidth;void topicsEl.offsetWidth;requestAnimationFrame(()=>{detailEl;topicsEl});window.scrollTo({top:document.querySelector('.detail').offsetTop-80,behavior:'smooth'});return;}const t=(DATA[level]||[])[i];const detailEl=$('#detail');const topicsEl=$('.topic-list');renderTopics();if(!t){detailEl.innerHTML='<div class="empty">Noch keine Themen verfügbar.</div>';}else{const fullStory=t.story.join(' ');const highlightPlan=buildHighlightPlan(t.story,t.vocab,level==='simple'?20:10,level==='simple'?(SIMPLE_EXTRA_HIGHLIGHTS[i]||[]):[]);const highlightState={used:new Set(),count:0,limit:level==='simple'?18:10};detailEl.innerHTML=`<button class="back" onclick="window.scrollTo({top:0,behavior:'smooth'})">← Thema</button><h2 class="story-heading" onclick='speak(${JSON.stringify(fullStory)})' title="Gesamten Text anhören">${esc(normalizeTopicTitle(t.title,true))}</h2><div class="story">${t.story.map(p=>`<p>${renderHighlightedText(p,highlightPlan,highlightState)}</p>`).join('')}</div><div class="section translation-section"><div class="section-title">🌍 Übersetzung</div>${renderTable(t.translation,'translation')}</div><div class="section"><div class="section-title">📚 Wortschatz</div>${renderVocab(t.vocab)}</div>${t.grammar?`<div class="section"><div class="section-title">🧠 Grammatik</div><div class="section-note"><strong>${esc(t.grammar.title)}</strong><br>${esc(t.grammar.text)}<br><br>${t.grammar.examples.map(x=>'• '+esc(x)).join('<br>')}</div></div>`:''}${renderCultureNote(t.title)}<div class="section"><div class="section-title">🗣️ Nacherzählung</div>${renderTable(t.speaking,'speak')}</div>${t.listening?`<div class="section"><div class="section-title">🎧 Hörverstehen</div>${renderListening(t.listening)}</div>`:''}`;}focusDetail();window.scrollTo({top:document.querySelector('.detail').offsetTop-80,behavior:'smooth'});}
+if(level==='frankfurt'){renderTopics();const detailEl=$('#detail');const topicsEl=$('.topic-list');detailEl.innerHTML=renderFrankfurtTopic(i);void detailEl.offsetWidth; void topicsEl.offsetWidth;window.scrollTo({top:document.querySelector('.detail').offsetTop-80,behavior:'smooth'});return;}if(level==='sprechen'){renderSpeakingPanel();window.scrollTo({top:document.querySelector('.detail').offsetTop-80,behavior:'smooth'});return;}if(level==='cafe'){renderTopics();const detailEl=$('#detail');const topicsEl=$('.topic-list');detailEl.innerHTML=renderCafeTopic(i);void detailEl.offsetWidth; void topicsEl.offsetWidth;window.scrollTo({top:document.querySelector('.detail').offsetTop-80,behavior:'smooth'});return;}const t=(DATA[level]||[])[i];const detailEl=$('#detail');const topicsEl=$('.topic-list');renderTopics();if(!t){detailEl.innerHTML='<div class="empty">Noch keine Themen verfügbar.</div>';}else{const fullStory=t.story.join(' ');const highlightPlan=buildHighlightPlan(t.story,t.vocab,level==='simple'?20:10,level==='simple'?(SIMPLE_EXTRA_HIGHLIGHTS[i]||[]):[]);const highlightState={used:new Set(),count:0,limit:level==='simple'?18:10};detailEl.innerHTML=`<button class="back" onclick="window.scrollTo({top:0,behavior:'smooth'})">← Thema</button><h2 class="story-heading" onclick='speak(${JSON.stringify(fullStory)})' title="Gesamten Text anhören">${esc(normalizeTopicTitle(t.title,true))}</h2><div class="story">${t.story.map(p=>`<p>${renderHighlightedText(p,highlightPlan,highlightState)}</p>`).join('')}</div><div class="section translation-section"><div class="section-title">🌍 Übersetzung</div>${renderTable(t.translation,'translation')}</div><div class="section"><div class="section-title">📚 Wortschatz</div>${renderVocab(t.vocab)}</div>${t.grammar?`<div class="section"><div class="section-title">🧠 Grammatik</div><div class="section-note"><strong>${esc(t.grammar.title)}</strong><br>${esc(t.grammar.text)}<br><br>${t.grammar.examples.map(x=>'• '+esc(x)).join('<br>')}</div></div>`:''}${renderCultureNote(t.title)}<div class="section"><div class="section-title">🗣️ Nacherzählung</div>${renderTable(t.speaking,'speak')}</div>${t.listening?`<div class="section"><div class="section-title">🎧 Hörverstehen</div>${renderListening(t.listening)}</div>`:''}`;}focusDetail();window.scrollTo({top:document.querySelector('.detail').offsetTop-80,behavior:'smooth'});}
 
 // Switch between Simple, Understandable, Dialoge, Café in Berlin, and Ferien in Frankfurt.
 function setLevel(l){level=l;current=0;lessonBook=-1;document.querySelectorAll('.pill[data-level]').forEach(b=>b.classList.toggle('active',b.dataset.level===l));if(l==='welcome'){renderWelcome();return;}if(l==='comprehension'){comprehensionLevel=null;renderComprehensionPanel();window.scrollTo({top:document.querySelector('.detail').offsetTop-80,behavior:'smooth'});return;}if(l==='sprechen'){document.querySelector('.topic-shell')?.classList.remove('welcome-only');sprechenLevel=null;renderTopics();renderSpeakingRecorder();window.scrollTo({top:document.querySelector('.detail').offsetTop-80,behavior:'smooth'});return;}if(l==='schriben'){document.querySelector('.topic-shell')?.classList.remove('welcome-only');schribenLevel=null;schribenSection='exam';schribenExam=0;schribenEditorVisible=true;renderSchriben();window.scrollTo({top:document.querySelector('.detail').offsetTop-80,behavior:'smooth'});return;}if(l==='instructions'){instructionSection='how';renderInstructions();return;}renderTopics();if(l==='lesen'||l==='mord'){if(l==='lesen'){showLessonBooks();}else{document.querySelector('.detail').innerHTML='<div class="empty">Noch kein Inhalt.</div>';}return;}openTopic(0)}
@@ -3658,7 +4143,7 @@ function installUniversalWordSpeech(){
   const detail=document.getElementById('detail');
   if(!detail || detail.dataset.universalWordSpeech==='1') return;
   detail.dataset.universalWordSpeech='1';
-  const excluded='button,a,input,textarea,select,[contenteditable="true"],.term-link,.speakable,.speaker,.schreiben-translate-btn,.sound-word';
+  const excluded='button,a,input,textarea,select,option,[contenteditable="true"],video,audio,summary,.term-link,.speakable,.speaker,.schreiben-translate-btn,.sound-word,.story-heading,.cafe-chapter-heading,.dialogue-heading,.speaking-section-title,.section-title,.thema-main-heading,.thema-heading,.thema-subheading,.speaking-section p,.speaking-section li,.speaking-section td,.speaking-section th';
   function textPoint(event){
     try{
       if(document.caretPositionFromPoint){
@@ -3692,7 +4177,7 @@ function installUniversalWordSpeech(){
     const word=text.slice(left,right).replace(/^['’_-]+|['’_-]+$/g,'').trim();
     if(!word) return;
     event.preventDefault();
-    event.stopPropagation();
+    event.stopImmediatePropagation();
     speak(word);
   },true);
 }
@@ -3707,190 +4192,9 @@ window.addEventListener('beforeunload',()=>{if(recorderStream)recorderStream.get
 document.querySelectorAll('.pill[data-level]').forEach(b=>b.classList.remove('active'));renderWelcome();
 
 
-// Every word in page learning content is clickable for pronunciation.
-(function(){
-  const excluded='button,a,input,textarea,select,option,[contenteditable="true"],video,audio,summary,.speakable';
-  function wordAtPoint(ev){
-    let pos=null;
-    try{
-      if(document.caretPositionFromPoint) pos=document.caretPositionFromPoint(ev.clientX,ev.clientY);
-      else if(document.caretRangeFromPoint){
-        const r=document.caretRangeFromPoint(ev.clientX,ev.clientY);
-        if(r) pos={offsetNode:r.startContainer,offset:r.startOffset};
-      }
-    }catch(_e){}
-    if(!pos || !pos.offsetNode || pos.offsetNode.nodeType!==Node.TEXT_NODE) return null;
-    const text=pos.offsetNode.nodeValue||'';
-    let at=Math.max(0,Math.min(pos.offset,text.length));
-    const isWord=c=>/[\p{L}\p{M}\p{N}'’\-]/u.test(c||'');
-    if(at===text.length && at>0) at--;
-    if(!isWord(text[at]) && at>0 && isWord(text[at-1])) at--;
-    if(!isWord(text[at])) return null;
-    let a=at,b=at+1;
-    while(a>0 && isWord(text[a-1])) a--;
-    while(b<text.length && isWord(text[b])) b++;
-    const word=text.slice(a,b).trim();
-    return word ? {word,node:pos.offsetNode} : null;
-  }
-  document.addEventListener('click',function(ev){
-    if(!ev.target.closest) return;
-    const mainHeading=ev.target.closest('.thema-main-heading');
-    if(mainHeading){
-      ev.preventDefault();
-      speakThemaMainHeading(mainHeading);
-      return;
-    }
-    const sectionHeading=ev.target.closest('.thema-heading,.thema-subheading');
-    if(sectionHeading){
-      ev.preventDefault();
-      speakThemaHeading(sectionHeading);
-      return;
-    }
-    if(ev.target.closest(excluded)) return;
-    if(ev.target.closest('.term-link,.story-heading,.thema-main-heading,.thema-heading,.thema-subheading')) return;
-    const inContent=ev.target.closest('#detail,#hero');
-    if(!inContent) return;
-    const found=wordAtPoint(ev);
-    if(!found) return;
-    ev.preventDefault();
-    ev.stopPropagation();
-    speak(found.word);
-  },true);
-  document.addEventListener('keydown',function(ev){
-    if(ev.key!=='Enter' && ev.key!==' ') return;
-    const target=ev.target;
-    if(!target?.closest) return;
-    const mainHeading=target.closest('.thema-main-heading');
-    if(mainHeading){ ev.preventDefault(); speakThemaMainHeading(mainHeading); return; }
-    const sectionHeading=target.closest('.thema-heading,.thema-subheading');
-    if(sectionHeading){ ev.preventDefault(); speakThemaHeading(sectionHeading); }
-  },true);
-})();
+// Universal pronunciation is installed once above.
+
 </script>
-<style>
-/* Thema reading presentation: one main glass surface, with clean unboxed headings. */
-.thema-reader .thema-section-title{
-  margin-top:30px;
-  margin-bottom:14px;
-}
-.thema-reader .thema-heading,.thema-reader .thema-subheading{
-  background:transparent!important;
-  border:0!important;
-  box-shadow:none!important;
-}
-.thema-reader .thema-heading{
-  margin:34px 0 16px;
-  padding:0;
-  font-size:25px;
-  line-height:1.18;
-  letter-spacing:-.03em;
-}
-.thema-reader .thema-heading:first-child{margin-top:4px}
-.thema-reader .thema-subheading{
-  margin:26px 0 12px;
-  padding:0;
-  font-size:17px;
-  line-height:1.3;
-  font-weight:750;
-}
-.thema-reader .thema-grammar-heading{margin-top:22px}
-.thema-reader .thema-heading + p,
-.thema-reader .thema-heading + .thema-table,
-.thema-reader .thema-heading + .cafe-reading-list,
-.thema-reader .thema-subheading + p,
-.thema-reader .thema-subheading + .thema-table,
-.thema-reader .thema-subheading + .cafe-reading-list{
-  margin-bottom:18px;
-}
-.thema-reader .thema-grammar-text,.thema-reader .thema-grammar-list{
-  font-size:12.5px;
-  line-height:1.55;
-}
-.thema-reader .thema-grammar-table .data-table th,
-.thema-reader .thema-grammar-table .data-table td{
-  padding:8px 9px;
-  font-size:11.5px;
-  line-height:1.4;
-}
-.thema-reader .thema-table{margin:12px 0 16px}
-.thema-reader .thema-grammar-table{margin:8px 0 12px}
-.thema-reader .section{
-  padding:0!important;
-  margin-top:20px;
-  border:0!important;
-  border-radius:0!important;
-  background:transparent!important;
-  box-shadow:none!important;
-}
-</style>
-</body></html>
 
-<style id="final-polish-overrides">
-/* FINAL NAVIGATION HOVER ANIMATION */
-nav .nav-links a::after{
-  width:100% !important;
-  transform:scaleX(0) !important;
-  transform-origin:left center !important;
-  opacity:1 !important;
-  transition:transform 1.05s cubic-bezier(.22,.61,.36,1) !important;
-}
-nav .nav-links a:hover::after,
-nav .nav-links a.active::after{
-  width:100% !important;
-  transform:scaleX(1) !important;
-}
-
-/* FINAL: Schreiben / Sprechen / instruction content stays open on the main glass surface */
-.detail .schreiben-guide,
-.detail .schreiben-exam-part,
-.detail .schreiben-editor-wrap,
-.detail .schreiben-editor-toolbar,
-.detail .schreiben-feedback,
-.detail .schreiben-char,
-.detail .speaking-section,
-.detail .speaking-meta,
-.detail .speaking-quote,
-.detail .speaking-success,
-.detail .instruction-card,
-.detail .instruction-note,
-.detail .listening-card,
-.detail .sprechen-recorder-main,
-.detail .sprechen-audio-wrap,
-.detail .sprechen-saved-item{
-  background:transparent !important;
-  border-color:transparent !important;
-  box-shadow:none !important;
-}
-.detail .schreiben-guide,
-.detail .schreiben-exam-part,
-.detail .speaking-section,
-.detail .instruction-card,
-.detail .instruction-note,
-.detail .listening-card,
-.detail .sprechen-recorder-main,
-.detail .speaking-meta,
-.detail .speaking-quote,
-.detail .speaking-success{
-  border-width:0 !important;
-  border-radius:0 !important;
-}
-.detail .schreiben-guide,
-.detail .schreiben-exam-part,
-.detail .speaking-section,
-.detail .instruction-card,
-.detail .instruction-note,
-.detail .listening-card,
-.detail .sprechen-recorder-main{
-  padding-left:0 !important;
-  padding-right:0 !important;
-}
-.detail .schreiben-exam-part + .schreiben-exam-part,
-.detail .speaking-section + .speaking-section{
-  border-top:0 !important;
-  box-shadow:none !important;
-}
-
-/* Keep only the intentional sentence table container */
-.section.translation-section{background:transparent !important;border:0 !important;box-shadow:none !important;padding-left:0 !important;padding-right:0 !important;}
-.section.translation-section .table-wrap{border:1px solid rgba(255,255,255,.10) !important;}
-</style>
+</body>
+</html>
