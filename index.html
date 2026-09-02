@@ -181,19 +181,20 @@ body.light .schreiben-char{background:#fafbfc;color:#171b24}
 .schreiben-guide p{margin:0 0 8px;color:var(--text-soft);font-size:13px;line-height:1.65}
 .schreiben-guide p:last-child{margin-bottom:0}
 .schreiben-exam-grid{display:grid;grid-template-columns:1fr;gap:12px}
-.schreiben-exam-part{position:relative;overflow:visible}.schreiben-translate-btn{position:absolute;right:10px;top:-10px;width:25px;height:25px;display:inline-flex;align-items:center;justify-content:center;border:1px solid var(--line);border-radius:50%;background:var(--soft-panel);color:var(--muted);font-size:14px;line-height:1;cursor:pointer;z-index:2;transition:transform .28s ease,background .18s ease,color .18s ease,border-color .18s ease}
+.schreiben-exam-part{position:relative;overflow:visible}.schreiben-translate-btn{position:absolute;right:12px;top:12px;width:25px;height:25px;display:inline-flex;align-items:center;justify-content:center;border:1px solid var(--line);border-radius:50%;background:var(--soft-panel);color:var(--muted);font-size:14px;line-height:1;cursor:pointer;z-index:3;transition:transform .28s ease,background .18s ease,color .18s ease,border-color .18s ease}
 .schreiben-translate-btn:hover{background:var(--hover-bg);color:var(--hover-fg);border-color:var(--hover-border)}
 .schreiben-translate-btn.rotating{transform:rotate(180deg)}
 .schreiben-translation{display:none;margin:8px 0 10px;padding:9px 0 0;color:var(--muted);font-size:12px;line-height:1.65;border-top:1px solid var(--line)}
 .schreiben-translation.show{display:block}
 .schreiben-translation.loading{opacity:.72}
 .schreiben-word-sound{cursor:pointer;color:inherit;text-decoration:none;border:0;background:transparent}.schreiben-word-sound:hover{color:inherit}.schreiben-translation.error{color:var(--dim)}
-@media(max-width:620px){.schreiben-translate-btn{right:7px;top:-8px;width:23px;height:23px;font-size:13px}.schreiben-exam-part h3{padding-right:31px}}
+@media(max-width:620px){.schreiben-translate-btn{right:10px;top:10px;width:23px;height:23px;font-size:13px}.schreiben-exam-part h3{padding-right:96px}.schreiben-exam-part .schreiben-teil{position:absolute;right:43px;top:16px;margin-top:0;padding:0}.schreiben-exam-head{display:block;padding-right:0}}
 
 .schreiben-exam-part{padding:16px;border:1px solid var(--line);border-radius:12px;background:rgba(255,255,255,.025)}
 .schreiben-exam-head{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin:0 0 10px}
 .schreiben-exam-part h3{margin:0;font-size:16px;color:var(--text)}
-.schreiben-exam-part .schreiben-teil{flex:0 0 auto;font-size:10px;line-height:1.2;color:var(--dim);font-weight:600;white-space:nowrap;margin-top:2px}
+.schreiben-exam-part .schreiben-teil{flex:0 0 auto;font-size:10px;line-height:1.2;color:var(--dim);font-weight:600;white-space:nowrap;margin-top:2px;margin-right:42px}
+.schreiben-exam-part h3{padding-right:88px}
 .schreiben-exam-part p{margin:0 0 7px;color:var(--text-soft);font-size:13px;line-height:1.6}
 .schreiben-exam-part p:last-child{margin-bottom:0}
 .schreiben-exam-part .exam-task{color:var(--text)}
@@ -1645,6 +1646,245 @@ button,a{touch-action:manipulation}
   box-shadow:none!important;
 }
 </style>
+<style id="mobile-comfort-overrides">
+/* =========================================================
+   Mobile-only comfort layer
+   Presentation/layout only. No content or JS behaviour changed.
+   ========================================================= */
+@media (max-width: 700px){
+  /* Keep the global site navigation in its own top-right area on phones. */
+  nav{position:absolute!important;top:0!important;left:0!important;right:0!important;width:100%!important;min-height:54px;padding:9px 12px!important;gap:10px;justify-content:space-between;align-items:flex-start}
+  .logo{flex:0 0 auto;font-size:17px!important;white-space:nowrap}
+  .logo span{font-size:7.5px!important;letter-spacing:.12em!important}
+  .nav-links{flex:0 0 auto;min-width:0;max-width:calc(100% - 74px);display:flex;align-items:center;justify-content:flex-end;gap:10px!important;overflow:visible;white-space:nowrap;padding:2px 0 0;margin-left:auto}
+  .nav-links a{flex:0 0 auto;font-size:11px!important;white-space:nowrap}
+  .theme-toggle{position:fixed!important;top:auto!important;right:12px!important;bottom:14px!important;z-index:120;padding:8px 11px!important;font-size:11px!important}
+  .top-area{position:relative!important;top:auto!important;padding:8px 0!important;border-left:0!important;border-right:0!important}
+  .level-pills{flex-wrap:nowrap!important;justify-content:center!important;overflow-x:auto;overflow-y:hidden;gap:6px!important;padding:0 2px 2px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+  .level-pills::-webkit-scrollbar{display:none}
+  .pill{flex:0 0 auto;white-space:nowrap;padding:7px 10px!important;font-size:11px!important}
+  .sprechen-levels{gap:6px!important;margin-bottom:10px!important;justify-content:flex-start!important;align-items:center!important}
+  .sprechen-level-btn{padding:7px 12px!important;font-size:11.5px!important;line-height:1.1!important;flex:0 0 auto!important}
+  .container{width:calc(100% - 24px)!important;max-width:none!important}
+  #hero{padding:72px 10px 20px!important}
+  #hero h1{font-size:40px!important}
+  .subtitle{font-size:15px!important}
+  .hero-philosophy,.desc{max-width:100%!important;font-size:12px!important;line-height:1.62!important}
+  .main{padding:10px 0 44px!important}
+  .topic-shell{display:block!important}
+
+  /* Topic navigation: keep the existing buttons, but put them in a compact vertical scroller. */
+  .topic-list{position:relative!important;top:auto!important;width:100%!important;padding:7px!important;margin-bottom:10px;border-radius:15px!important;max-height:29.4vh!important;overflow-y:auto!important;overflow-x:hidden!important;-webkit-overflow-scrolling:touch;scrollbar-width:thin}
+  .topic-label{padding:4px 7px 7px!important;font-size:9px!important;position:sticky;top:0;z-index:2;background:inherit}
+  #topicButtons{display:block!important;max-height:none!important;overflow:visible!important;padding:0 1px 2px}
+  .topic-btn,.a2-nav-card{display:block!important;width:100%!important;max-width:none!important;margin:2px 0!important;padding:8px 10px!important;font-size:11px!important;line-height:1.35!important;white-space:nowrap!important;overflow:hidden!important;text-overflow:ellipsis!important}
+
+  /* Keep the vocabulary heading "📚 Wortschatz" on one visible line on phones. */
+  .section-title{font-size:14px!important;white-space:nowrap!important;word-break:keep-all!important;overflow:visible!important;text-overflow:clip!important;display:block!important;width:max-content;max-width:100%}
+  .detail{width:100%!important;max-width:none!important;padding:15px 12px!important;border-radius:16px!important}
+  .detail h2{font-size:24px!important;line-height:1.12!important;margin-bottom:14px!important}
+  .story,.cafe-reading,.lesson-reader{font-size:14px!important;line-height:1.78!important}
+  .section,.speaking-section,.cafe-block,.instruction-card,.instruction-note,.welcome-box,.welcome-main,.schreiben-guide,.schreiben-exam-part,.sprechen-recorder-main,.listening-card,.lesson-translation,.speaking-meta,.speaking-quote{max-width:100%!important}
+  .section{padding:13px!important;margin-top:17px!important;border-radius:16px!important}
+  .table-wrap{width:100%!important;max-width:100%!important;overflow-x:auto!important;-webkit-overflow-scrolling:touch}
+  .data-table{width:100%!important;max-width:none;table-layout:fixed}
+  .data-table th,.data-table td{padding:9px 7px!important;font-size:11px!important;line-height:1.45!important;overflow-wrap:anywhere!important;word-break:normal!important}
+  .qa-row{grid-template-columns:1fr!important}
+  .qa-bubble{padding:10px 11px!important}
+  /* Wortschatz: force two vocabulary columns on phones, just like desktop. */
+  .vocab-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+  .vocab-item{padding:12px 11px!important;min-width:0}
+  .instruction-page h2,.sprechen-recorder-title{font-size:25px!important}
+  .instruction-grid{grid-template-columns:1fr!important}
+  .welcome-main{padding:18px 14px 20px!important}
+  .schreiben-editor{min-height:280px!important;font-size:14px!important}
+  .sprechen-recorder-card{padding:0!important}
+  .sprechen-recorder-main{padding:13px!important}
+  .sprechen-recorder-actions{width:100%}
+  .sprechen-record-btn{width:100%!important;min-width:0!important}
+}
+</style>
+<style id="retelling-table-overrides">
+/* Nacherzählung uses the same two-column dialogue-table treatment as Sprechen A1. */
+.retelling-table{width:100%!important;table-layout:fixed}
+.retelling-table th,.retelling-table td{width:50%!important;overflow-wrap:anywhere;word-break:normal;vertical-align:top}
+@media(max-width:700px){
+  .retelling-table th,.retelling-table td{font-size:11px!important;padding:9px 7px!important;line-height:1.45!important}
+}
+</style>
+<style id="final-schreiben-exercise-fix">
+/* Keep Schreiben controls in their own corner without covering task text or Teil. */
+.schreiben-exam-part{position:relative!important;}
+.schreiben-translate-btn{top:10px!important;right:10px!important;}
+.schreiben-exam-part .schreiben-teil{position:absolute!important;top:43px!important;right:12px!important;margin:0!important;padding:0!important;white-space:nowrap!important;}
+.schreiben-exam-part h3{padding-right:84px!important;}
+@media(max-width:620px){
+  .schreiben-translate-btn{top:9px!important;right:9px!important;width:23px!important;height:23px!important;}
+  .schreiben-exam-part .schreiben-teil{top:39px!important;right:10px!important;font-size:9.5px!important;}
+  .schreiben-exam-part h3{padding-right:78px!important;}
+}
+/* Remove the unnecessary separate box around ✍️ Übung; keep it on the main content surface. */
+.detail .exercise-toggle{
+  border:0!important;
+  background:transparent!important;
+  box-shadow:none!important;
+  padding-left:0!important;
+  padding-right:0!important;
+}
+</style>
+<style id="mobile-topic-nav-cleanup">
+/* Mobile topic navigation: compact scroller with a permanently visible close control. */
+.mobile-topic-pill,.mobile-topic-close{display:none}
+@media(max-width:700px){
+  .topic-shell{position:relative!important}
+  .detail{margin-left:0!important;margin-right:0!important}
+  .topic-list{
+    position:sticky!important;
+    top:4px!important;
+    width:100%!important;
+    max-width:none!important;
+    max-height:20vh!important;
+    overflow-y:auto!important;
+    overflow-x:hidden!important;
+    -webkit-overflow-scrolling:touch;
+    overscroll-behavior:contain;
+    scrollbar-width:thin;
+    padding:4px 6px 6px!important;
+    padding-top:0!important;
+    margin-bottom:8px!important;
+    box-shadow:none!important;
+    background:rgba(17,19,26,.72)!important;
+    backdrop-filter:none!important;
+    -webkit-backdrop-filter:none!important;
+  }
+  .mobile-topic-close{
+    position:sticky!important;
+    top:0!important;
+    z-index:20!important;
+    display:flex!important;
+    width:100%!important;
+    height:31px!important;
+    margin:0!important;
+    padding:4px 4px 0 0!important;
+    justify-content:flex-end!important;
+    align-items:flex-start!important;
+    background:inherit!important;
+    pointer-events:none!important;
+  }
+  .mobile-topic-close button{
+    position:sticky!important;
+    top:4px!important;
+    right:4px!important;
+    margin:0 0 0 auto!important;
+    width:23px!important;
+    height:23px!important;
+    display:inline-flex!important;
+    align-items:center!important;
+    justify-content:center!important;
+    padding:0!important;
+    border:1px solid var(--line)!important;
+    border-radius:50%!important;
+    background:rgba(255,255,255,.06)!important;
+    color:var(--text)!important;
+    font-size:16px!important;
+    line-height:1!important;
+    box-shadow:none!important;
+    pointer-events:auto!important;
+  }
+
+  /* Schreiben A1/A2/B1/B2: use the same mobile size and position as the other level buttons. */
+  .schreiben-levels-side{
+    justify-content:flex-start!important;
+    align-items:center!important;
+    gap:6px!important;
+    margin-bottom:10px!important;
+  }
+  .schreiben-levels-side .sprechen-level-btn{
+    padding:7px 12px!important;
+    font-size:11.5px!important;
+    line-height:1.1!important;
+    flex:0 0 auto!important;
+  }
+  .mobile-topic-pill{
+    display:none!important;
+    width:max-content!important;
+    max-width:100%!important;
+    margin:0 auto 10px!important;
+    padding:7px 13px!important;
+    border:1px solid var(--line)!important;
+    border-radius:999px!important;
+    background:rgba(17,19,26,.72)!important;
+    color:var(--text)!important;
+    font-size:11px!important;
+    font-weight:700!important;
+    box-shadow:none!important;
+  }
+  .topic-shell.mobile-topics-collapsed .topic-list{display:none!important}
+  .topic-shell.mobile-topics-collapsed .mobile-topic-pill{display:inline-flex!important;align-items:center;justify-content:center!important}
+  body.light .topic-list{
+    box-shadow:none!important;
+    background:rgba(255,255,255,.94)!important;
+    backdrop-filter:none!important;
+    -webkit-backdrop-filter:none!important;
+  }
+  body.light .mobile-topic-close{background:rgba(255,255,255,.97)!important}
+  body.light .topic-label{background:rgba(255,255,255,.97)!important}
+  body.light .mobile-topic-pill{background:rgba(255,255,255,.94)!important}
+}
+</style>
+
+<style id="lesson-translation-and-exercise-fix">
+/* Lesson translation control: same compact rotating control language as Schreiben. */
+.lesson-reader-shell{position:relative;}
+.lesson-translate-btn{position:absolute;top:10px;right:10px;width:25px;height:25px;display:inline-flex;align-items:center;justify-content:center;padding:0;border:1px solid var(--line);border-radius:50%;background:var(--soft-panel);color:var(--muted);font-size:14px;line-height:1;cursor:pointer;z-index:4;transform-origin:center;transition:transform .28s ease,background .18s ease,color .18s ease,border-color .18s ease}
+.lesson-translate-btn:hover{background:var(--hover-bg);color:var(--hover-fg);border-color:var(--hover-border)}
+.lesson-translate-btn.rotating{transform:rotate(180deg)}
+.lesson-en-view{display:none;}
+.lesson-reader-shell.translation-open .lesson-de-view > .lesson-reader,
+.lesson-reader-shell.translation-open .lesson-de-view > .cafe-reading{display:none!important;}
+.lesson-reader-shell.translation-open .lesson-en-view{display:block!important;}
+.lesson-en-view > .lesson-reader,.lesson-en-view > .cafe-reading{font:inherit;color:inherit;}
+/* Remove the extra outer card around every ✍️ Übung control; keep the control on the main surface. */
+.detail .section:has(> .exercise-toggle){
+  border:0!important;
+  background:transparent!important;
+  box-shadow:none!important;
+  padding-left:0!important;
+  padding-right:0!important;
+}
+@media(max-width:620px){
+  .lesson-translate-btn{top:9px;right:9px;width:23px;height:23px;font-size:13px}
+}
+</style>
+
+<style id="final-lesson-control-position">
+/* Keep the lesson swap control in the same precise top-right corner as the other small swap controls. */
+.lesson-reader-shell{position:relative!important;}
+.lesson-translate-btn{top:10px!important;right:10px!important;width:25px!important;height:25px!important;}
+@media(max-width:620px){
+  .lesson-translate-btn{top:9px!important;right:9px!important;width:23px!important;height:23px!important;}
+}
+</style>
+
+<style id="final-exercise-flat-fix">
+/* Exercise sections remain attached to the main content surface; only their functional controls/tables retain structure. */
+.detail .section:has(> .exercise-toggle),
+.detail .exercise-section{
+  background:transparent!important;
+  border:0!important;
+  box-shadow:none!important;
+  padding-left:0!important;
+  padding-right:0!important;
+}
+.detail .section:has(> .exercise-toggle) > .exercise-toggle,
+.detail .exercise-section > .exercise-toggle{
+  border:0!important;
+  background:transparent!important;
+  box-shadow:none!important;
+  padding-left:0!important;
+  padding-right:0!important;
+}
+</style>
 </head>
 <body>
 <nav aria-label="Main navigation">
@@ -1659,8 +1899,11 @@ button,a{touch-action:manipulation}
 <button id="themeToggle" class="theme-toggle" type="button" aria-label="Seitenmodus wechseln">☀︎ Hell</button>
 <header id="hero"><h1><span>Thema</span></h1><p class="subtitle">Learn smart, not hard.</p><p class="hero-philosophy">Nichts ist kompliziert, wenn Begeisterung und Hingabe da sind. Wer die Struktur einer Sprache versteht, erkennt ihre Wege leichter.</p></header>
 <div class="top-area"><div class="container"><div class="level-pills"><button class="pill" data-level="comprehension">Verstehen</button><button class="pill" data-level="schriben">Schreiben</button><button class="pill" data-level="sprechen">Sprechen</button><button class="pill" data-level="lesen">Lesen</button></div></div></div>
-<main class="main container" id="main-content"><div class="topic-shell"><aside class="topic-list" aria-label="Topic navigation"><div class="topic-label" id="topicLabel">Understandable · A2</div><div id="topicButtons"></div></aside><section class="detail" id="detail" tabindex="-1" aria-live="polite" aria-label="Learning content"><div class="empty">Wähle ein Thema.</div></section></div></main>
+<main class="main container" id="main-content"><div class="topic-shell"><aside class="topic-list" aria-label="Topic navigation"><div class="mobile-topic-close"><button type="button" aria-label="Themen schließen" title="Themen schließen" onclick="toggleMobileTopics(false)">×</button></div><div class="topic-label" id="topicLabel">Understandable · A2</div><div id="topicButtons"></div></aside><button type="button" class="mobile-topic-pill" aria-label="Themen öffnen" onclick="toggleMobileTopics(true)">☰ Themen</button><section class="detail" id="detail" tabindex="-1" aria-live="polite" aria-label="Learning content"><div class="empty">Wähle ein Thema.</div></section></div></main>
 <footer>Developed with ♥ by Your Luqman Habib</footer>
+
+
+
 <script>
 // =========================
 // Learning content data
@@ -1982,7 +2225,7 @@ function parseCafeExercise(content, chapterIndex){
 function renderCafeExercise(blocks){
   if(!blocks.length) return '';
   const id='exercise-'+Math.random().toString(36).slice(2,9);
-  return `<div class="section"><button class="exercise-toggle" type="button" aria-expanded="false" aria-controls="${id}" onclick="toggleExercise('${id}',this)"><span>✍️ Übung</span><span class="exercise-chevron" aria-hidden="true">＋</span></button><div id="${id}" class="cafe-exercises" hidden style="display:none">${blocks.map(b=>`<div class="cafe-exercise-card"><div class="cafe-exercise-question">${b.num}. ${esc(b.question)}</div>${b.options.map(o=>`<button class="cafe-exercise-option" type="button" data-answer="${esc(o.letter)}" data-correct="${esc(b.answer||'')}" onclick="checkCafeAnswer(this)">${esc(o.letter)}) ${esc(o.text)}</button>`).join('')}<div class="cafe-exercise-feedback" aria-live="polite"></div></div>`).join('')}</div></div>`;
+  return `<div class="section exercise-section"><button class="exercise-toggle" type="button" aria-expanded="false" aria-controls="${id}" onclick="toggleExercise('${id}',this)"><span>✍️ Übung</span><span class="exercise-chevron" aria-hidden="true">＋</span></button><div id="${id}" class="cafe-exercises" hidden style="display:none">${blocks.map(b=>`<div class="cafe-exercise-card"><div class="cafe-exercise-question">${b.num}. ${esc(b.question)}</div>${b.options.map(o=>`<button class="cafe-exercise-option" type="button" data-answer="${esc(o.letter)}" data-correct="${esc(b.answer||'')}" onclick="checkCafeAnswer(this)">${esc(o.letter)}) ${esc(o.text)}</button>`).join('')}<div class="cafe-exercise-feedback" aria-live="polite"></div></div>`).join('')}</div></div>`;
 }
 function toggleExercise(id,btn){
   const el=document.getElementById(id);
@@ -2718,7 +2961,7 @@ function openComprehensionTopic(i){
   const fullStory=t.story.join(' ');
   const highlightPlan=buildHighlightPlan(t.story,t.vocab,contentLevel==='simple'?20:10,contentLevel==='simple'?(SIMPLE_EXTRA_HIGHLIGHTS[i]||[]):[]);
   const highlightState={used:new Set(),count:0,limit:contentLevel==='simple'?18:10};
-  $('#detail').innerHTML=`<button class="back" onclick="window.scrollTo({top:0,behavior:'smooth'})">← Verstehen</button><h2 class="story-heading" onclick='speak(${JSON.stringify(fullStory)})' title="Gesamten Text anhören">${esc(normalizeTopicTitle(t.title,true))}</h2><div class="story">${t.story.map(p=>`<p>${renderHighlightedText(p,highlightPlan,highlightState)}</p>`).join('')}</div><div class="section translation-section"><div class="section-title">🌍 Übersetzung</div>${renderTable(t.translation,'translation')}</div><div class="section"><div class="section-title">📚 Wortschatz</div>${renderVocab(t.vocab)}</div>${t.grammar?`<div class="section"><div class="section-title">🧠 Grammatik</div><div class="section-note"><strong>${esc(t.grammar.title)}</strong><br>${esc(t.grammar.text)}<br><br>${t.grammar.examples.map(x=>'• '+esc(x)).join('<br>')}</div></div>`:''}${renderCultureNote(t.title)}<div class="section"><div class="section-title">🗣️ Nacherzählung</div>${renderTable(t.speaking,'speak')}</div>${t.listening?`<div class="section"><div class="section-title">🎧 Hörverstehen</div>${renderListening(t.listening)}</div>`:''}`;
+  $('#detail').innerHTML=`<button class="back" onclick="window.scrollTo({top:0,behavior:'smooth'})">← Verstehen</button><h2 class="story-heading" onclick='speak(${JSON.stringify(fullStory)})' title="Gesamten Text anhören">${esc(normalizeTopicTitle(t.title,true))}</h2><div class="story">${t.story.map(p=>`<p>${renderHighlightedText(p,highlightPlan,highlightState)}</p>`).join('')}</div><div class="section translation-section"><div class="section-title">🌍 Übersetzung</div>${renderTable(t.translation,'translation')}</div><div class="section vocab-section"><div class="section-title">📚 Wortschatz</div>${renderVocab(t.vocab)}</div>${t.grammar?`<div class="section"><div class="section-title">🧠 Grammatik</div><div class="section-note"><strong>${esc(t.grammar.title)}</strong><br>${esc(t.grammar.text)}<br><br>${t.grammar.examples.map(x=>'• '+esc(x)).join('<br>')}</div></div>`:''}${renderCultureNote(t.title)}<div class="section retelling-section"><div class="section-title">🗣️ Nacherzählung</div>${renderTable(t.speaking,'speak')}</div>${t.listening?`<div class="section"><div class="section-title">🎧 Hörverstehen</div>${renderListening(t.listening)}</div>`:''}`;
   focusDetail();
 }
 
@@ -2919,24 +3162,70 @@ async function deleteSavedSprechen(id){const db=await openSpeakingDB();await new
 
 const dialogueTranslationCache=new Map();
 
-async function translateDialogueSentence(text){
-  const german=String(text||'').replace(/\s+/g,' ').trim();
-  if(!german) return '';
-  const key=german.toLocaleLowerCase();
-  if(dialogueTranslationCache.has(key)) return dialogueTranslationCache.get(key);
-  try{
-    const url='https://api.mymemory.translated.net/get?langpair=de|en&q='+encodeURIComponent(german);
-    const response=await fetch(url,{headers:{'Accept':'application/json'}});
-    if(!response.ok) throw new Error('Translation request failed');
-    const data=await response.json();
-    const translated=String(data?.responseData?.translatedText||'').trim();
-    if(!translated) throw new Error('No translation returned');
-    dialogueTranslationCache.set(key,translated);
-    return translated;
-  }catch(err){
-    console.warn('Dialogue sentence translation failed:',err);
-    return '';
+async function translateTextReliable(source, cache, prefix='translation'){
+  const plain=String(source||'').replace(/\s+/g,' ').trim();
+  if(!plain) return '';
+  const key=prefix+':'+plain.toLocaleLowerCase();
+  const cached=cache.has(key)?String(cache.get(key)||'').trim():'';
+  if(cached && cached.toLocaleLowerCase()!==plain.toLocaleLowerCase() && !/QUERY LENGTH LIMIT EXCEEDED|MAX ALLOWED QUERY|translation unavailable|translation failed/i.test(cached)) return cached;
+  const chunks=splitTranslationChunks(plain,440);
+  const translatedChunks=[];
+  for(const chunk of chunks){
+    const chunkKey=prefix+':chunk:'+chunk.toLocaleLowerCase();
+    const cachedChunk=cache.has(chunkKey)?String(cache.get(chunkKey)||'').trim():'';
+    if(cachedChunk && cachedChunk.toLocaleLowerCase()!==chunk.toLocaleLowerCase() && !/QUERY LENGTH LIMIT EXCEEDED|MAX ALLOWED QUERY|translation unavailable|translation failed/i.test(cachedChunk)){
+      translatedChunks.push(cachedChunk);
+      continue;
+    }
+    if(cache.has(chunkKey)) cache.delete?.(chunkKey);
+    let translated='';
+    const providers=[
+      async()=>{
+        const url='https://translate.googleapis.com/translate_a/single?client=gtx&sl=de&tl=en&dt=t&q='+encodeURIComponent(chunk);
+        const controller=new AbortController();
+        const timer=setTimeout(()=>controller.abort(),8000);
+        try{
+          const response=await fetch(url,{mode:'cors',headers:{Accept:'application/json'},signal:controller.signal});
+          if(!response.ok) throw new Error('Google translation request failed');
+          const data=await response.json();
+          const out=Array.isArray(data?.[0])?data[0].map(x=>String(x?.[0]||'')).join('').trim():'';
+          if(!out || out===chunk || /QUERY LENGTH LIMIT EXCEEDED|MAX ALLOWED QUERY/i.test(out)) throw new Error('Invalid Google translation');
+          return out;
+        }finally{clearTimeout(timer);}
+      },
+      async()=>{
+        const url='https://api.mymemory.translated.net/get?langpair=de|en&q='+encodeURIComponent(chunk);
+        const controller=new AbortController();
+        const timer=setTimeout(()=>controller.abort(),8000);
+        try{
+          const response=await fetch(url,{mode:'cors',headers:{Accept:'application/json'},signal:controller.signal});
+          if(!response.ok) throw new Error('MyMemory translation request failed');
+          const data=await response.json();
+          const out=String(data?.responseData?.translatedText||'').trim();
+          const status=String(data?.responseStatus??'200');
+          if(status!=='200' || !out || out===chunk || /QUERY LENGTH LIMIT EXCEEDED|MAX ALLOWED QUERY/i.test(out)) throw new Error('Invalid MyMemory translation');
+          return out;
+        }finally{clearTimeout(timer);}
+      }
+    ];
+    for(let attempt=0;attempt<2 && !translated;attempt++){
+      for(const provider of providers){
+        try{translated=await provider(); if(translated) break;}catch(err){/* try next provider */}
+      }
+    }
+    if(!translated) throw new Error('English translation unavailable');
+    cache.set(chunkKey,translated);
+    translatedChunks.push(translated);
   }
+  const result=translatedChunks.join(' ').replace(/\s+([,.!?;:])/g,'$1').trim();
+  if(!result || result.toLocaleLowerCase()===plain.toLocaleLowerCase()) throw new Error('English translation unavailable');
+  cache.set(key,result);
+  return result;
+}
+
+async function translateDialogueSentence(text){
+  try{return await translateTextReliable(text,dialogueTranslationCache,'dialogue');}
+  catch(err){console.warn('Dialogue sentence translation failed:',err);return ''; }
 }
 
 function renderDialogueCell(text,term,en,role='A'){
@@ -3475,65 +3764,58 @@ let SCHRIBEN_TRANSLATION_CACHE={};
 try{SCHRIBEN_TRANSLATION_CACHE=JSON.parse(localStorage.getItem(SCHRIBEN_TRANSLATION_CACHE_KEY)||'{}')||{};}catch(e){}
 function saveSchribenTranslationCache(){try{localStorage.setItem(SCHRIBEN_TRANSLATION_CACHE_KEY,JSON.stringify(SCHRIBEN_TRANSLATION_CACHE));}catch(e){}}
 async function translateSchribenText(text){
-  const source=String(text||'').trim();
-  if(!source) return '';
-  const key=source.toLocaleLowerCase();
-  if(SCHRIBEN_TRANSLATION_CACHE[key]) return SCHRIBEN_TRANSLATION_CACHE[key];
-  const chunks=[];
-  // Keep requests comfortably below public translator URL limits.
-  if(source.length<=480) chunks.push(source);
-  else {
-    let rest=source;
-    while(rest.length>480){
-      let cut=rest.lastIndexOf(' ',480);
-      if(cut<200) cut=480;
-      chunks.push(rest.slice(0,cut));
-      rest=rest.slice(cut).trimStart();
-    }
-    if(rest) chunks.push(rest);
-  }
-  const translated=[];
-  for(const chunk of chunks){
-    const url='https://api.mymemory.translated.net/get?langpair=de|en&q='+encodeURIComponent(chunk);
-    const res=await fetch(url,{headers:{'Accept':'application/json'}});
-    if(!res.ok) throw new Error('Translation service unavailable');
-    const data=await res.json();
-    const out=data?.responseData?.translatedText;
-    if(!out) throw new Error('No translation returned');
-    translated.push(String(out).trim());
-  }
-  const result=translated.join(' ');
-  SCHRIBEN_TRANSLATION_CACHE[key]=result;
-  saveSchribenTranslationCache();
-  return result;
+  try{return await translateTextReliable(text,{has:(k)=>!!SCHRIBEN_TRANSLATION_CACHE[k],get:(k)=>SCHRIBEN_TRANSLATION_CACHE[k],set:(k,v)=>{SCHRIBEN_TRANSLATION_CACHE[k]=v; saveSchribenTranslationCache();}},'schreiben');}
+  catch(err){console.warn('Schreiben translation failed:',err);throw err;}
 }
+
 async function toggleSchribenTranslation(btn){
   const part=btn?.closest('.schreiben-exam-part');
   if(!part)return;
   const open=part.classList.contains('translation-open');
   const target=part.querySelector('.schreiben-translation');
+  const rows=[...part.querySelectorAll('[data-schreiben-german]')];
   if(open){
     part.classList.remove('translation-open');
     btn.classList.remove('rotating');
-    if(target)target.classList.remove('show');
+    rows.forEach((el)=>{
+      if(el.dataset.schreibenGermanHtml!=null) el.innerHTML=el.dataset.schreibenGermanHtml;
+    });
+    if(target){target.classList.remove('show','loading','error');target.textContent='';}
     return;
   }
   part.classList.add('translation-open');
   btn.classList.add('rotating');
   if(!target)return;
-  target.classList.add('show','loading');
-  target.classList.remove('error');
-  target.textContent='Translating…';
-  const rows=[...part.querySelectorAll('[data-schreiben-german]')];
-  const fullText=rows.map(el=>el.getAttribute('data-schreiben-german')||'').filter(Boolean).join('\n\n');
+  target.classList.remove('show','error');
+  target.classList.add('loading');
+  rows.forEach((el)=>{
+    if(el.dataset.schreibenGermanHtml==null) el.dataset.schreibenGermanHtml=el.innerHTML;
+  });
   try{
-    const translated=await translateSchribenText(fullText);
-    target.textContent=translated;
-    target.classList.remove('loading','error');
-  }catch(err){
+    for(const el of rows){
+      const source=el.getAttribute('data-schreiben-german')||'';
+      let translated='';
+      let lastErr=null;
+      for(let attempt=0;attempt<3 && !translated;attempt++){
+        try{
+          translated=await translateSchribenText(source);
+        }catch(err){
+          lastErr=err;
+          if(attempt<2) await new Promise(resolve=>setTimeout(resolve,450*(attempt+1)));
+        }
+      }
+      if(!translated) throw (lastErr || new Error('English translation unavailable'));
+      el.textContent=translated;
+    }
     target.classList.remove('loading');
-    target.classList.add('error');
-    target.textContent='English translation could not be loaded. Check your internet connection and try again.';
+  }catch(err){
+    rows.forEach((el)=>{
+      if(el.dataset.schreibenGermanHtml!=null) el.innerHTML=el.dataset.schreibenGermanHtml;
+    });
+    part.classList.remove('translation-open');
+    btn.classList.remove('rotating');
+    target.classList.remove('show','loading');
+    target.textContent='';
     console.warn('Schreiben translation failed:',err);
   }
 }
@@ -3623,6 +3905,12 @@ function renderWelcome(){
   </div>`;
 }
 
+function toggleMobileTopics(open){
+  const shell=document.querySelector('.topic-shell');
+  if(!shell) return;
+  shell.classList.toggle('mobile-topics-collapsed',!open);
+}
+
 function renderTopics(){
   document.querySelector('.topic-shell')?.classList.toggle('welcome-only', level==='welcome');
   if(level==='welcome'){
@@ -3694,7 +3982,7 @@ function renderTopics(){
   $('#topicButtons').innerHTML=list.length?list.map((t,i)=>{const title=normalizeTopicTitle(t.title,true);return `<button class="topic-btn ${i===current?'active':''}" onclick="openTopic(${i})">${esc(title)}</button>`}).join(''):`<div class="empty">Noch keine Themen verfügbar.</div>`;
 }
 
-function renderTable(rows,kind){if(!rows.length)return '<div class="section-note">Keine Einträge vorhanden.</div>'; if(kind==='speak'){const five=rows.slice(0,5);return `<div class="qa-list">${five.map(r=>`<div class="qa-row"><div class="qa-bubble qa-question speakable" onclick='speak(${JSON.stringify(r[0])})'><span class="qa-label">Frage</span>${esc(r[0])}</div><div class="qa-bubble qa-answer speakable" onclick='speak(${JSON.stringify(r[1])})'><span class="qa-label">Antwort</span>${esc(r[1])}<div class="qa-en">${esc(r[2]||'')}</div></div></div>`).join('')}</div>`;} return `<div class="table-wrap"><table class="data-table"><thead><tr><th>Deutsch</th><th>English</th></tr></thead><tbody>${rows.map(r=>`<tr><td><span class="speakable" onclick='speak(${JSON.stringify(r[0])})'>${esc(r[0])}</span></td><td>${esc(r[1]||'')}</td></tr>`).join('')}</tbody></table></div>`;}
+function renderTable(rows,kind){if(!rows.length)return '<div class="section-note">Keine Einträge vorhanden.</div>'; if(kind==='speak'){return `<div class="table-wrap"><table class="data-table dialogue-table retelling-table"><thead><tr><th>Frage 🇩🇪<button type="button" class="dialogue-translate-btn" onclick="event.stopPropagation();toggleDialogueTranslations(this.closest('.dialogue-table'))" aria-label="Show translations" title="Translation">EN</button></th><th>Antwort 🇩🇪<button type="button" class="dialogue-translate-btn" onclick="event.stopPropagation();toggleDialogueTranslations(this.closest('.dialogue-table'))" aria-label="Show translations" title="Translation">EN</button></th></tr></thead><tbody>${rows.map(r=>`<tr><td>${renderDialogueCell(r[0],'','', 'A')}</td><td>${renderDialogueCell(r[1]||'','','','B')}</td></tr>`).join('')}</tbody></table></div>`;} return `<div class="table-wrap"><table class="data-table"><thead><tr><th>Deutsch</th><th>English</th></tr></thead><tbody>${rows.map(r=>`<tr><td><span class="speakable" onclick='speak(${JSON.stringify(r[0])})'>${esc(r[0])}</span></td><td>${esc(r[1]||'')}</td></tr>`).join('')}</tbody></table></div>`;}
 function vocabMatchTerm(term){
   const raw=String(term||'').trim();
   const variants=[raw];
@@ -4091,38 +4379,169 @@ function renderElvisExerciseContent(){
   const adjectives=['nervös','ruhig','klug','enttäuscht','stolz','ärgerlich','umsichtig','gewalttätig','listig','fröhlich','eifersüchtig','neugierig','verzweifelt','ängstlich','erstaunt'];
   const persons=['Zorro','Alfred','die Polizei','Müller','Ilse','Karl','Bea'];
   const actions=['a) hat sich als Elvis verkleidet.','b) hat einen Maskenball veranstaltet.','c) hat ihre Handtasche gesucht.','d) hat Zorro im Bad eingesperrt.','e) hat eine Einladung nach Berlin geschickt.','f) hat Müllers Uhr an Zorros Arm entdeckt.','g) hat sich auf dem Ball eingeschlichen.','h) hat seine Brieftasche gesucht.','i) hat Karl, Ilse und Müller beklaut.','j) hat mit Zorro getanzt.','k) hat Alfred geschlagen.','l) ist mit Bea nach Köln gefahren.','m) hat eine Maske getragen.','n) war eifersüchtig auf Zorro.','o) ist mit Zorro nach Hause gefahren.','p) hat Zorro in Handschellen abgeführt.'];
-  return `<button class="exercise-toggle" type="button" aria-expanded="false" aria-controls="${id}" onclick="toggleExercise('${id}',this)"><span>✍️ Übungen und Tests</span><span class="exercise-chevron" aria-hidden="true">＋</span></button><div id="${id}" class="cafe-exercises" hidden style="display:none"><div class="cafe-exercise-card"><div class="cafe-exercise-question">1. Was steht im Text?</div><div class="table-wrap"><table class="data-table"><thead><tr><th>Aussage</th><th>R</th><th>F</th></tr></thead><tbody>${rf.map(x=>`<tr><td>${esc(x)}</td><td>□</td><td>□</td></tr>`).join('')}</tbody></table></div></div><div class="cafe-exercise-card"><div class="cafe-exercise-question">2. Gucken Sie sich die Bilder an: Als wer will Müller zum Kölner Karneval gehen?</div></div><div class="cafe-exercise-card"><div class="cafe-exercise-question">3. Bea bereitet die Reise nach Köln vor. Woran muss sie denken?</div><div class="table-wrap"><table class="data-table"><thead><tr><th>Termine</th><th>Telefonate</th><th>Kosten</th><th>Gepäck</th><th>…</th></tr></thead><tbody><tr><td></td><td></td><td></td><td></td><td></td></tr></tbody></table></div></div><div class="cafe-exercise-card"><div class="cafe-exercise-question">4. Ordnen Sie die Überschriften den Abschnitten 1.-4. zu und schreiben Sie eine kurze Zusammenfassung zu jedem Abschnitt.</div>${headings.map(x=>`<div>${esc(x)}</div>`).join('')}</div><div class="cafe-exercise-card"><div class="cafe-exercise-question">5.-6. Fahren Sie auch zum Kölner Karneval! Wie verkleiden Sie sich?</div><div class="cafe-reading-list">${phrases.map(x=>`<div>${esc(x)}</div>`).join('')}</div></div><div class="cafe-exercise-card"><div class="cafe-exercise-question">6. Helfen Sie Helmut Müller. Was geschieht?</div><div class="table-wrap"><table class="data-table"><thead><tr><th>Person</th><th>wann?</th><th>wo?</th><th>warum?</th><th>wie?</th><th>wem?</th></tr></thead><tbody>${whenRows.map(x=>`<tr><td>${esc(x)}</td><td></td><td></td><td></td><td></td><td></td></tr>`).join('')}</tbody></table></div><p class="lesson-guide-title">Wer verdächtigen Sie? Warum? Machen Sie einen kurzen Bericht für Helmut Müller.</p></div><div class="cafe-exercise-card"><div class="cafe-exercise-question">7.-8. Beschreiben Sie, wie sich Müller, Bea, Alfred und Zorro in Abschnitt 7 und 8 verhalten.</div><div class="lesson-vocab-note">Verben</div><div class="cafe-reading-list">${verbs.map(x=>`<div>${esc(x)}</div>`).join('')}</div><div class="lesson-vocab-note">Adjektive</div><div class="cafe-reading-list">${adjectives.map(x=>`<div>${esc(x)}</div>`).join('')}</div><p class="lesson-guide-title">Beispiel: Müller ist eifersüchtig auf Zorro.</p></div><div class="cafe-exercise-card"><div class="cafe-exercise-question">1.-9. Stellen Sie sich noch einmal die ganze Geschichte vor und ordnen Sie zu.</div><div class="table-wrap"><table class="data-table"><thead><tr><th>Person</th><th>Aktion</th></tr></thead><tbody>${persons.map(x=>`<tr><td>${esc(x)}</td><td></td></tr>`).join('')}</tbody></table></div><div class="cafe-reading-list">${actions.map(a=>`<div>${esc(a)}</div>`).join('')}</div><p class="lesson-guide-title">Ordnen Sie die Aussagen den Personen zu.</p><p class="lesson-guide-title">1.-9. Was geschah wann? Ordnen Sie die Sätze, die Sie oben zusammengebaut haben, in der richtigen zeitlichen Reihenfolge.</p><p class="lesson-guide-title">Start: e)</p></div></div>`;
+  return `<div class="section exercise-section"><button class="exercise-toggle" type="button" aria-expanded="false" aria-controls="${id}" onclick="toggleExercise('${id}',this)"><span>✍️ Übungen und Tests</span><span class="exercise-chevron" aria-hidden="true">＋</span></button><div id="${id}" class="cafe-exercises" hidden style="display:none"><div class="cafe-exercise-card"><div class="cafe-exercise-question">1. Was steht im Text?</div><div class="table-wrap"><table class="data-table"><thead><tr><th>Aussage</th><th>R</th><th>F</th></tr></thead><tbody>${rf.map(x=>`<tr><td>${esc(x)}</td><td>□</td><td>□</td></tr>`).join('')}</tbody></table></div></div><div class="cafe-exercise-card"><div class="cafe-exercise-question">2. Gucken Sie sich die Bilder an: Als wer will Müller zum Kölner Karneval gehen?</div></div><div class="cafe-exercise-card"><div class="cafe-exercise-question">3. Bea bereitet die Reise nach Köln vor. Woran muss sie denken?</div><div class="table-wrap"><table class="data-table"><thead><tr><th>Termine</th><th>Telefonate</th><th>Kosten</th><th>Gepäck</th><th>…</th></tr></thead><tbody><tr><td></td><td></td><td></td><td></td><td></td></tr></tbody></table></div></div><div class="cafe-exercise-card"><div class="cafe-exercise-question">4. Ordnen Sie die Überschriften den Abschnitten 1.-4. zu und schreiben Sie eine kurze Zusammenfassung zu jedem Abschnitt.</div>${headings.map(x=>`<div>${esc(x)}</div>`).join('')}</div><div class="cafe-exercise-card"><div class="cafe-exercise-question">5.-6. Fahren Sie auch zum Kölner Karneval! Wie verkleiden Sie sich?</div><div class="cafe-reading-list">${phrases.map(x=>`<div>${esc(x)}</div>`).join('')}</div></div><div class="cafe-exercise-card"><div class="cafe-exercise-question">6. Helfen Sie Helmut Müller. Was geschieht?</div><div class="table-wrap"><table class="data-table"><thead><tr><th>Person</th><th>wann?</th><th>wo?</th><th>warum?</th><th>wie?</th><th>wem?</th></tr></thead><tbody>${whenRows.map(x=>`<tr><td>${esc(x)}</td><td></td><td></td><td></td><td></td><td></td></tr>`).join('')}</tbody></table></div><p class="lesson-guide-title">Wer verdächtigen Sie? Warum? Machen Sie einen kurzen Bericht für Helmut Müller.</p></div><div class="cafe-exercise-card"><div class="cafe-exercise-question">7.-8. Beschreiben Sie, wie sich Müller, Bea, Alfred und Zorro in Abschnitt 7 und 8 verhalten.</div><div class="lesson-vocab-note">Verben</div><div class="cafe-reading-list">${verbs.map(x=>`<div>${esc(x)}</div>`).join('')}</div><div class="lesson-vocab-note">Adjektive</div><div class="cafe-reading-list">${adjectives.map(x=>`<div>${esc(x)}</div>`).join('')}</div><p class="lesson-guide-title">Beispiel: Müller ist eifersüchtig auf Zorro.</p></div><div class="cafe-exercise-card"><div class="cafe-exercise-question">1.-9. Stellen Sie sich noch einmal die ganze Geschichte vor und ordnen Sie zu.</div><div class="table-wrap"><table class="data-table"><thead><tr><th>Person</th><th>Aktion</th></tr></thead><tbody>${persons.map(x=>`<tr><td>${esc(x)}</td><td></td></tr>`).join('')}</tbody></table></div><div class="cafe-reading-list">${actions.map(a=>`<div>${esc(a)}</div>`).join('')}</div><p class="lesson-guide-title">Ordnen Sie die Aussagen den Personen zu.</p><p class="lesson-guide-title">1.-9. Was geschah wann? Ordnen Sie die Sätze, die Sie oben zusammengebaut haben, in der richtigen zeitlichen Reihenfolge.</p><p class="lesson-guide-title">Start: e)</p></div></div></div>`;
 }
+
+const LESSON_TRANSLATION_CACHE={};
+function splitTranslationChunks(text,maxChars=440){
+  const input=String(text||'').replace(/\s+/g,' ').trim();
+  if(input.length<=maxChars) return input?[input]:[];
+  const sentences=input.match(/[^.!?]+[.!?]+(?:\s+|$)|[^.!?]+$/g)||[input];
+  const chunks=[]; let current='';
+  const push=part=>{ const t=String(part||'').trim(); if(t) chunks.push(t); };
+  for(const sentence of sentences){
+    const s=sentence.trim();
+    if(!s) continue;
+    if(s.length>maxChars){
+      const words=s.split(/\s+/);
+      let piece='';
+      for(const word of words){
+        if((piece+' '+word).trim().length>maxChars){push(piece); piece=word;}else piece=(piece+' '+word).trim();
+      }
+      push(piece);
+      continue;
+    }
+    if((current+' '+s).trim().length>maxChars){push(current); current=s;}else current=(current+' '+s).trim();
+  }
+  push(current);
+  return chunks;
+}
+
+async function translateLessonText(source){
+  try{
+    return await translateTextReliable(source,{has:(k)=>!!LESSON_TRANSLATION_CACHE[k],get:(k)=>LESSON_TRANSLATION_CACHE[k],set:(k,v)=>{LESSON_TRANSLATION_CACHE[k]=v;}},'lesson');
+  }catch(err){
+    console.warn('Lesson translation failed:',err);
+    throw err;
+  }
+}
+
+async function translateLessonDom(root){
+  if(!root) return;
+  const units=[];
+  const selector='p,li,td,th,.cafe-reading-list > div,.lesson-reading-list > div';
+  root.querySelectorAll(selector).forEach(el=>{
+    if(el.closest('button,a,input,textarea,select,.section-title,.lesson-book-heading,.lesson-vocab-note')) return;
+    if(el.parentElement?.closest(selector)) return;
+    const text=String(el.textContent||'').replace(/\s+/g,' ').trim();
+    if(text) units.push({el,text});
+  });
+  for(const unit of units){
+    const translated=await translateLessonText(unit.text);
+    if(translated) unit.el.textContent=translated;
+  }
+}
+
+function buildDirectLessonTranslation(bookIndex,i){
+  const book=lessonBookData(bookIndex), t=book?.data?.[i];
+  const direct=String(t?.translation||getBookTranslation(bookIndex,i)||'').trim();
+  return direct;
+}
+
+function getLessonContentRoot(shell){
+  return shell?.querySelector('.lesson-de-view > .lesson-reader, .lesson-de-view > .cafe-reading')||null;
+}
+
+async function toggleLessonTranslation(btn){
+  const shell=btn?.closest('.lesson-reader-shell');
+  if(!shell)return;
+  const open=shell.classList.contains('translation-open');
+  const deView=shell.querySelector('.lesson-de-view');
+  let enView=shell.querySelector('.lesson-en-view');
+  const sourceRoot=getLessonContentRoot(shell);
+  if(!sourceRoot || !deView || !enView)return;
+  if(open){
+    shell.classList.remove('translation-open');
+    btn.classList.remove('rotating');
+    btn.textContent='↻';
+    btn.setAttribute('aria-label','English translation');
+    btn.title='English translation';
+    return;
+  }
+  btn.disabled=true;
+  btn.textContent='…';
+  btn.setAttribute('aria-label','Translating');
+  btn.title='Translating';
+  try{
+    if(enView.dataset.loaded!=='1'){
+      const translatedRoot=sourceRoot.cloneNode(true);
+      translatedRoot.querySelectorAll('[id]').forEach(el=>el.removeAttribute('id'));
+      const direct=buildDirectLessonTranslation(Number(shell.dataset.bookIndex),Number(shell.dataset.topicIndex));
+      if(direct){
+        const contentRoot=translatedRoot.matches('.lesson-reader,.cafe-reading')?translatedRoot:null;
+        if(contentRoot){
+          const blocks=[...contentRoot.querySelectorAll('p')].filter(p=>!p.closest('.section-title,.lesson-book-heading'));
+          if(blocks.length===1) blocks[0].textContent=direct;
+          else await translateLessonDom(translatedRoot);
+        }else await translateLessonDom(translatedRoot);
+      }else{
+        await translateLessonDom(translatedRoot);
+      }
+      enView.innerHTML='';
+      enView.appendChild(translatedRoot);
+      enView.dataset.loaded='1';
+    }
+    shell.classList.add('translation-open');
+    btn.classList.add('rotating');
+    btn.textContent='↺';
+    btn.setAttribute('aria-label','German text');
+    btn.title='German text';
+  }catch(err){
+    console.warn('Lesson translation failed:',err);
+    shell.classList.remove('translation-open');
+    enView.textContent='English translation could not be loaded. Please try again.';
+    enView.dataset.loaded='0';
+    btn.textContent='↻';
+    btn.setAttribute('aria-label','English translation');
+    btn.title='English translation';
+  }finally{
+    btn.disabled=false;
+  }
+}
+
 function renderNewBookTopic(bookIndex,i){
   const book=lessonBookData(bookIndex);
   const t=book?.data?.[i];
   if(!t) return '<div class="empty">Noch kein Inhalt.</div>';
+  let deHtml='';
+  let sourceText=String(t.content||'');
+  let directTranslation=String(t.translation||'').trim() || getBookTranslation(bookIndex,i);
   if(book.type==='dino' || book.type==='mord'){
     const answers=book.type==='dino' ? DINO_BOOK_ANSWERS[i]||[] : MORD_BOOK_ANSWERS[i-1]||[];
     const parsed=parseBookExercise(t.content,answers);
-    const chapterText=parsed.main.replace(/\*\*/g,'').replace(/^#\s+[^^\n]*\n*/,'').replace(/\n+/g,' ');
+    sourceText=String(parsed.main||'');
+    const chapterText=sourceText.replace(/\*\*/g,'').replace(/^#\s+[^\n]*\n*/,'').replace(/\n+/g,' ');
     const displayTitle=normalizeTopicTitle(book.type==='mord'?mordDisplayTitle(t.title):t.title,true);
     const vocabMatch=book.type==='mord' ? parsed.main.match(/(?:^|\n)\*\*Vocabulary:\*\*[\s\S]*?(?=\n---|$)/i) : null;
     let mainText=parsed.main;
-    let vocabHtml='';
-    let rows=[];
+    let vocabHtml=''; let rows=[];
     if(vocabMatch){
-      const rowRe=/\|\s*([^|]+?)\s*\|\s*([^|]+?)\s*\|/g;
-      let rm; while((rm=rowRe.exec(vocabMatch[0]))){ if(rm[1].trim().toLowerCase()!=='german' && rm[1].trim()!=='--------') rows.push([rm[1].trim(),rm[2].trim()]); }
+      const rowRe=/\|\s*([^|]+?)\s*\|\s*([^|]+?)\s*\|/g; let rm;
+      while((rm=rowRe.exec(vocabMatch[0]))){ if(rm[1].trim().toLowerCase()!=='german' && rm[1].trim()!=='--------') rows.push([rm[1].trim(),rm[2].trim()]); }
       if(rows.length) vocabHtml=`<div class="section"><div class="section-title">📚 Wortschatz</div>${renderVocab(rows)}</div>`;
       mainText=mainText.replace(vocabMatch[0],'').trim();
+      sourceText=mainText;
     }
     const parsedMain={main:mainText,exercise:parsed.exercise,vocab:book.type==='mord'?rows:(t.vocab||[])};
-    return `<button class="back" onclick="showLessonBooks()">← Bücher</button><div class="lesson-book-heading">${esc(book.title)}</div><h2 class="story-heading" onclick='speak(${JSON.stringify(chapterText)})' title="Text anhören">${esc(displayTitle)}</h2><div class="lesson-reader">${book.type==='mord' ? renderMordBookContent(parsedMain.main, parsedMain.vocab||[], i) : renderBoldBookContent(parsedMain.main, parsedMain.vocab||[])}</div>${vocabHtml}${renderCafeExercise(parsedMain.exercise)}`;
+    const body=book.type==='mord' ? renderMordBookContent(parsedMain.main, parsedMain.vocab||[], i) : renderBoldBookContent(parsedMain.main, parsedMain.vocab||[]);
+    deHtml=`<button class="back" onclick="showLessonBooks()">← Bücher</button><div class="lesson-book-heading">${esc(book.title)}</div><h2 class="story-heading" onclick='speak(${JSON.stringify(chapterText)})' title="Text anhören">${esc(displayTitle)}</h2><div class="lesson-reader">${body}</div>${vocabHtml}${renderCafeExercise(parsedMain.exercise)}`;
+  } else {
+    const full=cleanBookMarkup(t.content||'');
+    sourceText=full;
+    const displayFull=full.replace(/^\s*#{1,6}\s+/gm,'');
+    const body=renderBookInline(displayFull,Array.isArray(t.vocab)?t.vocab:[],null,20);
+    const paras=body.split(/\n\s*\n/).filter(Boolean).map(p=>`<p>${p.replace(/\n/g,'<br>')}</p>`).join('');
+    const displayTitle=normalizeTopicTitle((bookIndex===4||bookIndex===5)?decorateBookSectionTitle(bookIndex,i,t.title):t.title,true);
+    deHtml=`<button class="back" onclick="showLessonBooks()">← Bücher</button><div class="lesson-book-heading">${esc(book.title)}</div><h2 class="story-heading" onclick='speak(${JSON.stringify(full)})' title="Text anhören">${esc(displayTitle)}</h2><div class="lesson-reader">${paras}</div>`;
   }
-  const full=cleanBookMarkup(t.content||'');
-  const displayFull=full.replace(/^\s*#{1,6}\s+/gm,'');
-  const body=renderBookInline(displayFull,Array.isArray(t.vocab)?t.vocab:[],null,20);
-  const paras=body.split(/\n\s*\n/).filter(Boolean).map(p=>`<p>${p.replace(/\n/g,'<br>')}</p>`).join('');
-  const translation=getBookTranslation(bookIndex,i);
-  const translationBox=translation?`<div class="lesson-translation"><div class="lesson-translation-title">🇬🇧 Exact English translation</div><div>${esc(translation)}</div></div>`:'';
-  const displayTitle=normalizeTopicTitle((bookIndex===4||bookIndex===5)?decorateBookSectionTitle(bookIndex,i,t.title):t.title,true);
-  return `<button class="back" onclick="showLessonBooks()">← Bücher</button><div class="lesson-book-heading">${esc(book.title)}</div><h2 class="story-heading" onclick='speak(${JSON.stringify(full)})' title="Text anhören">${esc(displayTitle)}</h2><div class="lesson-reader">${paras}</div>${translationBox}`;
+  return `<div class="lesson-reader-shell" data-book-index="${bookIndex}" data-topic-index="${i}"><button type="button" class="lesson-translate-btn" aria-label="English translation" title="English translation" onclick="toggleLessonTranslation(this)">↻</button><div class="lesson-de-view">${deHtml}</div><div class="lesson-en-view" aria-live="polite"></div></div>`;
+}
+
+
+function wrapExistingLessonTranslation(bookIndex,i,deHtml){
+  const book=lessonBookData(bookIndex), t=book?.data?.[i];
+  if(!t) return deHtml;
+  return `<div class="lesson-reader-shell" data-book-index="${bookIndex}" data-topic-index="${i}"><button type="button" class="lesson-translate-btn" aria-label="English translation" title="English translation" onclick="toggleLessonTranslation(this)">↻</button><div class="lesson-de-view">${deHtml}</div><div class="lesson-en-view" aria-live="polite"></div></div>`;
 }
 
 function openTopic(i){current=i;if(level==='instructions'){renderInstructions();return;}if(level==='vokabular'){ openVocabTopic(i); return; }
@@ -4131,10 +4550,10 @@ if(level==='lesen'){
   const book=lessonBookData(lessonBook);
   renderTopics();
   const detailEl=$('#detail');const topicsEl=$('.topic-list');
-  detailEl.innerHTML=book.type==='cafe'?renderCafeTopic(i):book.type==='frankfurt'?renderFrankfurtTopic(i):book.type==='elvis'?renderElvisTopic(i):renderNewBookTopic(lessonBook,i);
+  {const rendered=book.type==='cafe'?renderCafeTopic(i):book.type==='frankfurt'?renderFrankfurtTopic(i):book.type==='elvis'?renderElvisTopic(i):renderNewBookTopic(lessonBook,i);detailEl.innerHTML=rendered.includes('lesson-reader-shell')?rendered:wrapExistingLessonTranslation(lessonBook,i,rendered);}
   void detailEl.offsetWidth; void topicsEl.offsetWidth;window.scrollTo({top:document.querySelector('.detail').offsetTop-80,behavior:'smooth'});return;
 }
-if(level==='frankfurt'){renderTopics();const detailEl=$('#detail');const topicsEl=$('.topic-list');detailEl.innerHTML=renderFrankfurtTopic(i);void detailEl.offsetWidth; void topicsEl.offsetWidth;window.scrollTo({top:document.querySelector('.detail').offsetTop-80,behavior:'smooth'});return;}if(level==='sprechen'){renderSpeakingPanel();window.scrollTo({top:document.querySelector('.detail').offsetTop-80,behavior:'smooth'});return;}if(level==='cafe'){renderTopics();const detailEl=$('#detail');const topicsEl=$('.topic-list');detailEl.innerHTML=renderCafeTopic(i);void detailEl.offsetWidth; void topicsEl.offsetWidth;window.scrollTo({top:document.querySelector('.detail').offsetTop-80,behavior:'smooth'});return;}const t=(DATA[level]||[])[i];const detailEl=$('#detail');const topicsEl=$('.topic-list');renderTopics();if(!t){detailEl.innerHTML='<div class="empty">Noch keine Themen verfügbar.</div>';}else{const fullStory=t.story.join(' ');const highlightPlan=buildHighlightPlan(t.story,t.vocab,level==='simple'?20:10,level==='simple'?(SIMPLE_EXTRA_HIGHLIGHTS[i]||[]):[]);const highlightState={used:new Set(),count:0,limit:level==='simple'?18:10};detailEl.innerHTML=`<button class="back" onclick="window.scrollTo({top:0,behavior:'smooth'})">← Thema</button><h2 class="story-heading" onclick='speak(${JSON.stringify(fullStory)})' title="Gesamten Text anhören">${esc(normalizeTopicTitle(t.title,true))}</h2><div class="story">${t.story.map(p=>`<p>${renderHighlightedText(p,highlightPlan,highlightState)}</p>`).join('')}</div><div class="section translation-section"><div class="section-title">🌍 Übersetzung</div>${renderTable(t.translation,'translation')}</div><div class="section"><div class="section-title">📚 Wortschatz</div>${renderVocab(t.vocab)}</div>${t.grammar?`<div class="section"><div class="section-title">🧠 Grammatik</div><div class="section-note"><strong>${esc(t.grammar.title)}</strong><br>${esc(t.grammar.text)}<br><br>${t.grammar.examples.map(x=>'• '+esc(x)).join('<br>')}</div></div>`:''}${renderCultureNote(t.title)}<div class="section"><div class="section-title">🗣️ Nacherzählung</div>${renderTable(t.speaking,'speak')}</div>${t.listening?`<div class="section"><div class="section-title">🎧 Hörverstehen</div>${renderListening(t.listening)}</div>`:''}`;}focusDetail();window.scrollTo({top:document.querySelector('.detail').offsetTop-80,behavior:'smooth'});}
+if(level==='frankfurt'){renderTopics();const detailEl=$('#detail');const topicsEl=$('.topic-list');detailEl.innerHTML=renderFrankfurtTopic(i);void detailEl.offsetWidth; void topicsEl.offsetWidth;window.scrollTo({top:document.querySelector('.detail').offsetTop-80,behavior:'smooth'});return;}if(level==='sprechen'){renderSpeakingPanel();window.scrollTo({top:document.querySelector('.detail').offsetTop-80,behavior:'smooth'});return;}if(level==='cafe'){renderTopics();const detailEl=$('#detail');const topicsEl=$('.topic-list');detailEl.innerHTML=renderCafeTopic(i);void detailEl.offsetWidth; void topicsEl.offsetWidth;window.scrollTo({top:document.querySelector('.detail').offsetTop-80,behavior:'smooth'});return;}const t=(DATA[level]||[])[i];const detailEl=$('#detail');const topicsEl=$('.topic-list');renderTopics();if(!t){detailEl.innerHTML='<div class="empty">Noch keine Themen verfügbar.</div>';}else{const fullStory=t.story.join(' ');const highlightPlan=buildHighlightPlan(t.story,t.vocab,level==='simple'?20:10,level==='simple'?(SIMPLE_EXTRA_HIGHLIGHTS[i]||[]):[]);const highlightState={used:new Set(),count:0,limit:level==='simple'?18:10};detailEl.innerHTML=`<button class="back" onclick="window.scrollTo({top:0,behavior:'smooth'})">← Thema</button><h2 class="story-heading" onclick='speak(${JSON.stringify(fullStory)})' title="Gesamten Text anhören">${esc(normalizeTopicTitle(t.title,true))}</h2><div class="story">${t.story.map(p=>`<p>${renderHighlightedText(p,highlightPlan,highlightState)}</p>`).join('')}</div><div class="section translation-section"><div class="section-title">🌍 Übersetzung</div>${renderTable(t.translation,'translation')}</div><div class="section vocab-section"><div class="section-title">📚 Wortschatz</div>${renderVocab(t.vocab)}</div>${t.grammar?`<div class="section"><div class="section-title">🧠 Grammatik</div><div class="section-note"><strong>${esc(t.grammar.title)}</strong><br>${esc(t.grammar.text)}<br><br>${t.grammar.examples.map(x=>'• '+esc(x)).join('<br>')}</div></div>`:''}${renderCultureNote(t.title)}<div class="section retelling-section"><div class="section-title">🗣️ Nacherzählung</div>${renderTable(t.speaking,'speak')}</div>${t.listening?`<div class="section"><div class="section-title">🎧 Hörverstehen</div>${renderListening(t.listening)}</div>`:''}`;}focusDetail();window.scrollTo({top:document.querySelector('.detail').offsetTop-80,behavior:'smooth'});}
 
 // Switch between Simple, Understandable, Dialoge, Café in Berlin, and Ferien in Frankfurt.
 function setLevel(l){level=l;current=0;lessonBook=-1;document.querySelectorAll('.pill[data-level]').forEach(b=>b.classList.toggle('active',b.dataset.level===l));if(l==='welcome'){renderWelcome();return;}if(l==='comprehension'){comprehensionLevel=null;renderComprehensionPanel();window.scrollTo({top:document.querySelector('.detail').offsetTop-80,behavior:'smooth'});return;}if(l==='sprechen'){document.querySelector('.topic-shell')?.classList.remove('welcome-only');sprechenLevel=null;renderTopics();renderSpeakingRecorder();window.scrollTo({top:document.querySelector('.detail').offsetTop-80,behavior:'smooth'});return;}if(l==='schriben'){document.querySelector('.topic-shell')?.classList.remove('welcome-only');schribenLevel=null;schribenSection='exam';schribenExam=0;schribenEditorVisible=true;renderSchriben();window.scrollTo({top:document.querySelector('.detail').offsetTop-80,behavior:'smooth'});return;}if(l==='instructions'){instructionSection='how';renderInstructions();return;}renderTopics();if(l==='lesen'||l==='mord'){if(l==='lesen'){showLessonBooks();}else{document.querySelector('.detail').innerHTML='<div class="empty">Noch kein Inhalt.</div>';}return;}openTopic(0)}
@@ -4197,4 +4616,19 @@ document.querySelectorAll('.pill[data-level]').forEach(b=>b.classList.remove('ac
 </script>
 
 </body>
-</html>
+</html><style id="flat-vocab-retelling-surface">
+/* Match Wortschatz and Nacherzählung to the flat main-surface treatment of Übersetzung. */
+.section.vocab-section,
+.section.retelling-section{
+  background:transparent !important;
+  border:0 !important;
+  box-shadow:none !important;
+  padding-left:0 !important;
+  padding-right:0 !important;
+}
+.section.vocab-section .section-title,
+.section.retelling-section .section-title{
+  margin-left:0;
+  margin-right:0;
+}
+</style>
